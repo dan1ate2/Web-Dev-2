@@ -1,1 +1,132 @@
-/* Main CSS Styles */
+/* ##### STYLING & LAYOUT ##### */
+body {
+	background-image: url("../images/background.png");
+    background-repeat: repeat;
+	min-height:100%;
+	margin: 0;
+	padding: 0;
+	color: #cecece; /* font colour */
+	font-family: "Open Sans", sans-serif;
+}
+header {
+	float:left;
+	width: 100%;
+}
+h1, h2, h3, h4 {
+	font-family: "Russo One", sans-serif;
+	margin: 0;
+	padding: .2em;
+	color: #fff;
+}
+h1.orange, h2.orange, h3.orange, h4.orange {
+	background-color: #f1592a;
+}
+h1.black-orange, h2.black-orange, h3.black-orange, h4.black-orange {
+	background-color: #000;
+	color: #f1592a;
+}
+p {
+	margin: 10px 10px;
+	font-size: 1em;
+}
+a {
+	text-decoration: none;
+	color:#cecece; /* TEMP */
+}
+
+/* ##### CONTAINERS ##### */
+.container {
+	width:980px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.fw-row {
+	float:left;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+.left-box {
+	float:left;
+	width: 38%;
+	margin-top: 30px;
+}
+.right-box {
+	float:right;
+	width: 58%;
+	margin-top: 30px;
+}
+.fw-box {
+	width: 100%;
+	float: left;
+	margin-top: 30px;
+}
+.bg-opacity {
+	background-image: url("../images/bg-opacity.png");
+	background-repeat: repeat;
+}
+.bg-black {
+	background-color: black;
+}
+.box-orange-border {
+	border:solid 4px #f1592a;
+}
+img.feature-images {
+	margin-top: 30px;
+}
+.clear {
+	clear: both;
+}
+
+/* ##### NAV ##### */
+nav {
+	float:left;
+	width: 100%;
+}
+nav ul {
+	padding: 0;
+	float: left;
+	margin: 0;
+}
+nav li {
+	float: left;
+	display: block;
+	padding: 10px 10px 10px 0;
+	color:#cecece; /* TEMP */
+	font-family: "Russo One", sans-serif;
+	font-size: 1.0em;
+}
+nav a {
+	padding:10px 0;
+	margin-right: 20px;
+}
+
+/* ##### FOOTER ##### */
+footer {
+	margin-top: 30px;
+	float: left;
+	width: 100%;
+}
+footer ul {
+	padding: 0;
+	float: left;
+	margin: 0;
+}
+footer li {
+	float: left;
+	display: block;
+	color:#cecece; /* TEMP */
+	font-family: "Open Sans", sans-serif;
+	font-size: 0.9em;
+	margin-right: 20px;
+}
+footer a {
+	display: block;
+	padding:10px;
+	margin: 5px;
+}
+.infotech {
+	text-align: center;
+	font-size: 0.9em;
+	display: block;
+}
