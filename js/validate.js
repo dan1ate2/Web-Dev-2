@@ -247,4 +247,5 @@ function validateForm() {
         ("0"+(joinDate.getMonth()+1)).slice(-2), // +1 because 0-11 indexing
         ("0"+joinDate.getDate()).slice(-2)];
     formattedDate = formattedDate.join(" "); // concatenates array, space separated
+    document.forms["join"]["join-date"].value = formattedDate; // assign to hidden field
 }
