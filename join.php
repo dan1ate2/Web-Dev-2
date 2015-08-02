@@ -46,15 +46,15 @@
 
             <!-- Login details -->
             <label for="username">Username</label>
-			<input type="text" name="username" id="username" pattern="{6,10}"><br>
+			<input type="text" name="username" id="username" pattern=".{4,10}" maxlength="10"><br>
 			<label for="password">Password</label>
-			<input type="text" name="password" id="password" maxlength="10"><br>
+			<input type="password" name="password" id="password" maxlength="10"><br>
 			<label for="retype-password">Re-type Password</label>
-			<input type="text" name="retype-password" id="retype-password" maxlength="10"><br>
+			<input type="password" name="retype-password" id="retype-password" maxlength="10"><br>
 
             <!-- Occupation -->
             <label>Occupation</label><br>
-			<select>
+			<select name="occupation" id="occupation">
 				<option value=""></option>
 				<option value="Student">Student</option>
 				<option value="I.T. Professional">I.T. Professional</option>

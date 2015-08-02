@@ -12,23 +12,43 @@ function validateForm() {
     var username = document.forms["join"]["username"].value;
     var password = document.forms["join"]["password"].value;
     var retypePassword = document.forms["join"]["retype-password"].value;
-    var occupation; // FIGURE OUT HOW TO GET SELECTED OPTION
+    var occupation = document.forms["join"]["occupation"].value; // FIGURE OUT HOW TO GET SELECTED OPTION
     var re; // regular expression
 
     // validate surname
     if (surname == "") {
-        alert("The Surname field cannot be left blank." + 
-            "\nOnly words and spaces can be used.");
+        alert("The Surname field cannot be left blank.");
         join.surname.focus();
         return false;
+    }
+    else {
+        // re = new RegExp(/^(\w+)\s(\w+)\s(\w+)$/);
+        re = new RegExp(/^(\w+)(\s\w+){0,5}$/);
+
+        if (!re.test(surname)) {
+            alert("You have entered an invalid surname." + 
+                "\nOnly words and single spaces are allowed.");
+            document.forms["join"]["surname"].select();
+            return false;
+        }
     }
 
     // validate otherNames
     if (otherNames == "") {
-        alert("The Other Names field cannot be left blank" + 
-            "\nOnly words and spaces can be used.");
+        alert("The Other Names field cannot be left blank.");
         document.forms["join"]["other-names"].focus();
         return false;
+    }
+    else {
+        // re = new RegExp(/^(\w+)\s(\w+)\s(\w+)$/);
+        re = new RegExp(/^(\w+)(\s\w+){0,5}$/);
+
+        if (!re.test(otherNames)) {
+            alert("You have an invalid entry in 'Other names' field." + 
+                "\nOnly words and spaces are allowed.");
+            document.forms["join"]["other-names"].select();
+            return false;
+        }
     }
     
     // set contact method chosen (initialize var)
@@ -101,17 +121,17 @@ function validateForm() {
     // check for postal address if magazine option selected
     if (document.forms["join"]["magazine"].checked) {
         if (!streetAddress) {
-            alert('A street address is required to receive the monthly magazine.');
+            alert("A street address is required to receive the monthly magazine.");
             document.forms["join"]["street-address"].focus();
             return false;
         }
         else if (!suburbState) {
-            alert('A suburb and state are required to receive the monthly magazine.');
+            alert("A suburb and state are required to receive the monthly magazine.");
             document.forms["join"]["suburb-state"].focus();
             return false;
         }
         else if (!postcode) {
-            alert('A postcode is required to receive the monthly magazine.');
+            alert("A postcode is required to receive the monthly magazine.");
             document.forms["join"]["postcode"].focus();
             return false;
         }
@@ -160,19 +180,62 @@ function validateForm() {
     // validate username
     // 6-10 characters, no whitespace
     if (!username == "") {
-        re = new RegExp(/^(\w){6,10}\S$/);
+        // re = new RegExp(/^(?=.{6,10})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\S$/);
+        re = new RegExp(/^(\S){6,10}$/);
 
         if (!re.test(username)) {
             alert("You have entered an invalid username." + 
-                "\nUsername must be between 6-10 characters only.");
+                "\nUsername must be between 6-10 characters only." + 
+                "\nNO whitespace allowed.");
             document.forms["join"]["username"].select();
             return false;
         }
     }
+    else {
+        alert("The Username field cannot be left blank.");
+        join.username.focus();
+        return false;
+    }
 
-    // validate password
+    // validate first password field
+    if (!password == "") {
+        re = new RegExp(/^(?=.*[!?@#$%^&+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
 
+        if (!re.test(password)) {
+            alert("You have entered an invalid password." + 
+                "\nPassword must contain at least one uppercase letter, " + 
+                "\none lowercase letter, one number, and one special character." + 
+                "\nMust be between 4-10 characters.");
+            document.forms["join"]["password"].select();
+            return false;
+        }
+    }
+    else {
+        alert("The Password field cannot be left blank.");
+        join.password.focus();
+        return false;
+    }
+    
+    // validate second password field (re-type password)
+    if (!retypePassword == "") {
+        if (retypePassword != password) {
+            alert("Passwords don't match, please try again.")
+            document.forms["join"]["password"].value = "";
+            document.forms["join"]["retype-password"].value = "";
+            document.forms["join"]["password"].focus();
+            return false;
+        }
+    }
+    else {
+        alert("Please re-type password, both password fields must match.")
+        document.forms["join"]["retype-password"].focus();
+        return false;
+    }
 
     // validate occupation
-
+    if (occupation == "") {
+        alert("Please choose your occupation.")
+        document.forms["join"]["occupation"].focus();
+        return false;
+    }
 }
