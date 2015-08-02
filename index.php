@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
 		<title>DVD'sy movie rentals</title>
+		<meta charset="utf-8">
 		<meta name="description" content="DVD'sy movie rentals">
 		<!-- Common 'head' content -->
 		<?php include 'includes/head.php' ?>
@@ -34,6 +34,7 @@
 				<p>Some text would go here..</p>
 			</div>
 		</div>
+		
 		<!-- Footer -->
 		<?php include 'includes/footer.php' ?>
 		<!-- end of Footer -->

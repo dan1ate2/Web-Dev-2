@@ -13,6 +13,7 @@ function validateForm() {
     var password = document.forms["join"]["password"].value;
     var retypePassword = document.forms["join"]["retype-password"].value;
     var occupation = document.forms["join"]["occupation"].value;
+    var joinDate = new Date(); // date stamp object
     var re; // regular expression
 
     // validate surname
@@ -240,4 +241,10 @@ function validateForm() {
         document.forms["join"]["occupation"].focus();
         return false;
     }
+
+    // get formatted join date
+    var formattedDate = [joinDate.getFullYear(), 
+        ("0"+(joinDate.getMonth()+1)).slice(-2), // +1 because 0-11 indexing
+        ("0"+joinDate.getDate()).slice(-2)];
+    formattedDate = formattedDate.join(" "); // concatenates array, space separated
 }
