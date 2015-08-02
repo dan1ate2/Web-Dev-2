@@ -24,7 +24,7 @@
 			<label for="email">Email</label><br>
 
             <!-- Magazine subscription -->
-            <input type="checkbox" name="magazine" value="Magazine" id="magazine" checked>
+            <input type="checkbox" name="magazine" value="subscribe" id="magazine" checked>
 			<label for="magazine">Sign up to monthly magazine</label><br>
 
             <!-- Contact method details -->
@@ -38,9 +38,9 @@
             <!-- Postal address details -->
             <label>Postal Address</label><br>
 			<label for="street-address">Street Address</label>
-			<input type="text" name="street-address" id="street-address" maxlength="40"><br>
+			<input type="text" name="street-address" id="street-address" maxlength="50"><br>
 			<label for="suburb-state">Suburb/State</label>
-			<input type="text" name="suburb-state" id="suburb-state" maxlength="40"><br>
+			<input type="text" name="suburb-state" id="suburb-state" maxlength="50"><br>
 			<label for="postcode">Postcode</label>
 			<input type="text" name="postcode" id="postcode" maxlength="4"><br>
 
@@ -48,7 +48,7 @@
             <label for="username">Username</label>
 			<input type="text" name="username" id="username" pattern=".{6,10}"><br>
 			<label for="password">Password</label>
-			<input type="text" name="password" id="password" maxlength="40"><br>
+			<input type="text" name="password" id="password" maxlength="10"><br>
 			<label for="retype-password">Re-type Password</label>
 			<input type="text" name="retype-password" id="retype-password" maxlength="10"><br>
 
