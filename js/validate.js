@@ -7,7 +7,6 @@ function validateForm() {
     var mobile = document.forms["join"]["mobile-info"].value;
     var dayTime = document.forms["join"]["daytime-info"].value;
     var email = document.forms["join"]["email-info"].value;
-    var magazine = document.forms["join"]["magazine"].value;
     var streetAddress = document.forms["join"]["street-address"].value;
     var suburbState = document.forms["join"]["suburb-state"].value;
     var postcode = document.forms["join"]["postcode"].value;
@@ -51,7 +50,8 @@ function validateForm() {
         document.forms["join"]["mobile-info"].focus();
         return false;
     }
-    else if (mobile != "" || mobile != null) {
+    // else if (mobile != "" || mobile != null) {
+        else if (!mobile == "") {
         re = new RegExp(/^0[4|5]\d{2}\s\d{3}\s\d{3}$/);
 
         if (!re.test(mobile)) {
@@ -67,7 +67,8 @@ function validateForm() {
         document.forms["join"]["daytime-info"].focus();
         return false;
     }
-    else if (dayTime != "" || dayTime != null) {
+    //else if (typeof dayTime !== undefined || dayTime != "" || dayTime != null) { // ISSUE - KEEPS ENTERING WHEN VARIABLE IS EMPTY
+    else if (!dayTime == "") {
         re = new RegExp(/^\(\d[2|3|6|7|8|9]\)\s\d{8}$/);
 
         if (!re.test(dayTime)) {
@@ -83,7 +84,8 @@ function validateForm() {
         document.forms["join"]["email-info"].focus();
         return false;
     }
-    else if (email != "" || email != null) {
+    //else if (email != "" || email != null) {
+    else if (!email == "") {
         // re = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/); // WORKING, 1 DOT ALLOWED
         re = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2,3})*$/); // WORKS, ANY COMBO
 
