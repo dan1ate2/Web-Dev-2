@@ -17,14 +17,27 @@ function validateForm() {
 
     // validate surname
     if (surname == "") {
-        alert("The Surname field cannot be left blank");
+        alert("The Surname field cannot be left blank.\n" +
+        "Please complete this field.");
         join.surname.focus();
         return false;
+    }
+        else {
+            re = new RegExp(/^\w+\s?\w+?$/);
+
+            if (!re.test(surname)) {
+                alert("You have entered an invalid surname." + 
+                    "\nOnly letters and spaces are allowed.");
+                document.forms["join"]["surname"].select();
+                return false;
+            }
+        }
     }
 
     // validate otherNames
     if (otherNames == "") {
-        alert("The Other Names field cannot be left blank");
+        alert("The Other Names field cannot be left blank." + 
+            "\nPlease complete this field.");
         document.forms["join"]["other-names"].focus();
         return false;
     }
@@ -43,7 +56,8 @@ function validateForm() {
     // validate mobile
     // format '0(4 or 5) xxx xxx'
     if (mobile == "" && chosenContact == document.join.mobile.value) {
-        alert("As your preferred contact method, a mobile number is required");
+        alert("As your preferred contact method, a mobile number is required." + 
+            "\nPlease complete this field. Format: 0xxx xxx xxx");
         document.forms["join"]["mobile-info"].focus();
         return false;
     }
@@ -51,7 +65,8 @@ function validateForm() {
         re = new RegExp(/^0[4|5]\d{2}\s\d{3}\s\d{3}$/);
 
         if (!re.test(mobile)) {
-            alert('You have entered an invalid mobile, please fix');
+            alert("You have entered an invalid mobile." + 
+                "\nFormat required: 0xxx xxx xxx");
             document.forms["join"]["mobile-info"].select();
             return false;
         }
@@ -60,7 +75,8 @@ function validateForm() {
     // validate daytime phone
     // format '(xx) xxxxxxxx'
     if (dayTime == "" && chosenContact == document.join.daytime.value) {
-        alert("As your preferred contact method, a daytime number is required");
+        alert("As your preferred contact method, a daytime number is required." + 
+            "\nFormat: (0x) xxxxxxxx");
         document.forms["join"]["daytime-info"].focus();
         return false;
     }
@@ -68,7 +84,7 @@ function validateForm() {
         re = new RegExp(/^\(\d[2|3|6|7|8|9]\)\s\d{8}$/);
 
         if (!re.test(dayTime)) {
-            alert('You have entered an invalid daytime number, please fix');
+            alert("You have entered an invalid daytime number, please fix");
             document.forms["join"]["daytime-info"].select();
             return false;
         }
@@ -161,7 +177,7 @@ function validateForm() {
     }
 
     // validate password
-    
+
 
     // validate occupation
 

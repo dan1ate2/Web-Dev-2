@@ -29,9 +29,9 @@
 
             <!-- Contact method details -->
             <label for="mobile-info">Mobile</label>
-			<input type="text" name="mobile-info" id="mobile-info"><br>
+			<input type="text" name="mobile-info" id="mobile-info" maxlength="12"><br>
             <label for="daytime-info">Day Time</label>
-			<input type="text" name="daytime-info" id="daytime-info"><br>
+			<input type="text" name="daytime-info" id="daytime-info" maxlength="13"><br>
             <label for="email-info">Email</label>
 			<input type="text" name="email-info" id="email-info" maxlength="50"><br>
 
@@ -46,7 +46,7 @@
 
             <!-- Login details -->
             <label for="username">Username</label>
-			<input type="text" name="username" id="username" pattern=".{6,10}"><br>
+			<input type="text" name="username" id="username" pattern="{6,10}"><br>
 			<label for="password">Password</label>
 			<input type="text" name="password" id="password" maxlength="10"><br>
 			<label for="retype-password">Re-type Password</label>
