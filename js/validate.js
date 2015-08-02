@@ -12,17 +12,17 @@ function validateForm() {
     var username = document.forms["join"]["username"].value;
     var password = document.forms["join"]["password"].value;
     var retypePassword = document.forms["join"]["retype-password"].value;
-    var occupation = document.forms["join"]["occupation"].value; // FIGURE OUT HOW TO GET SELECTED OPTION
+    var occupation = document.forms["join"]["occupation"].value;
     var re; // regular expression
 
     // validate surname
+    // can have single spaces
     if (surname == "") {
         alert("The Surname field cannot be left blank.");
         join.surname.focus();
         return false;
     }
     else {
-        // re = new RegExp(/^(\w+)\s(\w+)\s(\w+)$/);
         re = new RegExp(/^(\w+)(\s\w+){0,5}$/);
 
         if (!re.test(surname)) {
@@ -34,13 +34,13 @@ function validateForm() {
     }
 
     // validate otherNames
+    // can have single spaces
     if (otherNames == "") {
         alert("The Other Names field cannot be left blank.");
         document.forms["join"]["other-names"].focus();
         return false;
     }
     else {
-        // re = new RegExp(/^(\w+)\s(\w+)\s(\w+)$/);
         re = new RegExp(/^(\w+)(\s\w+){0,5}$/);
 
         if (!re.test(otherNames)) {
@@ -63,7 +63,7 @@ function validateForm() {
     }
 
     // validate mobile
-    // format '0(4 or 5)xx xxx xxx'
+    // format '0(4 or 5)xx xxx xxx' eg '0412 345 678'
     if (mobile == "" && chosenContact == document.join.mobile.value) {
         alert("As your preferred contact method, a mobile number is required" + 
             "\nFormat: '0xxx xxx xxx' (including spaces).");
@@ -82,7 +82,7 @@ function validateForm() {
     }
 
     // validate daytime phone
-    // format '(xx) xxxxxxxx'
+    // format '(xx) xxxxxxxx' (includes brackets)
     if (dayTime == "" && chosenContact == document.join.daytime.value) {
         alert("As your preferred contact method, a daytime number is required." + 
             "\nRequired format: '(0x) xxxxxxxx' (including spaces/brackets).");
@@ -180,7 +180,6 @@ function validateForm() {
     // validate username
     // 6-10 characters, no whitespace
     if (!username == "") {
-        // re = new RegExp(/^(?=.{6,10})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])\S$/);
         re = new RegExp(/^(\S){6,10}$/);
 
         if (!re.test(username)) {
@@ -198,6 +197,8 @@ function validateForm() {
     }
 
     // validate first password field
+    // must be 4-10 characters
+    // must have 1 uppercase, 1 lowercase, 1 digit, 1 special character
     if (!password == "") {
         re = new RegExp(/^(?=.*[!?@#$%^&+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
 
@@ -217,6 +218,7 @@ function validateForm() {
     }
     
     // validate second password field (re-type password)
+    // must match first password field
     if (!retypePassword == "") {
         if (retypePassword != password) {
             alert("Passwords don't match, please try again.")
@@ -227,7 +229,7 @@ function validateForm() {
         }
     }
     else {
-        alert("Please re-type password, both password fields must match.")
+        alert("Please confirm password, both password fields must match.")
         document.forms["join"]["retype-password"].focus();
         return false;
     }
