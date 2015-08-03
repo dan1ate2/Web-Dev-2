@@ -33,7 +33,7 @@
 				<label for="email">Email</label><br>
 
 	            <!-- Magazine subscription -->
-	            <input type="checkbox" name="magazine" value="subscribe" id="magazine" checked>
+	            <input type="checkbox" name="magazine" value="" id="magazine" checked>
 				<label for="magazine">Sign up to monthly magazine</label><br>
 
 	            <!-- Contact method details -->

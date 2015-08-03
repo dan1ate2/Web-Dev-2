@@ -14,6 +14,7 @@ function validateForm() {
     var retypePassword = document.forms["join"]["retype-password"].value;
     var occupation = document.forms["join"]["occupation"].value;
     var joinDate = new Date(); // date stamp object
+    var formattedDate; // the date stamp formatted
     var re; // regular expression
 
     // validate surname
@@ -52,16 +53,13 @@ function validateForm() {
         }
     }
     
-    // set contact method chosen (initialize var)
-    if (document.join.mobile.checked == true) {
+    // set chosen contact method (initialize var)
+    if (document.join.mobile.checked == true)
         chosenContact = document.join.mobile.value;
-    }
-    else if (document.join.daytime.checked == true) {
+    else if (document.join.daytime.checked == true)
         chosenContact = document.join.daytime.value;
-    }
-    else {
+    else
         chosenContact = document.join.email.value;
-    }
 
     // validate mobile
     // format '0(4 or 5)xx xxx xxx' eg '0412 345 678'
@@ -121,6 +119,8 @@ function validateForm() {
 
     // check for postal address if magazine option selected
     if (document.forms["join"]["magazine"].checked) {
+        document.forms["join"]["magazine"].value = "subscribed"; // flag as subscribed
+
         if (!streetAddress) {
             alert("A street address is required to receive the monthly magazine.");
             document.forms["join"]["street-address"].focus();
@@ -141,7 +141,8 @@ function validateForm() {
     // validate street address
     // 1-8 digits, space, street name, space, street type (or longer name)
     if (!streetAddress == "") {
-        re = new RegExp(/^\d{1,8}\s(\w+\s\w+)(\s\w+){0,5}$/);
+        // re = new RegExp(/^\d{1,8}\s(\w+\s\w+)(\s\w+){0,5}$/);
+        re = new RegExp(/^\d{1,8}(\s\w{2,}\s\w{2,}){1}(\s\w{2,}){0,5}$/);
 
         if (!re.test(streetAddress)) {
             alert("You have entered an invalid street address." + 
@@ -155,7 +156,8 @@ function validateForm() {
     // min 2 words with a space in between
     // last word has minimum 3 characters (state abv)
     if (!suburbState == "") {
-        re = new RegExp(/^\w+\s(\s\w)*(\w+){3,}$/);
+        // re = new RegExp(/^\w+\s(\s\w)*(\w+){3,}$/);
+        re = new RegExp(/^(\w{3,})(\s\w{3,})(\s\w{3,})*$/);
 
         if (!re.test(suburbState)) {
             alert("You have entered an invalid suburb/state combination." + 
@@ -243,8 +245,8 @@ function validateForm() {
     }
 
     // get formatted join date
-    var formattedDate = [joinDate.getFullYear(), 
-        ("0"+(joinDate.getMonth()+1)).slice(-2), // +1 because 0-11 indexing
+    formattedDate = [joinDate.getFullYear(), 
+        ("0"+(joinDate.getMonth()+1)).slice(-2), // +1 because getMonth 0-11 indexing
         ("0"+joinDate.getDate()).slice(-2)];
     formattedDate = formattedDate.join(" "); // concatenates array, space separated
     document.forms["join"]["join-date"].value = formattedDate; // assign to hidden field
