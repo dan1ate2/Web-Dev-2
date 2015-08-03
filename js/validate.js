@@ -157,7 +157,7 @@ function validateForm() {
     // last word has minimum 3 characters (state abv)
     if (!suburbState == "") {
         // re = new RegExp(/^\w+\s(\s\w)*(\w+){3,}$/);
-        re = new RegExp(/^(\w{3,})(\s\w{3,})(\s\w{3,})*$/);
+        re = new RegExp(/^(\w{3,}){1}(\s\w{3,}){1}(\s\w{3,})*$/);
 
         if (!re.test(suburbState)) {
             alert("You have entered an invalid suburb/state combination." + 
