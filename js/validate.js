@@ -1,5 +1,5 @@
 // validates the join form
-function validateForm() {
+function validateJoinForm() {
     var surname = document.forms["join"]["surname"].value;
     var otherNames = document.forms["join"]["other-names"].value;
     var chosenContact; // preferred contact option
@@ -250,4 +250,70 @@ function validateForm() {
         ("0"+joinDate.getDate()).slice(-2)];
     formattedDate = formattedDate.join(" "); // concatenates array, space separated
     document.forms["join"]["join-date"].value = formattedDate; // assign to hidden field
-}
+} // end of validateJoinForm
+
+// Contact form validation
+function validateContactForm() {
+    var firstName = document.forms["contact-form"]["first-name"].value;
+    var email = document.forms["contact-form"]["email"].value;
+    var phone = document.forms["contact-form"]["phone"].value;
+    var re; // regular expression
+
+    // validate first name
+    // single word no spaces
+    if (firstName == "") {
+        alert("The First Name field cannot be left blank.");
+        document.forms["contact-form"]["first-name"].focus();
+        return false;
+    }
+    else {
+        re = new RegExp(/^\w{2,}$/);
+
+        if (!re.test(firstName)) {
+            alert("You have entered an invalid first name." + 
+                "\nOnly a single word is allowed, no spaces.");
+            document.forms["contact-form"]["first-name"].select();
+            return false;
+        }
+    }
+
+    // validate email
+    // '@' and '.' required
+    // can have longer domain prefixes e.g. '.scu.edu.au'
+    if (email == "") {
+        alert("An email address is required.");
+        document.forms["contact-form"]["email"].focus();
+        return false;
+    }
+    else if (!email == "") {
+        re = new RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2,3})*$/);
+
+        if (!re.test(email)) {
+            alert('You have entered an invalid email.');
+            document.forms["contact-form"]["email"].select();
+            return false;
+        }
+    }
+
+    // validate phone number
+    // 12 characters including spaces, only digits
+    if (phone == "") {
+        alert("A phone or mobile number is required" + 
+                "\nMust contain only digits and spaces." + 
+                "\nFormat: 'xxxx xxx xxx'.");
+        document.forms["contact-form"]["phone"].focus();
+        return false;
+    }
+        else if (!phone == "") {
+        re = new RegExp(/^\d{4}\s\d{3}\s\d{3}$/)
+
+        if (!re.test(phone)) {
+            alert("You have entered an invalid phone number." + 
+                "\nMust contain only digits and spaces." + 
+                "\nFormat: 'xxxx xxx xxx'.");
+            document.forms["contact-form"]["phone"].select();
+            return false;
+        }
+    }
+} // end of validateContactForm
+
