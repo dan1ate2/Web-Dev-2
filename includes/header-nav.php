@@ -1,9 +1,7 @@
 <header>
 	<div class="fw-row bg-opacity">
 		<div class="container">
-			<header>
-				<img src="images/logo.png" width="215" height="128">
-			</header>
+				<img src="images/logo.png" width="215" height="128" alt="DVDsy logo">
 		</div>
 	</div>
 	<div class="fw-row bg-black">

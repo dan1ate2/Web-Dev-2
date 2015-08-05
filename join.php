@@ -142,7 +142,7 @@
 		            <!-- Occupation -->
 		            <label>Occupation</label>
 					<select name="occupation" id="occupation">
-						<option value=""></option>
+						<option value="" label="blank"></option>
 						<option value="Student">Student</option>
 						<option value="I.T. Professional">I.T. Professional</option>
 						<option value="Bartender">Bartender</option>

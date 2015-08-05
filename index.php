@@ -14,12 +14,14 @@
 		<?php include 'includes/header-nav.php' ?>
 		<!-- end of Header & Navigation -->
 		<div class="container">
-			<img class="feature-images" src="images/banner-revenant.jpg" width="980" height="397">
+			<img class="feature-images" alt="banner image - Renevant movie coming soon" 
+				src="images/banner-revenant.jpg" width="980" height="397">
 		</div>
 		<div class="container">
 			<div class="left-box bg-opacity box-orange-border">
 				<h2 class="orange">New Release</h2>
-				<div class="container"><img src="images/glass-chin.jpg" class="new-release-image"></div>			
+				<div class="container"><img src="images/glass-chin.jpg" 
+					alt="Glass Chin new release movie" class="new-release-image"></div>			
 				<h4 class="orange-text">Glass Chin</h4>
 				<p>A down-on-his-luck former boxing champ is forced to make a choice 
 					between friendship and ambition when he is framed for murder.</p>
@@ -45,8 +47,16 @@
 			<div class="clear"></div>
 			<div class="fw-box bg-opacity">
 				<h2 class="black-orange">Our Favourite Picks</h2>
-				<p>We'll be bringing you our hand selected favourite dvd's..</p>
-				<p>Stay tuned..</p>
+				<div class="fav-picks">
+					<img src="images/dead-poets-society.jpg" width="214" height="317" alt="Dead Poets Society">
+					<img src="images/a-beautiful-mind.jpg" width="214" height="317" alt="A Beautiful Mind">
+					<img src="images/good-will-hunting.jpg" width="214" height="317" alt="Good Will Hunting">
+					<img src="images/gladiator.jpg" width="214" height="317" alt="Gladiator">
+					<img src="images/pursuit-of-happiness.jpg" width="214" height="317" alt="Pursuit Of Happyness">
+					<img src="images/gran-torino.jpg" width="214" height="317" alt="Gran Torino">
+					<img src="images/ff6.jpg" width="214" height="317" alt="Fast and Furious 6">
+					<img src="images/insurgent.jpg" width="214" height="317" alt="Insurgent">
+				</div>
 			</div>
 		</div>
 		

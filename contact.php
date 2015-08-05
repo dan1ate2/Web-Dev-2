@@ -19,8 +19,11 @@
 			<h1 class="page-title">Contact</h1>
 			<div class="left-box bg-opacity">
 				<h2 class="orange">Our Location</h2>
-				<p>Some text would go here, and this is what it would look like if there were a lot more text</p>
-				<p>Some text would go here..</p>
+				<iframe width="336" height="250" style="border:0;margin:18px;" 
+				src="https://www.google.com/maps/embed/v1/place?q=55%20Elizabeth%20St%2C%20Brisbane%2C%20QLD%2C%204000%2C%20Australia&amp;key=AIzaSyAkzwuWvKQbV6Kil9-Qz_dUxCm438sL6O0" allowfullscreen></iframe>
+				<p>55 Elizabeth Street<br>Brisbane, QLD, 4000</p>
+				<p>Phone: (07) 4515 1010</p>
+				<p>Email: <a href="mailto:enquiries@dvdsy.com">enquiries@dvdsy.com</a></p>
 			</div>
 			<div class="right-box bg-opacity">
 				<h2 class="black-orange">Contact Us</h2>
@@ -32,9 +35,9 @@
 		            <label for="email">Email</label>
 					<input type="text" name="email" id="email" maxlength="60" title="Enter your email address (must be valid)"><br>
 					<label for="phone">Phone Number</label>
-					<input type="text" name="phone" id="phone" maxlength="12" title="Enter your phone number(digits only)"><br>
+					<input type="text" name="phone" id="phone" maxlength="12" title="Enter your phone number (digits only)"><br>
 					<label for="message">Message</label>
-					<textarea style="margin-left:218px;" name="message" id="message" rows="10" cols="23"></textarea>
+					<textarea style="margin-left:218px;" name="message" id="message" rows="10" cols="23" title="Enter your enquiry here"></textarea>
 
 		            <!-- Form buttons & date stamp -->
 					<div class="form-buttons">

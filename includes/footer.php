@@ -13,7 +13,7 @@
 		</div>
 		<div class="container">
 			<div class="clear"></div>
-			<div class="infotech" target="_blank"><a href="http://infotech.scu.edu.au/~dhogan15/"><p>Infotech</p></a></div>
+			<div class="infotech"><a href="http://infotech.scu.edu.au/~dhogan15/" target="_blank"><p>Infotech</p></a></div>
 		</div>
 	</div>
 </footer>
