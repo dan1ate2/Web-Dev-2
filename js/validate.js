@@ -238,7 +238,7 @@ function validateJoinForm() {
     }
 
     // validate occupation
-    if (occupation == "") {
+    if (occupation == " ") {
         alert("Please choose your occupation.")
         document.forms["join"]["occupation"].focus();
         return false;
