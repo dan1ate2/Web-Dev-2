@@ -85,6 +85,7 @@
 						<li>Microsoft 2014, Microsoft Azure, Azure Pricing Calculator, accessed 29 July 2015, [http://azure.microsoft.com/en-us/pricing/calculator/?scenario=web]</li>
 						<li>Microsoft 2014, Microsoft Azure, Virtual Machines Pricing Details, accessed 29 July 2015, [http://azure.microsoft.com/en-us/pricing/details/virtual-machines/]</li>
 					</ul>
+					<p class="orange-text">Wordcount: 1523</p>
 				</div>
 			</div>
 		</div>
