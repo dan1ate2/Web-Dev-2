@@ -18,36 +18,36 @@ function validateJoinForm() {
     var re; // regular expression
 
     // validate surname
-    // can have single spaces
+    // can have single spaces, " ' " or " - "
     if (surname == "") {
         alert("The Surname field cannot be left blank.");
         join.surname.focus();
         return false;
     }
     else {
-        re = new RegExp(/^(\w+)(\s\w+){0,5}$/);
+        re = new RegExp(/^([a-zA-Z\'\-]+)(\s[a-zA-Z\'\-]+){0,5}$/);
 
         if (!re.test(surname)) {
             alert("You have entered an invalid surname." + 
-                "\nOnly words and single spaces are allowed.");
+                "\nOnly words, single spaces, \" ' \" and \" - \" are allowed.");
             document.forms["join"]["surname"].select();
             return false;
         }
     }
 
     // validate otherNames
-    // can have single spaces
+    // can have single spaces, " ' " or " - "
     if (otherNames == "") {
         alert("The Other Names field cannot be left blank.");
         document.forms["join"]["other-names"].focus();
         return false;
     }
     else {
-        re = new RegExp(/^(\w+)(\s\w+){0,5}$/);
+        re = new RegExp(/^([a-zA-Z\'\-]+)(\s[a-zA-Z\'\-]+){0,6}$/);
 
         if (!re.test(otherNames)) {
             alert("You have an invalid entry in 'Other names' field." + 
-                "\nOnly words and spaces are allowed.");
+                "\nOnly words, single spaces, \" ' \" and \" - \" are allowed.");
             document.forms["join"]["other-names"].select();
             return false;
         }
@@ -65,15 +65,17 @@ function validateJoinForm() {
     // format '0(4 or 5)xx xxx xxx' eg '0412 345 678'
     if (mobile == "" && chosenContact == document.join.mobile.value) {
         alert("As your preferred contact method, a mobile number is required" + 
+            "\nMust start with 04 or 05." +
             "\nFormat: '0xxx xxx xxx' (including spaces).");
         document.forms["join"]["mobile-info"].focus();
         return false;
     }
-        else if (!mobile == "") {
+    else if (!mobile == "") {
         re = new RegExp(/^0[4|5]\d{2}\s\d{3}\s\d{3}$/);
 
         if (!re.test(mobile)) {
-            alert("You have entered an invalid mobile number." + 
+            alert("You have entered an invalid mobile number." +
+                "\nMust start with 04 or 05." +
                 "\nRequired format: '0xxx xxx xxx' (including spaces).");
             document.forms["join"]["mobile-info"].select();
             return false;
@@ -83,16 +85,18 @@ function validateJoinForm() {
     // validate daytime phone
     // format '(xx) xxxxxxxx' (includes brackets)
     if (dayTime == "" && chosenContact == document.join.daytime.value) {
-        alert("As your preferred contact method, a daytime number is required." + 
+        alert("As your preferred contact method, a daytime number is required." +
+            "\nStart with 2 digit area code in brackets, a space, then 8 digits." +
             "\nRequired format: '(0x) xxxxxxxx' (including spaces/brackets).");
         document.forms["join"]["daytime-info"].focus();
         return false;
     }
     else if (!dayTime == "") {
-        re = new RegExp(/^\(\d[2|3|6|7|8|9]\)\s\d{8}$/);
+        re = new RegExp(/^\(0[2|3|6|7|8|9]\)\s\d{8}$/);
 
         if (!re.test(dayTime)) {
-            alert("You have entered an invalid daytime number." + 
+            alert("You have entered an invalid daytime number." +
+                "\nStart with 2 digit area code in brackets, a space, then 8 digits." +
                 "\nRequired format: '(0x) xxxxxxxx' (including spaces/brackets).");
             document.forms["join"]["daytime-info"].select();
             return false;
@@ -139,14 +143,19 @@ function validateJoinForm() {
     }
 
     // validate street address
-    // 1-8 digits, space, street name, space, street type (or longer name)
+    // any character/word, followed by single whitespace and character/word
+    // additional single whitespace and character/word optional
     if (!streetAddress == "") {
-        // re = new RegExp(/^\d{1,8}\s(\w+\s\w+)(\s\w+){0,5}$/);
-        re = new RegExp(/^\d{1,8}(\s\w{2,}\s\w{2,}){1}(\s\w{2,}){0,5}$/);
+        re = new RegExp(/^\S{1,}(\s\S{1,}){1,}$/);
 
         if (!re.test(streetAddress)) {
             alert("You have entered an invalid street address." + 
-                "\nExample address: '123 Anne Street'.");
+                "\nMinimal: character/s or word followed by single space and another character/word" +
+                "\nAcceptable examples:" + 
+                "\n123 Anne Street" +
+                "\nP.O. Box 123 Street" +
+                "\nUnit 1-44 That Street" +
+                "\n1/44 That Street");
             document.forms["join"]["street-address"].select();
             return false;
         }
@@ -156,7 +165,6 @@ function validateJoinForm() {
     // min 2 words with a space in between
     // last word has minimum 3 characters (state abv)
     if (!suburbState == "") {
-        // re = new RegExp(/^\w+\s(\s\w)*(\w+){3,}$/);
         re = new RegExp(/^(\w{3,}){1}(\s\w{3,}){1}(\s\w{3,})*$/);
 
         if (!re.test(suburbState)) {

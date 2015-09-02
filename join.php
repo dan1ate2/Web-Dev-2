@@ -21,7 +21,8 @@
 				<h2 class="orange">Join DVD'sy And Rent DVD's!</h2>
 				<p>Join our club today and receive the monthly newsletter and the ability to rent out our movies online!</p><br>
 				
-				<form name="join" action="http://infotech.scu.edu.au/cgi-bin/echo_form" method="post" onsubmit="return validateJoinForm()">
+				<!-- onsubmit="return validateJoinForm()" -->
+				<form name="join" action="includes/errorCheck.php" method="post">
 					<!-- Name details -->
 		            <label for="surname">Surname</label>
 					<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here"><br>
