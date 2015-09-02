@@ -127,7 +127,7 @@ else {
 // must be 4-10 characters
 // must have 1 uppercase, 1 lowercase, 1 digit, 1 special character
 if (!$password == "") {
-	if (!preg_match("/^(?=.*[~!?@#$%^&*+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/", $password)) {
+	if (!preg_match("/^(?!.*\\s)(?=.*[~!?@#$%^&*+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/", $password)) {
 		echo "You have entered an invalid password<br>" . 
             "Password must contain at least one uppercase letter,<br>" . 
             "one lowercase letter, one number, and one special character.<br>" .
