@@ -13,30 +13,7 @@ $username = $_REQUEST["username"];
 $password = $_REQUEST["password"];
 $retypePassword = $_REQUEST["retype-password"];
 $occupation = $_REQUEST["occupation"];
-$joinDate;
-$formattedDate;
-$re;
-/*
-    var surname = document.forms["join"]["surname"].value;
-    var otherNames = document.forms["join"]["other-names"].value;
-    var chosenContact; // preferred contact option
-    var mobile = document.forms["join"]["mobile-info"].value;
-    var dayTime = document.forms["join"]["daytime-info"].value;
-    var email = document.forms["join"]["email-info"].value;
-    var streetAddress = document.forms["join"]["street-address"].value;
-    var suburbState = document.forms["join"]["suburb-state"].value;
-    var postcode = document.forms["join"]["postcode"].value;
-    var username = document.forms["join"]["username"].value;
-    var password = document.forms["join"]["password"].value;
-    var retypePassword = document.forms["join"]["retype-password"].value;
-    var occupation = document.forms["join"]["occupation"].value;
-    var joinDate = new Date(); // date stamp object
-    var formattedDate; // the date stamp formatted
-    var re; // regular expression
-    */
-
-// validate email address
-// include ("validEmail.inc");
+$joinDate = date("Y-m-d"); // format: 2015-09-02
 
 // validate surname
 // words with one single space between allowed
@@ -112,6 +89,70 @@ if (!$streetAddress == "") {
             "Unit 1-44 That Street<br>" .
             "1/44 That Street<br><br>";
     }
+}
+
+// validate suburb/state
+// min 2 words with a space in between
+// last word has minimum 3 characters (state abv)
+if (!$suburbState == "") {
+	if (!preg_match("/^(\w{3,}){1}(\s\w{3,}){1}(\s\w{3,})*$/", $suburbState)) {
+		echo "You have entered an invalid suburb/state combination<br>" . 
+            "Example suburb/street: 'Brisbane QLD'.<br><br>";
+	}
+}
+
+// validate postcode
+// 4 digits
+if (!$postcode == "") {
+	if (!preg_match("/^(\d){4}$/", $postcode)) {
+		echo "You have entered an invalid postcode.<br>" . 
+            "Should only contain 4 digits.<br><br>";
+	}
+}
+
+// validate username
+// 6-10 characters, no whitespace
+if (!$username == "") {
+	if (!preg_match("/^(\S){6,10}$/", $username)) {
+		echo "You have entered an invalid username<br>" . 
+            "Username must be between 6-10 characters only<br>" . 
+            "NO whitespace allowed.<br><br>";
+	}
+}
+else {
+	echo "Username field cannot be left blank.<br><br>";
+}
+
+// validate first password field
+// must be 4-10 characters
+// must have 1 uppercase, 1 lowercase, 1 digit, 1 special character
+if (!$password == "") {
+	if (!preg_match("/^(?=.*[~!?@#$%^&*+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/", $password)) {
+		echo "You have entered an invalid password<br>" . 
+            "Password must contain at least one uppercase letter,<br>" . 
+            "one lowercase letter, one number, and one special character.<br>" .
+            "Special characters accepted: ~!?@#$%^&*+=<br>" .
+            "Password must be between 4-10 characters.<br><br>";
+	}
+}
+else {
+	echo "The Password field cannot be left blank.<br><br>";
+}
+
+// validate second password field (re-type password)
+// must match first password field
+if (!$retypePassword == "") {
+	if ($retypePassword != $password) {
+		echo "Passwords don't match, please try again.";
+	}
+}
+else {
+	echo "Please confirm password, both password fields must match.<br><br>";
+}
+
+// validate occupation
+if ($occupation == " ") {
+	echo "Please choose your occupation.<br><br>";
 }
 
 ?>

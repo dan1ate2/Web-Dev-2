@@ -211,13 +211,14 @@ function validateJoinForm() {
     // must be 4-10 characters
     // must have 1 uppercase, 1 lowercase, 1 digit, 1 special character
     if (!password == "") {
-        re = new RegExp(/^(?=.*[!?@#$%^&+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
+        re = new RegExp(/^(?=.*[~!?@#$%^&*+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
 
         if (!re.test(password)) {
             alert("You have entered an invalid password." + 
                 "\nPassword must contain at least one uppercase letter, " + 
                 "\none lowercase letter, one number, and one special character." + 
-                "\nMust be between 4-10 characters.");
+                "\nSpecial characters accepted: ~!?@#$%^&*+=<br>" +
+                "\nPassword must be between 4-10 characters.<br><br>");
             document.forms["join"]["password"].select();
             return false;
         }
@@ -252,11 +253,12 @@ function validateJoinForm() {
         return false;
     }
 
+    // CONSIDER REMOVING THIS CODE BLOCK AS IT'S NOW CREATED IN PHP (errorCheck.php) <------ !!!!!!#####
     // get formatted join date
     formattedDate = [joinDate.getFullYear(), 
         ("0"+(joinDate.getMonth()+1)).slice(-2), // +1 because getMonth 0-11 indexing
         ("0"+joinDate.getDate()).slice(-2)];
-    formattedDate = formattedDate.join(" "); // concatenates array, space separated
+    formattedDate = formattedDate.join("-"); // concatenates array, hyphen separated
     document.forms["join"]["join-date"].value = formattedDate; // assign to hidden field
 } // end of validateJoinForm
 
