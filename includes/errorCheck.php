@@ -126,13 +126,13 @@ else {
 // validate first password field
 // must be 4-10 characters
 // must have 1 uppercase, 1 lowercase, 1 digit, 1 special character
+// no whitespace
 if (!$password == "") {
 	if (!preg_match("/^(?!.*\\s)(?=.*[\W_])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/", $password)) {
 		echo "You have entered an invalid password<br>" . 
             "Password must contain at least one uppercase letter,<br>" . 
             "one lowercase letter, one number, and one special character.<br>" .
-            "Special characters accepted: ~!?@#$%^&*+=<br>" .
-            "Password must be between 4-10 characters.<br><br>";
+            "Password must be between 4-10 characters, no whitespace allowed.<br><br>";
 	}
 }
 else {

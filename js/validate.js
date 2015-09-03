@@ -210,6 +210,7 @@ function validateJoinForm() {
     // validate first password field
     // must be 4-10 characters
     // must have 1 uppercase, 1 lowercase, 1 digit, 1 special character
+    // no whitespace
     if (!password == "") {
         // re = new RegExp(/^(?=.*[~!?@#$%^&*+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
         re = new RegExp(/^(?!.*\s)(?=.*[\W_])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
@@ -217,9 +218,8 @@ function validateJoinForm() {
         if (!re.test(password)) {
             alert("You have entered an invalid password." + 
                 "\nPassword must contain at least one uppercase letter, " + 
-                "\none lowercase letter, one number, and one special character." + 
-                "\nSpecial characters accepted: ~!?@#$%^&*+=<br>" +
-                "\nPassword must be between 4-10 characters.<br><br>");
+                "\none lowercase letter, one number, and one special character." +
+                "\nPassword must be between 4-10 characters, no whitespace allowed.<br><br>");
             document.forms["join"]["password"].select();
             return false;
         }
@@ -327,4 +327,3 @@ function validateContactForm() {
         }
     }
 } // end of validateContactForm
-
