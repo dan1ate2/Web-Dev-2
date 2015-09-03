@@ -24,7 +24,7 @@
 				<!-- onsubmit="return validateJoinForm()" -->
 				<!-- action="http://infotech.scu.edu.au/cgi-bin/echo_form" -->
 				<!-- action="includes/errorCheck.php" -->
- 				<form name="join" action="includes/errorCheck.php" method="post" onsubmit="return validateJoinForm()">
+ 				<form name="join" action="includes/errorCheck.php" method="post">
 					<!-- Name details -->
 		            <label for="surname">Surname</label>
 					<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here"><br>
@@ -130,7 +130,7 @@
                 			- one lowercase letter<br>
                 			- one number<br>
                 			- one special character<br>
-                			Must be between 4-10 characters.
+                			Must be between 4-10 characters, no whitespace.
 					    </span>
 					</a>
 					<label for="retype-password">Re-type Password</label>

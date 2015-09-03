@@ -15,6 +15,13 @@ $retypePassword = $_REQUEST["retype-password"];
 $occupation = $_REQUEST["occupation"];
 $joinDate = date("Y-m-d"); // format: 2015-09-02
 
+include_once ("validEmail.php"); // email validation function
+
+// | | | | | | | | | | | | | | | | | -- TEST AREA -- | | | | | | | | | | | | | | | | |
+include_once ("connectDB.php"); // database connection
+getDBConnection();
+// | | | | | | | | | | | | | | | -- END OF TEST AREA -- | | | | | | | | | | | | | | |
+
 // validate surname
 // words with one single space between allowed
 // can have single spaces, " ' " or " - "
@@ -58,7 +65,6 @@ else if (!$dayTime == "") {
 }
 
 // validate email
-include ("validEmail.php"); // email validation function
 if (!validEmail($email)) {
 	echo "Email address not valid.<br><br>";
 }
