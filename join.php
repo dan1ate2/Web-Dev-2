@@ -24,7 +24,7 @@
 				<!-- onsubmit="return validateJoinForm()" -->
 				<!-- action="http://infotech.scu.edu.au/cgi-bin/echo_form" -->
 				<!-- action="includes/errorCheck.php" -->
- 				<form name="join" action="includes/errorCheck.php" method="post">
+ 				<form name="join" action="includes/errorCheck.php" method="post" onsubmit="return validateJoinForm()">
 					<!-- Name details -->
 		            <label for="surname">Surname</label>
 					<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here"><br>

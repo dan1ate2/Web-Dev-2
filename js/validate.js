@@ -211,7 +211,8 @@ function validateJoinForm() {
     // must be 4-10 characters
     // must have 1 uppercase, 1 lowercase, 1 digit, 1 special character
     if (!password == "") {
-        re = new RegExp(/^(?=.*[~!?@#$%^&*+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
+        // re = new RegExp(/^(?=.*[~!?@#$%^&*+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
+        re = new RegExp(/^(?!.*\s)(?=.*[\W_])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
 
         if (!re.test(password)) {
             alert("You have entered an invalid password." + 
