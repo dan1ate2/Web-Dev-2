@@ -25,11 +25,27 @@ function validateUserForm() {
 	$retypePassword = $_REQUEST["retype-password"];
 	$occupation = $_REQUEST["occupation"];
 	$joinDate = date("Y-m-d"); // format: 2015-09-02
-	$flag = true; // false if error in field validation
-	$nextValidation = 0;
+	$flag = true; // false if error in any field validation
+	$nextValidation = 0; // iterate through validation functions
+
+	// --- testing ---
+
+	set_time_limit(300);
+
+	// $magSubscription = $_REQUEST["magazine"];
+	// $magSubscription = isset($_POST["magazine"]) ? $_POST["magazine"] : 0 ;
+	if (isset($_POST["magazine"])) {
+		$magSubscription = $_REQUEST["magazine"];
+	}
+	else {
+		$magSubscription = 0;
+		$_POST["magazine"] = 0;
+	}
+	
+	// --- end of testing ---
 
 	// loop through validation functions while no errors
-	while ($flag) {
+	while ($flag && $nextValidation <= 12) {
 		$nextValidation++;
 		switch ($nextValidation) {
 			case 1:
@@ -48,13 +64,13 @@ function validateUserForm() {
 				$flag = validateEmail($email);
 				break;
 			case 6:
-				$flag = validateMagSubscription($streetAddress, $suburbState, $postcode);
+				$flag = validateMagSubscription($magSubscription, $streetAddress, $suburbState, $postcode);
 				break;
 			case 7:
 				$flag = validateStreetAddress($streetAddress);
 				break;
 			case 8:
-				$flag = validateSuburbState($suburbState)
+				$flag = validateSuburbState($suburbState);
 				break;
 			case 9:
 				$flag = validatePostcode($postcode);
@@ -72,6 +88,7 @@ function validateUserForm() {
 				break;
 		} // end switch
 	} // end while
+	return $flag;
 } // end validateUserForm()
 
 function validateSurname($sname) {
@@ -80,8 +97,9 @@ function validateSurname($sname) {
 	// can have single spaces, " ' " or " - "
 	$valid = true;
 	if (!preg_match("/^[a-zA-Z\'\-]+( [a-zA-Z]+){0,5}$/", $sname)) {
-		echo "Surname field is invalid<br>" .
-		"Only words, single spaces, \" ' \" and \" - \" are allowed.<br><br>";
+		echo "<p>Surname field is invalid<br>" .
+			"Only words, single spaces, \" ' \" and \" - \" are allowed.<br><br>" .
+			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
 	return $valid;
@@ -93,8 +111,9 @@ function validateOtherNames($oNames) {
 	// can have single spaces, " ' " or " - "
 	$valid = true;
 	if (!preg_match("/^[a-zA-Z\'\-']+( [a-zA-Z]+){0,6}$/", $oNames)) {
-		echo "Other Names field is invalid<br>" .
-		"Only words, single spaces, \" ' \" and \" - \" are allowed.<br><br>";
+		echo "<p>Other Names field is invalid<br>" .
+			"Only words, single spaces, \" ' \" and \" - \" are allowed.<br><br>" .
+			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
 	return $valid;
@@ -105,15 +124,17 @@ function validateMobile($mob, $cont) {
 	// format '0(4 or 5)xx xxx xxx' eg '0412 345 678'
 	$valid = true;
 	if ($mob == "" && $cont == "Mobile") {
-		echo "As your preferred contact method, a mobile number is required.<br><br>";
+		echo "<p>As your preferred contact method, a mobile number is required.<br><br>" .
+			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
 	else if (!$mob == "") {
 		if (!preg_match("/^0[4|5]\d{2}\s\d{3}\s\d{3}$/", $mob)) {
-			echo "Mobile number is incorrectly formatted<br>" .
+			echo "<p>Mobile number is incorrectly formatted<br>" .
 			    "Must start with 04 or 05<br>" .
-	            "Format: '0xxx xxx xxx' (including spaces).<br><br>";
-	            $valid = false;
+	            "Format: '0xxx xxx xxx' (including spaces).<br><br>" .
+	            "Please go back and try again.<br></p>";
+	        $valid = false;
 		}
 	}
 	return $valid;
@@ -124,15 +145,17 @@ function validateDaytime($dTime, $cont) {
 	// format '(xx) xxxxxxxx' (includes brackets)
 	$valid = true;
 	if ($dTime == "" && $cont == "Daytime") {
-		echo "As your preferred contact method, a daytime number is required.<br><br>";
+		echo "<p>As your preferred contact method, a daytime number is required.<br><br>" .
+			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
 	else if (!$dTime == "") {
 		if (!preg_match("/^\(0[2|3|6|7|8|9]\)\s\d{8}$/", $dTime)) {
-			echo "You have entered an invalid daytime number<br>" .
+			echo "<p>You have entered an invalid daytime number<br>" .
 				"Start with 2 digit area code in brackets, a space, then 8 digits<br>" .
-	            "Required format: '(0x) xxxxxxxx' (including spaces/brackets).<br><br>";
-	            $valid = false;
+	            "Required format: '(0x) xxxxxxxx' (including spaces/brackets).<br><br>" .
+	            "Please go back and try again.<br></p>";
+	        $valid = false;
 		}
 	}
 	return $valid;
@@ -142,26 +165,30 @@ function validateEmail($e) {
 	// validate email
 	$valid = true;
 	if (!validEmail($e)) {
-		echo "Email address not valid.<br><br>";
+		echo "<p>Email address not valid.<br><br>" .
+			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
 	return $valid;
 } // end validateEmail()
 
-function validateMagSubscription($sAdd, $subState, $pCode) {
+function validateMagSubscription($mag, $sAdd, $subState, $pCode) {
 	// check for empty postal address fields if magazine option checked
 	$valid = true;
-	if (isset($_REQUEST['magazine'])) {
+	if ($mag == 1) { // if yes/checked mag subscription
 		if (!$sAdd) {
-			echo "A street address is required to receive the monthly magazine.<br><br>";
+			echo "<p>A street address is required to receive the monthly magazine.<br><br>" .
+				"Please go back and try again.<br></p>";
 			$valid = false;
 		}
 		else if (!$subState) {
-			echo "A suburb and state are required to receive the monthly magazine.<br><br>";
+			echo "<p>A suburb and state are required to receive the monthly magazine.<br><br>" .
+				"Please go back and try again.<br></p>";
 			$valid = false;
 		}
 		else if (!$pCode) {
-			echo "A postcode is required to receive the monthly magazine.<br><br>";
+			echo "<p>A postcode is required to receive the monthly magazine.<br><br>" .
+				"Please go back and try again.<br></p>";
 			$valid = false;
 		}
 	}
@@ -175,14 +202,15 @@ function validateStreetAddress($sAdd) {
 	$valid = true;
 	if (!$sAdd == "") {
 	    if (!preg_match("/^\S{1,}(\s\S{1,}){1,}$/", $sAdd)) {
-	        echo "You have entered an invalid street address<br>" .
-	        	"Minimal: character/s or word followed by single space and another character/word<br>" .
+	        echo "<p>You have entered an invalid street address<br>" .
+	        	"Minimal: character/s or word followed by single space and another character/word<br><br>" .
 	        	"Acceptable examples:<br>" . 
 	            "123 Anne Street<br>" .
 	            "P.O. Box 123 Street<br>" .
 	            "Unit 1-44 That Street<br>" .
-	            "1/44 That Street<br><br>";
-	            $valid = false;
+	            "1/44 That Street<br><br><br>" .
+	            "Please go back and try again.<br></p>";
+	        $valid = false;
 	    }
 	}
 	return $valid;
@@ -195,8 +223,9 @@ function validateSuburbState($subState) {
 	$valid = true;
 	if (!$subState == "") {
 		if (!preg_match("/^(\w{3,}){1}(\s\w{3,}){1}(\s\w{3,})*$/", $subState)) {
-			echo "You have entered an invalid suburb/state combination<br>" . 
-	            "Example suburb/street: 'Brisbane QLD'.<br><br>";
+			echo "<p>You have entered an invalid suburb/state combination<br>" . 
+	            "Example suburb/street: 'Brisbane QLD'.<br><br>" .
+	            "Please go back and try again.<br></p>";
 	        $valid = false;
 		}
 	}
@@ -209,8 +238,9 @@ function validatePostcode($pCode) {
 	$valid = true;
 	if (!$pCode == "") {
 		if (!preg_match("/^(\d){4}$/", $pCode)) {
-			echo "You have entered an invalid postcode.<br>" . 
-	            "Should only contain 4 digits.<br><br>";
+			echo "<p>You have entered an invalid postcode.<br>" . 
+	            "Should only contain 4 digits.<br><br>" .
+	            "Please go back and try again.<br></p>";
 	        $valid = false;
 		}
 	}
@@ -223,14 +253,16 @@ function validateUsername($uName) {
 	$valid = true;
 	if (!$uName == "") {
 		if (!preg_match("/^(\S){6,10}$/", $uName)) {
-			echo "You have entered an invalid username<br>" . 
+			echo "<p>You have entered an invalid username<br>" . 
 	            "Username must be between 6-10 characters only<br>" . 
-	            "NO whitespace allowed.<br><br>";
+	            "NO whitespace allowed.<br><br>" .
+	            "Please go back and try again.<br></p>";
 	        $valid = false;
 		}
 	}
 	else {
-		echo "Username field cannot be left blank.<br><br>";
+		echo "<p>Username field cannot be left blank.<br><br>" .
+			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
 	// CHECK IF USERNAME IS ALREADY IN THE DATABASE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -243,17 +275,20 @@ function validatePasswordFields($pass, $rePass) {
 	// must be 4-10 characters
 	// must have 1 uppercase, 1 lowercase, 1 digit, 1 special character
 	// no whitespace
+	$valid = true;
 	if (!$pass == "") {
 		if (!preg_match("/^(?!.*\\s)(?=.*[\W_])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/", $pass)) {
-			echo "You have entered an invalid password<br>" . 
+			echo "<p>You have entered an invalid password<br>" . 
 	            "Password must contain at least one uppercase letter,<br>" . 
 	            "one lowercase letter, one number, and one special character.<br>" .
-	            "Password must be between 4-10 characters, no whitespace allowed.<br><br>";
+	            "Password must be between 4-10 characters, no whitespace allowed.<br><br>" .
+	            "Please go back and try again.<br></p>";
 	        $valid = false;
 		}
 	}
 	else {
-		echo "The Password field cannot be left blank.<br><br>";
+		echo "<p>The Password field cannot be left blank.<br><br>" .
+			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
 
@@ -261,22 +296,24 @@ function validatePasswordFields($pass, $rePass) {
 	// must match first password field
 	if ((!$rePass == "") && ($valid)) {
 		if ($rePass != $pass) {
-			echo "Passwords don't match, please try again.";
+			echo "<p>Passwords don't match, please go back and try again.<br></p>";
 			$valid = false;
 		}
 	}
 	else if (($rePass == "") && ($valid)) {
-		echo "Please confirm password, both password fields must match.<br><br>";
+		echo "<p>Please confirm password, both password fields must match.<br><br>" .
+			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
 	return $valid;
 } // end validatePasswordFields()
 
 function validateOccupation($occ) {
-		// validate occupation
+	// validate occupation
 	$valid = true;
 	if ($occ == " ") {
-		echo "Please choose your occupation.<br><br>";
+		echo "<p>You must choose an occupation.<br><br>" .
+			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
 	return $valid;

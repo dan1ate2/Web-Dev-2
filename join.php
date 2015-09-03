@@ -19,12 +19,18 @@
 			<h1 class="page-title">Join</h1>
 			<div class="fw-box bg-opacity">
 				<?php
-					if(isset($_POST['submit'])) {
-						print "<h2 class="orange">Join Form Status</h2>";
+					// if post method, process form
+					if($_SERVER['REQUEST_METHOD'] == 'POST') { 
+						print '<h2 class="orange">Join Form Status</h2>';
 						include_once 'includes/validateUser.php';
-						// if 
+						
+						// validate form
+						if (validateUserForm($_POST)) {
+							echo "Successfully validated form";
+						}
 					}
-					else {
+					// display form
+					else { 
 						include 'includes/join.inc';
 					}
 				?>

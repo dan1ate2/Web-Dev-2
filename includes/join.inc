@@ -3,7 +3,7 @@
 				
 				<!-- onsubmit="return validateJoinForm()" -->
 				<!-- action="http://infotech.scu.edu.au/cgi-bin/echo_form" -->
-				<!-- action="includes/validateUser.php" -->
+				<!-- action="join.php" -->
  				<form name="join" action="join.php" method="post">
 					<!-- Name details -->
 		            <label for="surname">Surname</label>
@@ -27,7 +27,8 @@
 					<label for="email">Email</label><br><br>
 
 		            <!-- Magazine subscription -->
-		            <input type="checkbox" name="magazine" value="" id="magazine" checked>
+		            <!-- <input type="hidden" name="magazine" value="1" id="magazine"> -->
+		            <input type="checkbox" name="magazine" value="1" id="magazine" checked>
 					<label for="magazine">Sign up to monthly magazine</label><br><br>
 
 		            <!-- Contact details -->

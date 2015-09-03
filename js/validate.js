@@ -123,7 +123,6 @@ function validateJoinForm() {
 
     // check for postal address if magazine option selected
     if (document.forms["join"]["magazine"].checked) {
-        document.forms["join"]["magazine"].value = "subscribed"; // flag as subscribed
 
         if (!streetAddress) {
             alert("A street address is required to receive the monthly magazine.");
