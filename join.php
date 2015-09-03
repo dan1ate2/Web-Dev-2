@@ -22,6 +22,7 @@
 					if(isset($_POST['submit'])) {
 						print "<h2 class="orange">Join Form Status</h2>";
 						include_once 'includes/validateUser.php';
+						// if 
 					}
 					else {
 						include 'includes/join.inc';

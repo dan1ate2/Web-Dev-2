@@ -204,5 +204,3 @@ function validateOccupation($occ) {
 		echo "Please choose your occupation.<br><br>";
 	}
 } // end validateOccupation()
-
-?>
