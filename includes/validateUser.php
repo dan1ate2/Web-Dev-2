@@ -1,17 +1,9 @@
 <!-- VALIDATION FOR FORM DATA -->
 <?php
-
-	include ("validEmail.php"); // email validation function
-
-	// | | | | | | | | | | | | | | | | | -- TEST AREA -- | | | | | | | | | | | | | | | | |
-
-	include ("connectDB.php"); // database connection
-	// getDBConnection();
-
-	// | | | | | | | | | | | | | | | -- END OF TEST AREA -- | | | | | | | | | | | | | | |
+	include_once ("validEmail.php"); // email validation function
+	include_once ("connectDB.php"); // database connection
 
 function validateUserForm($formData) {
-	// SET VARIABLES FROM $FORMDATA INSTEAD OF USING REQUEST!??????????????????????? --------------
 	$surname = $formData["surname"];
 	$otherNames = $formData["other-names"];
 	$chosenContact = $formData["contact-method"];
@@ -30,12 +22,12 @@ function validateUserForm($formData) {
 	$nextValidation = 0; // for iterating through validation functions
 
 	// set magazine subscription variable/s
-	if (isset($_POST["magazine"])) { // if mag checkbox checked
-		$magSubscription = $_REQUEST["magazine"];
+	if (isset($_POST["magazine"])) { // if mag checkbox checked (value=1, means true for database)
+		$magSubscription = "yes";
 	}
-	else { // if mag checkbox not checked
-		$magSubscription = 0; // set variable
-		$_POST["magazine"] = 0; // set form element to 0 (false) for database. TEST THIS !!!!! -------
+	else { // mag checkbox not checked
+		$magSubscription = "no";
+		$_POST["magazine"] = 0; // set form element value to 0 (false) for database. !!-- MAY NOT NEED THIS HERE, PROBABLY CREATEUSER.PHP !!!!! -------
 	}
 
 	// loop through validation functions while no errors
@@ -172,7 +164,7 @@ function validateEmail($e) {
 function validateMagSubscription($mag, $sAdd, $subState, $pCode) {
 	// check for empty postal address fields if magazine option checked
 	$valid = true;
-	if ($mag == 1) { // if yes/checked mag subscription
+	if ($mag == "yes") { // if mag subscription
 		if (!$sAdd) {
 			echo "<p>A street address is required to receive the monthly magazine.<br><br>" .
 				"Please go back and try again.<br></p>";
@@ -307,7 +299,6 @@ function validatePasswordFields($pass, $rePass) {
 			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
-
 	// validate second password field (re-type password)
 	// must match first password field
 	if ((!$rePass == "") && ($valid)) {
