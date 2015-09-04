@@ -10,42 +10,36 @@
 
 	// | | | | | | | | | | | | | | | -- END OF TEST AREA -- | | | | | | | | | | | | | | |
 
-function validateUserForm() {
-	$surname = $_REQUEST["surname"];
-	$otherNames = $_REQUEST["other-names"];
-	$chosenContact = $_REQUEST["contact-method"];
-	$mobile = $_REQUEST["mobile-info"];
-	$dayTime = $_REQUEST["daytime-info"];
-	$email = $_REQUEST["email-info"];
-	$streetAddress = $_REQUEST["street-address"];
-	$suburbState = $_REQUEST["suburb-state"];
-	$postcode = $_REQUEST["postcode"];
-	$username = $_REQUEST["username"];
-	$password = $_REQUEST["password"];
-	$retypePassword = $_REQUEST["retype-password"];
-	$occupation = $_REQUEST["occupation"];
-	$joinDate = date("Y-m-d"); // format: 2015-09-02
-	$flag = true; // false if error in any field validation
-	$nextValidation = 0; // iterate through validation functions
+function validateUserForm($formData) {
+	// SET VARIABLES FROM $FORMDATA INSTEAD OF USING REQUEST!??????????????????????? --------------
+	$surname = $formData["surname"];
+	$otherNames = $formData["other-names"];
+	$chosenContact = $formData["contact-method"];
+	$mobile = $formData["mobile-info"];
+	$dayTime = $formData["daytime-info"];
+	$email = $formData["email-info"];
+	$streetAddress = $formData["street-address"];
+	$suburbState = $formData["suburb-state"];
+	$postcode = $formData["postcode"];
+	$username = $formData["username"];
+	$password = $formData["password"];
+	$retypePassword = $formData["retype-password"];
+	$occupation = $formData["occupation"];
+	$_POST["join-date"] = date("Y-m-d"); // set join date in hidden field for database (yyyy-mm-dd)
+	$flag = true; // false if error in any validation field
+	$nextValidation = 0; // for iterating through validation functions
 
-	// --- testing ---
-
-	set_time_limit(300);
-
-	// $magSubscription = $_REQUEST["magazine"];
-	// $magSubscription = isset($_POST["magazine"]) ? $_POST["magazine"] : 0 ;
-	if (isset($_POST["magazine"])) {
+	// set magazine subscription variable/s
+	if (isset($_POST["magazine"])) { // if mag checkbox checked
 		$magSubscription = $_REQUEST["magazine"];
 	}
-	else {
-		$magSubscription = 0;
-		$_POST["magazine"] = 0;
+	else { // if mag checkbox not checked
+		$magSubscription = 0; // set variable
+		$_POST["magazine"] = 0; // set form element to 0 (false) for database. TEST THIS !!!!! -------
 	}
-	
-	// --- end of testing ---
 
 	// loop through validation functions while no errors
-	while ($flag && $nextValidation <= 12) {
+	while ($flag && $nextValidation < 13) {
 		$nextValidation++;
 		switch ($nextValidation) {
 			case 1:
@@ -79,9 +73,12 @@ function validateUserForm() {
 				$flag = validateUsername($username);
 				break;
 			case 11:
-				$flag = validatePasswordFields($password, $retypePassword);
+				$flag = checkUsernameExists($username);
 				break;
 			case 12:
+				$flag = validatePasswordFields($password, $retypePassword);
+				break;
+			case 13:
 				$flag = validateOccupation($occupation);
 				break;
 			default:
@@ -265,11 +262,30 @@ function validateUsername($uName) {
 			"Please go back and try again.<br></p>";
 		$valid = false;
 	}
-	// CHECK IF USERNAME IS ALREADY IN THE DATABASE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	return $valid;
 } // end validateUsername()
 
-	// validate both password fields
+// check if username exists in database
+function checkUsernameExists($uName) {
+	$uniqueUsername = true;
+	$db = getDBConnection();
+	$members = $db->query("SELECT username FROM member");
+
+	//Check each username in database
+    foreach ($members as $m){
+      // if username already in database, exit search
+      if($uName == $m['username']) {
+         $uniqueUsername = false;
+         echo "<p>The username '" . $uName . "' already exists.<br><br>" .
+         "Please choose a different username.<br></p>";
+         break; // exit
+        }
+    }
+    $db = null; // close db connection
+    return $uniqueUsername;
+} // end checkUsernameExists()
+
+// validate both password fields
 function validatePasswordFields($pass, $rePass) {
 	// validate first password field
 	// must be 4-10 characters

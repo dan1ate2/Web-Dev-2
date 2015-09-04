@@ -26,7 +26,7 @@
 						
 						// validate form
 						if (validateUserForm($_POST)) {
-							echo "Successfully validated form";
+							echo "<p>Successfully validated form</p>";
 						}
 					}
 					// display form
