@@ -252,14 +252,6 @@ function validateJoinForm() {
         document.forms["join"]["occupation"].focus();
         return false;
     }
-
-    // CONSIDER REMOVING THIS CODE BLOCK AS IT'S NOW CREATED IN PHP (errorCheck.php) <------ !!!!!!#####
-    // get formatted join date
-    formattedDate = [joinDate.getFullYear(), 
-        ("0"+(joinDate.getMonth()+1)).slice(-2), // +1 because getMonth 0-11 indexing
-        ("0"+joinDate.getDate()).slice(-2)];
-    formattedDate = formattedDate.join("-"); // concatenates array, hyphen separated
-    document.forms["join"]["join-date"].value = formattedDate; // assign to hidden field
 } // end of validateJoinForm
 
 // Contact form validation

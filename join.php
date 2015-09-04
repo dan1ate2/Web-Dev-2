@@ -21,16 +21,30 @@
 				<?php
 					// if post method, process form
 					if($_SERVER['REQUEST_METHOD'] == 'POST') { 
-						print '<h2 class="orange">Join Form Status</h2>';
+						echo '<h2 class="orange">Join Form Status</h2>';
 						include_once 'includes/validateUser.php';
 						
 						// validate form
 						if (validateUserForm($_POST)) {
-							echo "<p>Successfully validated form</p>";
-						}
-					}
-					// display form
-					else { 
+							echo "<p>Successfully validated form<br></p>";
+				            include_once 'includes/createUser.php';
+	                    	$queryResult = createUser($_POST); // add time to this    
+	                    	//See if the creation worked.
+	                    	if($queryResult['succeeded']) {
+		                     	//Success message
+		                     	echo "<p>Congratulations " . $_POST['other-names'] .
+		                     		" you have successfully signed up at DVD'sy and can now 
+		                     		book movies!<br></p>";
+                  			}
+			                else {
+			                    //Failure message
+			                    echo "<p>There was a database failure while creating your user account. 
+			                    	Please contact the site administrator.<br>
+			                        Error message: $queryResult\[error\]<br></p>";
+                    		} // end else
+                		} // end 'if (validateUserForm($_POST))'
+					} // end 'if($$_SERVER['REQUEST_METHOD'] == 'POST')'
+					else { // display form
 						include 'includes/join.inc';
 					}
 				?>

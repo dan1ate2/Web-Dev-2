@@ -139,8 +139,7 @@
 						<option value="Other">Other</option>
 					</select><br>
 
-		            <!-- Form buttons & date stamp -->
-		            <input type="hidden" name="join-date" id="join-date">
+		            <!-- Form buttons -->
 					<div class="form-buttons">
 						<input type="reset" value="Reset">
 						<input type="submit" value="Submit">

@@ -17,17 +17,15 @@ function validateUserForm($formData) {
 	$password = $formData["password"];
 	$retypePassword = $formData["retype-password"];
 	$occupation = $formData["occupation"];
-	$_POST["join-date"] = date("Y-m-d"); // set join date in hidden field for database (yyyy-mm-dd)
 	$flag = true; // false if error in any validation field
 	$nextValidation = 0; // for iterating through validation functions
 
 	// set magazine subscription variable/s
-	if (isset($_POST["magazine"])) { // if mag checkbox checked (value=1, means true for database)
+	if (isset($formData["magazine"])) { // if mag checkbox checked (value=1, means true for database)
 		$magSubscription = "yes";
 	}
 	else { // mag checkbox not checked
 		$magSubscription = "no";
-		$_POST["magazine"] = 0; // set form element value to 0 (false) for database. !!-- MAY NOT NEED THIS HERE, PROBABLY CREATEUSER.PHP !!!!! -------
 	}
 
 	// loop through validation functions while no errors
