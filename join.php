@@ -40,10 +40,10 @@
 			                    //Failure message
 			                    echo "<p>There was a database failure while creating your user account. 
 			                    	Please contact the site administrator.<br>
-			                        Error message: $queryResult\[error\]<br></p>";
+			                        Error message: " . $queryResult['error'] . "<br></p>";
                     		} // end else
                 		} // end 'if (validateUserForm($_POST))'
-					} // end 'if($$_SERVER['REQUEST_METHOD'] == 'POST')'
+					} // end 'if ($$_SERVER..
 					else { // display form
 						include 'includes/join.inc';
 					}

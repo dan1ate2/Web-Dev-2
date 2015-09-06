@@ -15,7 +15,20 @@ function createUser($formData){
 	$email = $formData["email-info"];
 	$streetAddress = $formData["street-address"];
 	$suburbState = $formData["suburb-state"];
-	$postcode = $formData["postcode"];
+	
+	// ---
+	// $postcode = $formData["postcode"];
+	// $postcode = isset($formData['postcode']) ? $postcode : null;
+	// $postcode = isset($_REQUEST['postcode']) ? $postcode : null;
+	// isset($formData['postcode']) ? $postcode : null;
+	if (!empty($formData["postcode"])) {
+		$postcode = $formData["postcode"];
+	}
+	else {
+		$postcode = null;
+	}
+	// ---
+	
 	$username = $formData["username"];
 	$password = $formData["password"];
 	$retypePassword = $formData["retype-password"];
@@ -23,7 +36,7 @@ function createUser($formData){
     $joindate = date("Y-m-d"); // server date (yyyy-mm-dd)
     
     // set magazine subscription choice
-    if(!isset($formdata['magazine'])) { // no subscription
+    if(!isset($formData["magazine"])) { // no subscription
        $magazine = 0; // 0 = false in database
    }
     else { // yes subscription
@@ -49,8 +62,8 @@ function createUser($formData){
     $insertUser->bindParam(':mobile', $mobile, PDO::PARAM_STR);
     $insertUser->bindParam(':landline', $dayTime, PDO::PARAM_STR);
     $insertUser->bindParam(':magazine', $magazine, PDO::PARAM_INT);
-    $insertUser->bindParam(':street', $streetaddr, PDO::PARAM_STR);
-    $insertUser->bindParam(':suburb', $suburbstate, PDO::PARAM_STR);
+    $insertUser->bindParam(':street', $streetAddress, PDO::PARAM_STR);
+    $insertUser->bindParam(':suburb', $suburbState, PDO::PARAM_STR);
     $insertUser->bindParam(':postcode', $postcode, PDO::PARAM_INT);
     $insertUser->bindParam(':username', $username, PDO::PARAM_STR);
     $insertUser->bindParam(':password', $password, PDO::PARAM_STR);

@@ -4,7 +4,7 @@
 				<!-- onsubmit="return validateJoinForm()" -->
 				<!-- action="http://infotech.scu.edu.au/cgi-bin/echo_form" -->
 				<!-- action="join.php" -->
- 				<form name="join" action="join.php" method="post">
+ 				<form name="join" action="join.php" method="post" onsubmit="return validateJoinForm()">
 					<!-- Name details -->
 		            <label for="surname">Surname</label>
 					<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here"><br>
@@ -28,7 +28,7 @@
 
 		            <!-- Magazine subscription -->
 		            <!-- <input type="hidden" name="magazine" value="1" id="magazine"> -->
-		            <input type="checkbox" name="magazine" value="1" id="magazine" checked>
+		            <input type="checkbox" name="magazine" value="" id="magazine" checked>
 					<label for="magazine">Sign up to monthly magazine</label><br><br>
 
 		            <!-- Contact details -->

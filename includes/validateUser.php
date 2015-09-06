@@ -21,7 +21,7 @@ function validateUserForm($formData) {
 	$nextValidation = 0; // for iterating through validation functions
 
 	// set magazine subscription variable/s
-	if (isset($formData["magazine"])) { // if mag checkbox checked (value=1, means true for database)
+	if (isset($formData["magazine"])) { // if mag checkbox checked
 		$magSubscription = "yes";
 	}
 	else { // mag checkbox not checked
