@@ -15,27 +15,19 @@ function createUser($formData){
 	$email = $formData["email-info"];
 	$streetAddress = $formData["street-address"];
 	$suburbState = $formData["suburb-state"];
-	
-	// ---
-	// $postcode = $formData["postcode"];
-	// $postcode = isset($formData['postcode']) ? $postcode : null;
-	// $postcode = isset($_REQUEST['postcode']) ? $postcode : null;
-	// isset($formData['postcode']) ? $postcode : null;
+	$username = $formData["username"];
+	$password = $formData["password"];
+	$retypePassword = $formData["retype-password"];
+	$occupation = $formData["occupation"];
+    $joindate = date("Y-m-d"); // server date (yyyy-mm-dd)
+    	// set postcode (avoids 0 in database if none given)
 	if (!empty($formData["postcode"])) {
 		$postcode = $formData["postcode"];
 	}
 	else {
 		$postcode = null;
 	}
-	// ---
-	
-	$username = $formData["username"];
-	$password = $formData["password"];
-	$retypePassword = $formData["retype-password"];
-	$occupation = $formData["occupation"];
-    $joindate = date("Y-m-d"); // server date (yyyy-mm-dd)
-    
-    // set magazine subscription choice
+    	// set magazine subscription choice
     if(!isset($formData["magazine"])) { // no subscription
        $magazine = 0; // 0 = false in database
    }
