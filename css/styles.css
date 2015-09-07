@@ -205,7 +205,7 @@ footer a {
 	margin-right: auto;
 }
 
-/* ##### JOIN FORM #####*/
+/* ##### FORMS #####*/
 label {
 	float:left;
 	width:25%;
@@ -256,7 +256,6 @@ a.tip:hover span{
 	left:-12px;
 }
 
-/* ##### CONTACT FORM ##### */
 #contact-form label {
 	padding:0 15px 0 62px;
 }
@@ -264,4 +263,12 @@ a.tip:hover span{
 	#contact-form input[type="password"], 
 	#contact-form select {
 	width:35%;
+}
+
+#login-form {
+    padding-bottom: 20px;
+}
+
+#login-form label {
+    padding-left: 89px;
 }

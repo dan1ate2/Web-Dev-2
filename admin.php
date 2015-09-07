@@ -19,6 +19,14 @@
 			<div class="center-hw-box bg-opacity">
 				<h2 class="orange">Login to your admin account</h2>
 				<p>NOTE: Admin staff login ONLY!</p>
+                <div id ="login-form">
+                    <form name="admin-login" id="admin-login" action="" method="post" onsubmit="">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" maxlength="10" pattern=".{4,10}" title="Enter your admin username here"><br>
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" maxlength="10" title="Enter your admin password here"><br>
+                    </form>
+                </div>
 			</div>
 
 		</div>
