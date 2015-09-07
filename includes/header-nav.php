@@ -13,6 +13,18 @@
 					<li><a href="techzone.php">techzone</a></li>
 					<li><a href="join.php">join</a></li>
 					<li><a href="contact.php">contact</a></li>
+					<?php
+						if (stripos($_SERVER['REQUEST_URI'], 'moviezone.php') || 
+							stripos($_SERVER['REQUEST_URI'], 'login.php') ||
+							stripos($_SERVER['REQUEST_URI'], 'logout.php') ||
+							stripos($_SERVER['REQUEST_URI'], 'admin.php')) {
+							    echo '<div class="user-nav">
+									<li><a href="#">login</a></li>
+								    <li><a href="#">logout</a></li>
+								    <li><a href="admin.php">admin</a></li>
+								    </div>';
+						}
+					?>
 				</ul>
 			</nav>
 		</div>

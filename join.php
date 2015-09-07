@@ -42,8 +42,8 @@
 			                    	Please contact the site administrator.<br>
 			                        Error message: " . $queryResult['error'] . "<br></p>";
                     		} // end else
-                		} // end 'if (validateUserForm($_POST))'
-					} // end 'if ($$_SERVER..
+                		} // end if (validateUserForm($_POST))
+					} // end if SERVER
 					else { // display form
 						include 'includes/join.inc';
 					}

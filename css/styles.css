@@ -91,6 +91,13 @@ a:active, footer a:active, header a:active {
 	float: left;
 	margin-top: 30px;
 }
+.center-hw-box {
+	width: 50%;
+	float: left;
+	margin-top: 30px;
+	margin-left: 25%;
+	margin-right: 25%;
+}
 .bg-opacity {
 	background-image: url("../images/bg-opacity.png");
 	background-repeat: repeat;
@@ -156,6 +163,10 @@ nav li {
 nav a {
 	padding:10px 0;
 	margin-right: 20px;
+}
+.user-nav {
+	float: left;
+	padding-left: 150px;
 }
 
 /* ##### FOOTER ##### */
