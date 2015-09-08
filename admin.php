@@ -1,6 +1,6 @@
 <?php
-// session_cache_limiter('private_no_expire');
 session_start();
+session_cache_limiter('private_no_expire');
 if (isset($_SESSION["Name"])) {
 	session_regenerate_id();
 }
