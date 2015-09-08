@@ -1,38 +1,69 @@
+<?php
+// session_cache_limiter('private_no_expire');
+session_start();
+if (isset($_SESSION["Name"])) {
+	session_regenerate_id();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>DVD'sy - Admin login</title>
-		<meta charset="utf-8">
-		<meta name="description" content="DVD'sy movie rentals - Admin login">
-		<!-- Common 'head' content -->
-		<?php include 'includes/head.php' ?>
-		<!-- end of Common 'head' content -->
-	</head>
+<head>
+	<title>DVD'sy - Admin login</title>
+	<meta charset="utf-8">
+	<meta name="description" content="DVD'sy movie rentals - Admin login">
+	<!-- Common 'head' content -->
+	<?php include 'includes/head.php' ?>
+	<!-- end of Common 'head' content -->
+</head>
 
-	<body>
-		<!-- Header & Navigation -->
-		<?php include 'includes/header-nav.php' ?>
-		<!-- end of Header & Navigation -->
+<body>
+	<!-- Header & Navigation -->
+	<?php include 'includes/header-nav.php' ?>
+	<!-- end of Header & Navigation -->
 
-		<div class="container">
-			<h1 class="page-title">Admin login</h1>
-			<div class="center-hw-box bg-opacity">
-				<h2 class="orange">Login to your admin account</h2>
-				<p>NOTE: Admin staff login ONLY!</p>
-                <div id ="login-form">
-                    <form name="admin-login" id="admin-login" action="" method="post" onsubmit="">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username" maxlength="10" pattern=".{4,10}" title="Enter your admin username here"><br>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" maxlength="10" title="Enter your admin password here"><br>
-                    </form>
-                </div>
-			</div>
 
-		</div>
-		
-		<!-- Footer -->
-		<?php include 'includes/footer.php' ?>
-		<!-- end of Footer -->
-	</body>
+	<div class="container">
+        <?php
+        	include 'includes/admin/admin-auth.php'; // auth function
+
+        	switch (authorisedAccess()) {
+        		case "ok":
+        			echo "ok<br><br>";
+        			echo "Login is authorised.<br>Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			include 'includes/admin/admin-login.inc';
+        			break;
+        		case "empty found":
+        			echo "empty found<br><br>";
+        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			include 'includes/admin/admin-login.inc';
+        			break;
+        		case "timed out":
+        			echo "timed out (not really, just debugging)<br><br>";
+        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			include 'includes/admin/admin-login.inc';
+        			break;
+        		case "incorrect password":
+        			echo "incorrect password<br><br>";
+        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			include 'includes/admin/admin-login.inc';
+        			break;
+        		case "new session":
+        			echo "new session<br><br>";
+        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			include 'includes/admin/admin-login.inc';
+        			break;
+        		default:
+        			echo "An error has occurred";
+        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			include 'includes/admin/admin-login.inc';
+        			break;
+        	}
+        ?>
+	</div>
+	
+	<!-- Footer -->
+	<?php include 'includes/footer.php' ?>
+	<!-- end of Footer -->
+</body>
 </html>

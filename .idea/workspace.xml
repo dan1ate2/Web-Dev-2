@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4213de26-f85a-4a64-9127-88ea93ebf9b7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.php" afterPath="$PROJECT_DIR$/admin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/header-nav.php" afterPath="$PROJECT_DIR$/includes/header-nav.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/styles.css" afterPath="$PROJECT_DIR$/css/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="web-dev-2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,8 +34,8 @@
           <file leaf-file-name="admin.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/admin.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.40568182" vertical-offset="0" max-vertical-offset="880">
-                  <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+                <state vertical-scroll-proportion="0.7340909" vertical-offset="221" max-vertical-offset="1190">
+                  <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -45,21 +45,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="join.inc" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/includes/join.inc">
+          <file leaf-file-name="admin-auth.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/includes/admin/admin-auth.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="2652">
-                  <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="styles.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/css/styles.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.22306855" vertical-offset="3756" max-vertical-offset="4743">
-                  <caret line="233" column="14" selection-start-line="233" selection-start-column="14" selection-end-line="233" selection-end-column="14" />
+                <state vertical-scroll-proportion="0.68533033" vertical-offset="0" max-vertical-offset="1003">
+                  <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -77,8 +67,10 @@
       <list>
         <option value="$PROJECT_DIR$/js/validate.js" />
         <option value="$PROJECT_DIR$/join.php" />
-        <option value="$PROJECT_DIR$/admin.php" />
         <option value="$PROJECT_DIR$/css/styles.css" />
+        <option value="$PROJECT_DIR$/includes/admin/admin-login.inc" />
+        <option value="$PROJECT_DIR$/admin.php" />
+        <option value="$PROJECT_DIR$/includes/admin/admin-auth.php" />
       </list>
     </option>
   </component>
@@ -158,6 +150,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web-dev-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web-dev-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -380,24 +390,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/join.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="2652">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.84770435" vertical-offset="1759" max-vertical-offset="2652">
+          <caret line="144" column="33" selection-start-line="143" selection-start-column="0" selection-end-line="144" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin.php">
+    <entry file="file://$PROJECT_DIR$/includes/admin/admin-login.inc">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40568182" vertical-offset="0" max-vertical-offset="880">
-          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.34266517" vertical-offset="0" max-vertical-offset="893">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22306855" vertical-offset="3756" max-vertical-offset="4743">
-          <caret line="233" column="14" selection-start-line="233" selection-start-column="14" selection-end-line="233" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3824" max-vertical-offset="4794">
+          <caret line="237" column="14" selection-start-line="237" selection-start-column="14" selection-end-line="237" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7340909" vertical-offset="221" max-vertical-offset="1190">
+          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/admin/admin-auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68533033" vertical-offset="0" max-vertical-offset="1003">
+          <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
           <folding />
         </state>
       </provider>

@@ -272,3 +272,6 @@ a.tip:hover span{
 #login-form label {
     padding-left: 89px;
 }
+p.error-message {
+	color: #ff0000;
+}
