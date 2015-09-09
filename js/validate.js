@@ -123,6 +123,7 @@ function validateJoinForm() {
 
     // check for postal address if magazine option selected
     if (document.forms["join"]["magazine"].checked) {
+        document.forms["join"]["magazine"].value = "subscribed"; // flag as subscribed
 
         if (!streetAddress) {
             alert("A street address is required to receive the monthly magazine.");
@@ -209,16 +210,15 @@ function validateJoinForm() {
     // validate first password field
     // must be 4-10 characters
     // must have 1 uppercase, 1 lowercase, 1 digit, 1 special character
-    // no whitespace
     if (!password == "") {
-        // re = new RegExp(/^(?=.*[~!?@#$%^&*+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
-        re = new RegExp(/^(?!.*\s)(?=.*[\W_])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
+        re = new RegExp(/^(?=.*[~!?@#$%^&*+=])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,10}$/);
 
         if (!re.test(password)) {
             alert("You have entered an invalid password." + 
                 "\nPassword must contain at least one uppercase letter, " + 
-                "\none lowercase letter, one number, and one special character." +
-                "\nPassword must be between 4-10 characters, no whitespace allowed.<br><br>");
+                "\none lowercase letter, one number, and one special character." + 
+                "\nSpecial characters accepted: ~!?@#$%^&*+=<br>" +
+                "\nPassword must be between 4-10 characters.<br><br>");
             document.forms["join"]["password"].select();
             return false;
         }
@@ -252,6 +252,14 @@ function validateJoinForm() {
         document.forms["join"]["occupation"].focus();
         return false;
     }
+
+    // CONSIDER REMOVING THIS CODE BLOCK AS IT'S NOW CREATED IN PHP (errorCheck.php) <------ !!!!!!#####
+    // get formatted join date
+    formattedDate = [joinDate.getFullYear(), 
+        ("0"+(joinDate.getMonth()+1)).slice(-2), // +1 because getMonth 0-11 indexing
+        ("0"+joinDate.getDate()).slice(-2)];
+    formattedDate = formattedDate.join("-"); // concatenates array, hyphen separated
+    document.forms["join"]["join-date"].value = formattedDate; // assign to hidden field
 } // end of validateJoinForm
 
 // Contact form validation
@@ -318,3 +326,4 @@ function validateContactForm() {
         }
     }
 } // end of validateContactForm
+

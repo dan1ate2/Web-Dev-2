@@ -1,7 +1,7 @@
 <?php
 session_start();
 session_cache_limiter('private_no_expire');
-if (isset($_SESSION["Name"])) {
+if (isset($_SESSION["StaffName"])) {
 	session_regenerate_id();
 }
 ?>
@@ -30,32 +30,32 @@ if (isset($_SESSION["Name"])) {
         	switch (authorisedAccess()) {
         		case "ok":
         			echo "ok<br><br>";
-        			echo "Login is authorised.<br>Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			echo "Login is authorised.<br>Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
         			include 'includes/admin/admin-login.inc';
         			break;
         		case "empty found":
         			echo "empty found<br><br>";
-        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
         			include 'includes/admin/admin-login.inc';
         			break;
         		case "timed out":
         			echo "timed out (not really, just debugging)<br><br>";
-        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
         			include 'includes/admin/admin-login.inc';
         			break;
         		case "incorrect password":
         			echo "incorrect password<br><br>";
-        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
         			include 'includes/admin/admin-login.inc';
         			break;
         		case "new session":
         			echo "new session<br><br>";
-        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
         			include 'includes/admin/admin-login.inc';
         			break;
         		default:
         			echo "An error has occurred";
-        			echo "Username: " . $_SESSION['Name'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
         			include 'includes/admin/admin-login.inc';
         			break;
         	}
