@@ -12,6 +12,7 @@ if (isset($_SESSION["StaffName"])) {
 	<title>DVD'sy - Admin login</title>
 	<meta charset="utf-8">
 	<meta name="description" content="DVD'sy movie rentals - Admin login">
+	<script src="js/validate.js"></script>
 	<!-- Common 'head' content -->
 	<?php include 'includes/head.php' ?>
 	<!-- end of Common 'head' content -->
@@ -29,34 +30,30 @@ if (isset($_SESSION["StaffName"])) {
 
         	switch (authorisedAccess()) {
         		case "ok":
-        			echo "ok<br><br>";
-        			echo "Login is authorised.<br>Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
-        			include 'includes/admin/admin-login.inc';
+        			echo '<p class="error-message">
+        			Logged into admin as "'.$_SESSION["StaffName"].'"</p>';
+        			include 'includes/admin/menu.php';
         			break;
         		case "empty found":
-        			echo "empty found<br><br>";
-        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
-        			include 'includes/admin/admin-login.inc';
+        			echo '<p class="error-message">
+        			Error: Staff member and Password field cannot be blank<br>
+        			Please go back and try again</p>';
         			break;
         		case "timed out":
-        			echo "timed out (not really, just debugging)<br><br>";
-        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
+        			echo '<p class="error-message">
+        			Your session has expired, please login again</p>';
         			include 'includes/admin/admin-login.inc';
         			break;
         		case "incorrect password":
-        			echo "incorrect password<br><br>";
-        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
-        			include 'includes/admin/admin-login.inc';
+        			echo '<p class="error-message">
+        			Incorrect password, please go back and try again</p>';
         			break;
         		case "new session":
-        			echo "new session<br><br>";
-        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
         			include 'includes/admin/admin-login.inc';
         			break;
         		default:
-        			echo "An error has occurred";
-        			echo "Username: " . $_SESSION['StaffName'] . "<br>Password: " . $_SESSION['Password'] . "<br>Session ID: " . session_id();
-        			include 'includes/admin/admin-login.inc';
+        			echo '<p class="error-message">
+        			An unknown error has occurred</p>';
         			break;
         	}
         ?>

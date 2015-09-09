@@ -2,7 +2,7 @@
 // check if login authorised, then set variables
 function authorisedAccess() {
 	$loginStatus;
-	$timeoutMinutes = 1;
+	$timeoutMinutes = 20;
 
 	if (isset($_POST["admin-login"])) { // CHANGE THE PASSWORD METHOD TO DATABASE READ, MORE SECURE!!!!!!!!!!!!!!!!!!
 		if (!empty($_POST["staff-name"]) && !empty($_POST["password"])) {
@@ -26,8 +26,7 @@ function authorisedAccess() {
     	if (validAdminPass($_SESSION["Password"])) {
 			$inactivityMinutes = time() - $_SESSION["LastActive"];
 			$inactivityMinutes /= 60;
-			print "inactivity = ".$inactivityMinutes."<br>";
-
+			
 			if ($inactivityMinutes > $timeoutMinutes) {
 				session_unset();
 				session_destroy();

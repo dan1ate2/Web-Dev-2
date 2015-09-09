@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4213de26-f85a-4a64-9127-88ea93ebf9b7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/admin/admin-auth.php" afterPath="$PROJECT_DIR$/includes/admin/admin-auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/validate.js" afterPath="$PROJECT_DIR$/js/validate.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.php" afterPath="$PROJECT_DIR$/admin.php" />
     </list>
     <ignored path="web-dev-2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,8 +33,8 @@
           <file leaf-file-name="admin.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/admin.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.60022396" vertical-offset="467" max-vertical-offset="1360">
-                  <caret line="54" column="26" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
+                <state vertical-scroll-proportion="0.13325869" vertical-offset="255" max-vertical-offset="1496">
+                  <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -47,8 +47,8 @@
           <file leaf-file-name="admin-auth.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/includes/admin/admin-auth.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.57045454" vertical-offset="127" max-vertical-offset="1020">
-                  <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+                <state vertical-scroll-proportion="0.40568182" vertical-offset="0" max-vertical-offset="1071">
+                  <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
                   <folding />
                 </state>
               </provider>
@@ -68,8 +68,8 @@
         <option value="$PROJECT_DIR$/join.php" />
         <option value="$PROJECT_DIR$/css/styles.css" />
         <option value="$PROJECT_DIR$/includes/admin/admin-login.inc" />
-        <option value="$PROJECT_DIR$/admin.php" />
         <option value="$PROJECT_DIR$/includes/admin/admin-auth.php" />
+        <option value="$PROJECT_DIR$/admin.php" />
       </list>
     </option>
   </component>
@@ -405,18 +405,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin.php">
+    <entry file="file://$PROJECT_DIR$/includes/admin/admin-auth.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60022396" vertical-offset="467" max-vertical-offset="1360">
-          <caret line="54" column="26" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.40568182" vertical-offset="0" max-vertical-offset="1071">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/admin/admin-auth.php">
+    <entry file="file://$PROJECT_DIR$/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57045454" vertical-offset="127" max-vertical-offset="1020">
-          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.13325869" vertical-offset="255" max-vertical-offset="1496">
+          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
           <folding />
         </state>
       </provider>
