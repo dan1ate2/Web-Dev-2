@@ -33,7 +33,7 @@
 					break;
 				case $_POST["admin-menu"] = "Edit or delete member":
 					echo '<h2 class="black-orange">Edit or delete member</h2>
-					<p>Please select a member from the dropdown and hit "details" to view the member details and either edit or update.</p>';
+					<p>Please select a member from the dropdown and click "Member Details" to view and either edit or update the member.</p><br>';
 					include 'includes/admin/edit-member.php';
 					break;
 				case $_POST["admin-menu"] = "Exit":
@@ -47,16 +47,17 @@
 		}
 		else if (isset($_POST["form-request"])) { // second level requests
 			switch ($_POST["form-request"]) {
-				case $_POST["form-request"] = "":
+				case $_POST["form-request"] = "Member Details":
 					echo '<h2 class="black-orange">Edit or delete member</h2>
-					<p>Enter a new movie option chosen</p>';
+					<p>Use this form to update user details</p>';
+					include 'includes/admin/edit-member-lev2.php';
 					break;
 				default:
 					echo "An unknown error has occured";
 					break;
 			}
 		}
-		else {
+		else { // default
 			echo '<h2 class="black-orange">Welcome</h2>
 				<p>Welcome to the admin area.<br>
 				Please choose an option from the left menu.</p>';

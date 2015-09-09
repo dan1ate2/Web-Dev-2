@@ -1,10 +1,4 @@
-<h2 class="orange">Join DVD'sy And Rent DVD's!</h2>
-<p>Join our club today and receive the monthly newsletter and the ability to rent out our movies online!</p><br>
-
-<!-- onsubmit="return validateJoinForm()" -->
-<!-- action="http://infotech.scu.edu.au/cgi-bin/echo_form" -->
-<!-- action="join.php" -->
-<form name="join" action="join.php" method="post" onsubmit="return validateJoinForm()">
+<form name="edit-member" id="edit-member" action="admin.php" method="post" onsubmit="return validateJoinForm()">
 	<!-- Name details -->
     <label for="surname">Surname</label>
 	<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here"><br>
@@ -93,7 +87,7 @@
 
     <!-- Login details -->
     <label for="username">Username</label>
-	<input type="text" name="username" id="username" pattern=".{4,10}" maxlength="10"><br>
+	<input type="text" name="username" id="username" pattern=".{4,10}" maxlength="10" readonly><br>
 	<a href="#" class="tip">Help?
 	    <span>
 	        Enter your username here.<br>
@@ -139,9 +133,18 @@
 		<option value="Other">Other</option>
 	</select><br>
 
+	<!-- Join Date -->
+	<label for="join-date">Join Date</label>
+	<input type="text" name="join-date" id="join-date" maxlength="50" readonly><br>
+
     <!-- Form buttons -->
 	<div class="form-buttons">
-		<input type="reset" value="Reset">
-		<input type="submit" value="Submit">
+		<input type="submit" value="Update Member">
+		<input type="submit" value="Delete Member">
 	</div>
 </form>
+
+<?php
+function getMemberData() {
+	
+}

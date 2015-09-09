@@ -2,9 +2,9 @@
 	<label>Members</label>
 	<select name="member-list" id="member-list">
 		<?php populateMembersDropdown() ?>
-	</select><br>
+	</select><br><br>
 	<div class="form-buttons">
-		<input type="submit" name="form-request" value="Details">
+		<input type="submit" name="form-request" value="Member Details">
 	</div>
 </form>
 
@@ -19,11 +19,3 @@
 		}
 		$db = null;
 	}
-
-	function editMember() {
-		include_once ("includes/connectDB.php");
-		$db = getDBConnection();
-		
-		$db = null;
-	}
-?>
