@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4213de26-f85a-4a64-9127-88ea93ebf9b7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/admin/admin-auth.php" afterPath="$PROJECT_DIR$/includes/admin/admin-auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.php" afterPath="$PROJECT_DIR$/admin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/admin/edit-member-lev2.php" afterPath="$PROJECT_DIR$/includes/admin/edit-member-lev2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/admin/edit-member.php" afterPath="$PROJECT_DIR$/includes/admin/edit-member.php" />
     </list>
     <ignored path="web-dev-2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,12 +30,30 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="admin.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="admin.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/admin.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.13325869" vertical-offset="255" max-vertical-offset="1496">
-                  <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-                  <folding />
+                <state vertical-scroll-proportion="-4.576923" vertical-offset="272" max-vertical-offset="1207">
+                  <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+                  <folding>
+                    <marker date="1441797960268" expanded="true" signature="795:860" placeholder="..." />
+                    <marker date="1441797960268" expanded="true" signature="999:1113" placeholder="..." />
+                    <marker date="1441797960268" expanded="true" signature="1204:1264" placeholder="..." />
+                    <marker date="1441797960268" expanded="true" signature="1417:1481" placeholder="..." />
+                    <marker date="1441797960268" expanded="true" signature="1664:1709" placeholder="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="edit-member.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/includes/admin/edit-member.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.39977604" vertical-offset="0" max-vertical-offset="893">
+                  <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+                  <folding>
+                    <marker date="1441810041264" expanded="true" signature="443:509" placeholder="SELECT membe..member..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -44,12 +62,17 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="admin-auth.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/includes/admin/admin-auth.php">
+          <file leaf-file-name="edit-member-lev2.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/includes/admin/edit-member-lev2.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.40568182" vertical-offset="0" max-vertical-offset="1071">
-                  <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-                  <folding />
+                <state vertical-scroll-proportion="0.77155656" vertical-offset="1929" max-vertical-offset="2822">
+                  <caret line="152" column="44" selection-start-line="152" selection-start-column="44" selection-end-line="152" selection-end-column="44" />
+                  <folding>
+                    <marker date="1441811241720" expanded="true" signature="5492:5506" placeholder="SELECT name,..fruit..." />
+                    <marker date="1441811241720" expanded="true" signature="5492:5531" placeholder="SELECT * FRO..member..." />
+                    <marker date="1441811241720" expanded="true" signature="5492:5532" placeholder="SELECT * FRO..member..." />
+                    <marker date="1441811241720" expanded="true" signature="5492:5535" placeholder="SELECT * FRO..member..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -70,6 +93,7 @@
         <option value="$PROJECT_DIR$/includes/admin/admin-login.inc" />
         <option value="$PROJECT_DIR$/includes/admin/admin-auth.php" />
         <option value="$PROJECT_DIR$/admin.php" />
+        <option value="$PROJECT_DIR$/includes/admin/edit-member-lev2.php" />
       </list>
     </option>
   </component>
@@ -309,7 +333,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="850" max-vertical-offset="1173">
           <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
-          <folding />
+          <folding>
+            <marker date="1441797960268" expanded="true" signature="795:860" placeholder="..." />
+            <marker date="1441797960268" expanded="true" signature="999:1113" placeholder="..." />
+            <marker date="1441797960268" expanded="true" signature="1204:1264" placeholder="..." />
+            <marker date="1441797960268" expanded="true" signature="1417:1481" placeholder="..." />
+            <marker date="1441797960268" expanded="true" signature="1664:1709" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -415,9 +445,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13325869" vertical-offset="255" max-vertical-offset="1496">
-          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-          <folding />
+        <state vertical-scroll-proportion="-4.576923" vertical-offset="272" max-vertical-offset="1207">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+          <folding>
+            <marker date="1441797960268" expanded="true" signature="795:860" placeholder="..." />
+            <marker date="1441797960268" expanded="true" signature="999:1113" placeholder="..." />
+            <marker date="1441797960268" expanded="true" signature="1204:1264" placeholder="..." />
+            <marker date="1441797960268" expanded="true" signature="1417:1481" placeholder="..." />
+            <marker date="1441797960268" expanded="true" signature="1664:1709" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/admin/edit-member.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39977604" vertical-offset="0" max-vertical-offset="893">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding>
+            <marker date="1441810041264" expanded="true" signature="443:509" placeholder="SELECT membe..member..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/admin/edit-member-lev2.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77155656" vertical-offset="1929" max-vertical-offset="2822">
+          <caret line="152" column="44" selection-start-line="152" selection-start-column="44" selection-end-line="152" selection-end-column="44" />
+          <folding>
+            <marker date="1441811241720" expanded="true" signature="5492:5506" placeholder="SELECT name,..fruit..." />
+            <marker date="1441811241720" expanded="true" signature="5492:5531" placeholder="SELECT * FRO..member..." />
+            <marker date="1441811241720" expanded="true" signature="5492:5532" placeholder="SELECT * FRO..member..." />
+            <marker date="1441811241720" expanded="true" signature="5492:5535" placeholder="SELECT * FRO..member..." />
+          </folding>
         </state>
       </provider>
     </entry>

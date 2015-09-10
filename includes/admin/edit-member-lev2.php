@@ -1,7 +1,13 @@
+<?php
+echo '<p>POST DATA: '.($_POST["member-list"].'</p>');
+$memberData = getMemberData($_POST["member-list"]);
+echo '<p>MEMBER DATA: '.$memberData.'</p>';
+?>
+
 <form name="edit-member" id="edit-member" action="admin.php" method="post" onsubmit="return validateJoinForm()">
 	<!-- Name details -->
     <label for="surname">Surname</label>
-	<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here"><br>
+	<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here" value="Surname here"><br>
     <label for="other-names">Other Names</label>
 	<input type="text" name="other-names" id="other-names" maxlength="60"><br><br>
 
@@ -145,6 +151,31 @@
 </form>
 
 <?php
-function getMemberData() {
-	
+function getMemberData($member) {
+	include_once ("includes/connectDB.php");
+	$db = getDBConnection();
+	$membData;
+	try {
+		// test 1
+		$sql = $db->prepare("SELECT * FROM member WHERE member_id = ".$member);
+		$sql->execute();
+		$membData = $sql->fetchAll();
+		print_r($membData);
+
+		// test2
+		// $sql = "SELECT * FROM member WHERE member_id IS ".$member;
+		// $membData = $db->query($sql);
+
+		// test 3
+		// $sth = $db->prepare("SELECT * FROM member WHERE member_id = 22");
+		// $sth->execute();
+
+		//  Fetch all of the remaining rows in the result set 
+		// print("RESULT:\n");
+		// $membData = $sth->fetchAll();
+		// print_r($membData);
+	} catch (PDOException $ex) {
+    	echo "Error: " . $ex->getMessage() . "<br>";
+	}
+	return $membData;
 }
