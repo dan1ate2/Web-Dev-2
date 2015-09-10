@@ -4,7 +4,7 @@
 		<?php populateMembersDropdown() ?>
 	</select><br><br>
 	<div class="form-buttons">
-		<input type="submit" name="form-request" value="Member Details">
+		<input type="submit" name="level-2-request" value="Member Details">
 	</div>
 </form>
 

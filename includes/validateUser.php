@@ -45,7 +45,7 @@ function validateUserForm($formData) {
 				$flag = validateDaytime($dayTime, $chosenContact);
 				break;
 			case 5:
-				$flag = validateEmail($email);
+				$flag = validateEmail($email, $chosenContact);
 				break;
 			case 6:
 				$flag = validateMagSubscription($magSubscription, $streetAddress, $suburbState, $postcode);
@@ -110,7 +110,7 @@ function validateMobile($mob, $cont) {
 	// validate mobile
 	// format '0(4 or 5)xx xxx xxx' eg '0412 345 678'
 	$valid = true;
-	if ($mob == "" && $cont == "Mobile") {
+	if ($mob == "" && $cont == "mobile") {
 		echo "<p>As your preferred contact method, a mobile number is required.<br><br>" .
 			"Please go back and try again.<br></p>";
 		$valid = false;
@@ -131,7 +131,7 @@ function validateDaytime($dTime, $cont) {
 	// validate daytime phone
 	// format '(xx) xxxxxxxx' (includes brackets)
 	$valid = true;
-	if ($dTime == "" && $cont == "Daytime") {
+	if ($dTime == "" && $cont == "daytime") {
 		echo "<p>As your preferred contact method, a daytime number is required.<br><br>" .
 			"Please go back and try again.<br></p>";
 		$valid = false;
@@ -148,12 +148,17 @@ function validateDaytime($dTime, $cont) {
 	return $valid;
 } // end validateDaytime()
 
-function validateEmail($e) {
+function validateEmail($e, $cont) {
 	// validate email
 	$valid = true;
-	if (!validEmail($e)) {
-		echo "<p>Email address not valid.<br><br>" .
-			"Please go back and try again.<br></p>";
+	if (!validEmail($e) && !empty($e)) {
+		echo "<p>Email address not valid.<br><br>
+			Please go back and try again.<br></p>";
+		$valid = false;
+	}
+	else if (empty($e) && $cont == "email") {
+		echo "<p>As your chosen contact method, an email address is required<br><br>
+			Please go back and try again.<br></p>";
 		$valid = false;
 	}
 	return $valid;

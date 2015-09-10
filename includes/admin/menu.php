@@ -17,7 +17,7 @@
 
 <?php
 	function menuOption() {
-		if (isset($_POST["admin-menu"])) { // first level requests
+		if (isset($_POST["admin-menu"])) { // first level processing
 			switch ($_POST["admin-menu"]) {
 				case $_POST["admin-menu"] = "Add a movie":
 					echo '<h2 class="black-orange">Add a new movie</h2>
@@ -34,7 +34,7 @@
 				case $_POST["admin-menu"] = "Edit or delete member":
 					echo '<h2 class="black-orange">Edit or delete member</h2>
 					<p>Please select a member from the dropdown and click "Member Details" to view and either edit or update the member.</p><br>';
-					include 'includes/admin/edit-member.php';
+					include 'includes/admin/edit-member-lev1.php';
 					break;
 				case $_POST["admin-menu"] = "Exit":
 					header('Location: includes/logout.php');
@@ -45,15 +45,44 @@
 					break;
 			}
 		}
-		else if (isset($_POST["form-request"])) { // second level requests
-			switch ($_POST["form-request"]) {
-				case $_POST["form-request"] = "Member Details":
+		else if (isset($_POST["level-2-request"])) { // second level processing
+			switch ($_POST["level-2-request"]) {
+				case $_POST["level-2-request"] = "Member Details":
 					echo '<h2 class="black-orange">Edit or delete member</h2>
 					<p>Use this form to update user details</p><br>';
 					include 'includes/admin/edit-member-lev2.php';
 					break;
 				default:
 					echo "An unknown error has occured";
+					break;
+			}
+		}
+		else if (isset($_POST["level-3-request"])) { // third level processing
+			switch ($_POST["level-3-request"]) {
+					case $_POST["level-3-request"] = "Delete Member":
+					include_once 'includes/admin/deletes-member.php';
+					echo '<h2 class="black-orange">Edit or delete member</h2>';
+
+					// process delete member request
+					$queryResult = deleteMember($_POST["member-id"]); // deletes member
+					if($queryResult['succeeded']) {
+                     	//Success message
+                     	echo "<p>The member " . $_POST['other-names'] .
+                     		" has been successfully removed from the system.</p>";
+                  	}
+			        else {
+	                    //Failure message
+	                    echo "<p>There was a database failure while deleting the member. 
+	                    	Please contact the site administrator.<br>
+	                        Error message: " . $queryResult['error'] . "<br></p>";
+                    } // end else
+					break;
+				case $_POST["level-3-request"] = "Update Member":
+					echo '<h2 class="black-orange">Edit or delete member</h2>
+					<p>Updates a member..</p>';
+					break;
+				default:
+					echo 'Unknown error has occurred';
 					break;
 			}
 		}

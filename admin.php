@@ -23,7 +23,6 @@ if (isset($_SESSION["StaffName"])) {
 	<?php include 'includes/header-nav.php' ?>
 	<!-- end of Header & Navigation -->
 
-
 	<div class="container">
         <?php
         	include 'includes/admin/admin-auth.php'; // auth function

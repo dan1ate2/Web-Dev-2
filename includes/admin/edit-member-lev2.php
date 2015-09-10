@@ -163,6 +163,7 @@
 
 	<!-- Member ID -->
 	<label for="member_id">Member ID</label>
+	<input type="hidden" name="member-id" id="member-id" value="<?php echo $memberData[0]['member_id'] ?>">
 	<input type="text" name="member-id" id="member-id" disabled="disabled" value="<?php echo $memberData[0]['member_id'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
@@ -173,8 +174,8 @@
 
     <!-- Form buttons -->
 	<div class="form-buttons">
-		<input type="submit" value="Update Member">
-		<input type="submit" value="Delete Member">
+		<input type="submit" name="level-3-request" value="Update Member">
+		<input type="submit" name="level-3-request" value="Delete Member">
 	</div>
 </form>
 
@@ -184,7 +185,8 @@ function getMemberData($member) {
 	$db = getDBConnection();
 	$membData;
 	try {
-		$sql = $db->prepare("SELECT * FROM member WHERE member_id = ".$member);
+		$sql = $db->prepare("SELECT * FROM member WHERE member_id = :member");
+		$sql->bindValue(':member', intval($member), PDO::PARAM_INT); // sanitizes data
 		$sql->execute();
 		$membData = $sql->fetchAll(PDO::FETCH_ASSOC);
 		// print_r($membData); // TESTING ONLY, REMOVE WHEN DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

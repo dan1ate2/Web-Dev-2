@@ -20,7 +20,7 @@
 			<div class="fw-box bg-opacity">
 				<?php
 					// if post method, process form
-					if($_SERVER['REQUEST_METHOD'] == 'POST') { 
+					if(isset($_POST["new-member"])) { 
 						echo '<h2 class="orange">Join Form Status</h2>';
 						include_once 'includes/validateUser.php';
 						
@@ -42,8 +42,8 @@
 			                    	Please contact the site administrator.<br>
 			                        Error message: " . $queryResult['error'] . "<br></p>";
                     		} // end else
-                		} // end if (validateUserForm($_POST))
-					} // end if SERVER
+                		} // end if validateUserForm
+					} // end if new member
 					else { // display form
 						include 'includes/join.inc';
 					}

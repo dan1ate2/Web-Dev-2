@@ -140,6 +140,6 @@
     <!-- Form buttons -->
 	<div class="form-buttons">
 		<input type="reset" value="Reset">
-		<input type="submit" value="Submit">
+		<input type="submit" name="new-member" value="Submit">
 	</div>
 </form>

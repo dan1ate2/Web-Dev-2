@@ -53,10 +53,10 @@ function createUser($formData){
     $insertUser->bindParam(':email', $email, PDO::PARAM_STR);
     $insertUser->bindParam(':mobile', $mobile, PDO::PARAM_STR);
     $insertUser->bindParam(':landline', $dayTime, PDO::PARAM_STR);
-    $insertUser->bindParam(':magazine', $magazine, PDO::PARAM_INT);
+    $insertUser->bindParam(':magazine', intval($magazine), PDO::PARAM_INT);
     $insertUser->bindParam(':street', $streetAddress, PDO::PARAM_STR);
     $insertUser->bindParam(':suburb', $suburbState, PDO::PARAM_STR);
-    $insertUser->bindParam(':postcode', $postcode, PDO::PARAM_INT);
+    $insertUser->bindParam(':postcode', intval($postcode), PDO::PARAM_INT);
     $insertUser->bindParam(':username', $username, PDO::PARAM_STR);
     $insertUser->bindParam(':password', $password, PDO::PARAM_STR);
     $insertUser->bindParam(':occupation', $occupation, PDO::PARAM_STR);
