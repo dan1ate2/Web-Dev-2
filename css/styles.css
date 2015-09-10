@@ -297,6 +297,13 @@ a.tip:hover span{
 #select-member select {
 	width: 50%;
 }
+#select-movie label {
+	padding:0 15px 0 0;
+	width: 23%;
+}
+#select-movie select {
+	width: 55%;
+}
 #admin-menu input[type="submit"] {
     margin: 6px;
     width: 215px;

@@ -13,12 +13,12 @@ function deleteMember($memberId) {
     // must use intval() or treated as string and adds surrounding hyphens
     $sqlDeleteUser->bindValue(':ID', intval($memberId), PDO::PARAM_INT);
 
-    // try insert user into database
+    // try delete user from database
     try {
-        // insert user using prepared query
+        // delete user using prepared query
         $queryResult['succeeded'] = $sqlDeleteUser->execute();
     }catch (PDOException $e) {
-        // error message if failed to add to database (print message)
+        // error message if failed to delete from database (print message)
         $queryResult['error'] = $e->getMessage();
     }
 
