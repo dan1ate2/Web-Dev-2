@@ -49,7 +49,7 @@
 			switch ($_POST["form-request"]) {
 				case $_POST["form-request"] = "Member Details":
 					echo '<h2 class="black-orange">Edit or delete member</h2>
-					<p>Use this form to update user details</p>';
+					<p>Use this form to update user details</p><br>';
 					include 'includes/admin/edit-member-lev2.php';
 					break;
 				default:

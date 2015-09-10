@@ -13,9 +13,9 @@
 
     <!-- Contact method details -->
     <label>Preferred contact method</label><br>
-	<input type="radio" name="contact-method" value="Mobile" id="mobile">
+	<input type="radio" name="contact-method" value="mobile" id="mobile">
 	<label for="mobile">Mobile</label><br>
-	<input type="radio" name="contact-method" value="Daytime" id="daytime">
+	<input type="radio" name="contact-method" value="daytime" id="daytime">
 	<label for="daytime">Daytime</label><br>
 	<a href="#" class="tip">Help?
 	    <span>
@@ -23,7 +23,7 @@
 	        Please choose preferred method.
 	    </span>
 	</a>
-	<input type="radio" name="contact-method" value="Email" id="email" checked>
+	<input type="radio" name="contact-method" value="email" id="email" checked>
 	<label for="email">Email</label><br><br>
 
     <!-- Magazine subscription -->
@@ -65,8 +65,6 @@
 	<a href="#" class="tip">Help?
 	    <span>
 	        Enter your street address.<br>
-	        Must start with digit/s followed by single space, 
-	        street name, single space and street type.<br>
 	        Example address: '123 Anne Street'.
 	    </span>
 	</a>
@@ -134,7 +132,7 @@
 		<option value="Programmer">Programmer</option>
 		<option value="Developer">Developer</option>
 		<option value="Salesman">Salesman</option>
-		<option value="Teacher">Teacher</option>
+		<option value="Education">Education</option>
 		<option value="Unemployed">Unemployed</option>
 		<option value="Other">Other</option>
 	</select><br>

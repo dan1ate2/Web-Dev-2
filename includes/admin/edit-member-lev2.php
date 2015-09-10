@@ -1,59 +1,55 @@
-<?php
-echo '<p>POST DATA: '.($_POST["member-list"].'</p>');
-$memberData = getMemberData($_POST["member-list"]);
-echo '<p>MEMBER DATA: '.$memberData.'</p>';
+<?php 
+	$memberData = getMemberData($_POST["member-list"]);
 ?>
-
 <form name="edit-member" id="edit-member" action="admin.php" method="post" onsubmit="return validateJoinForm()">
 	<!-- Name details -->
     <label for="surname">Surname</label>
-	<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here" value="Surname here"><br>
+	<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here" value="<?php echo $memberData[0]['surname'] ?>"><br>
     <label for="other-names">Other Names</label>
-	<input type="text" name="other-names" id="other-names" maxlength="60"><br><br>
+	<input type="text" name="other-names" id="other-names" maxlength="60" value="<?php echo $memberData[0]['other_name'] ?>"><br><br>
 
     <!-- Contact method details -->
     <label>Preferred contact method</label><br>
-	<input type="radio" name="contact-method" value="Mobile" id="mobile">
+	<input type="radio" name="contact-method" value="mobile" id="mobile" <?php $checked = ($memberData[0]['contact_method'] == "mobile" ? "checked" : ""); echo $checked; ?>>
 	<label for="mobile">Mobile</label><br>
-	<input type="radio" name="contact-method" value="Daytime" id="daytime">
+	<input type="radio" name="contact-method" value="daytime" id="daytime" <?php $checked = ($memberData[0]['contact_method'] == "landline" ? "checked" : ""); echo $checked; ?>>
 	<label for="daytime">Daytime</label><br>
 	<a href="#" class="tip">Help?
 	    <span>
-	        How would you like us to contact you?<br>
-	        Please choose preferred method.
+	        Preferred contact method.
 	    </span>
 	</a>
-	<input type="radio" name="contact-method" value="Email" id="email" checked>
+	<input type="radio" name="contact-method" value="email" id="email" <?php $checked = ($memberData[0]['contact_method'] == "email" ? "checked" : ""); echo $checked; ?>>
 	<label for="email">Email</label><br><br>
 
     <!-- Magazine subscription -->
     <!-- <input type="hidden" name="magazine" value="1" id="magazine"> -->
-    <input type="checkbox" name="magazine" value="" id="magazine" checked>
+    <input type="checkbox" name="magazine" value="" id="magazine" <?php $checked = ($memberData[0]['magazine'] == 1 ? "checked" : ""); echo $checked; ?>>
 	<label for="magazine">Sign up to monthly magazine</label><br><br>
 
     <!-- Contact details -->
     <label for="mobile-info">Mobile</label>
-	<input type="text" name="mobile-info" id="mobile-info" maxlength="12"><br>
+	<input type="text" name="mobile-info" id="mobile-info" maxlength="12" value="<?php echo $memberData[0]['mobile'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
-	        Enter your mobile number here.<br>
+	        Enter mobile number here.<br>
 	        Must start with 0(4 or 5).<br>
 	        Format: '0xxx xxx xxx' (including spaces).
 	    </span>
 	</a>
     <label for="daytime-info">Day Time</label>
-	<input type="text" name="daytime-info" id="daytime-info" maxlength="13"><br>
+	<input type="text" name="daytime-info" id="daytime-info" maxlength="13" value="<?php echo $memberData[0]['landline'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
-	        Enter your day time/landline phone number here.<br>
+	        Enter day time/landline phone number here.<br>
 	        Format: '(0x) xxxxxxxx' (including spaces and brackets).
 	    </span>
 	</a>
     <label for="email-info">Email</label>
-	<input type="text" name="email-info" id="email-info" maxlength="50"><br>
+	<input type="text" name="email-info" id="email-info" maxlength="50" value="<?php echo $memberData[0]['email'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
-	        Enter your email address here.<br>
+	        Enter email address here.<br>
 	        Must have '@' and '.' to be valid.
 	    </span>
 	</a>
@@ -61,30 +57,28 @@ echo '<p>MEMBER DATA: '.$memberData.'</p>';
 
     <!-- Postal address details -->
 	<label for="street-address">Street Address</label>
-	<input type="text" name="street-address" id="street-address" maxlength="50"><br>
+	<input type="text" name="street-address" id="street-address" maxlength="50" value="<?php echo $memberData[0]['street'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
-	        Enter your street address.<br>
-	        Must start with digit/s followed by single space, 
-	        street name, single space and street type.<br>
+	        Enter street address.<br>
 	        Example address: '123 Anne Street'.
 	    </span>
 	</a>
 	<label for="suburb-state">Suburb/State</label>
-	<input type="text" name="suburb-state" id="suburb-state" maxlength="50"><br>
+	<input type="text" name="suburb-state" id="suburb-state" maxlength="50" value="<?php echo $memberData[0]['suburb'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
-	        Enter your suburb and state here.<br>
+	        Enter suburb and state here.<br>
 	        Words must be separated by single space.<br>
 	        State can be abbreviated.<br>
 	        Example: 'Brisbane QLD'.
 	    </span>
 	</a>
 	<label for="postcode">Postcode</label>
-	<input type="text" name="postcode" id="postcode" maxlength="4"><br>
+	<input type="text" name="postcode" id="postcode" maxlength="4" value="<?php echo $memberData[0]['postcode'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
-	        Enter your postcode here.<br>
+	        Enter postcode here.<br>
 	        Must be 4 digits, no spaces.<br>
 	        E.g. 4000.
 	    </span>
@@ -93,19 +87,17 @@ echo '<p>MEMBER DATA: '.$memberData.'</p>';
 
     <!-- Login details -->
     <label for="username">Username</label>
-	<input type="text" name="username" id="username" pattern=".{4,10}" maxlength="10" readonly><br>
+	<input type="text" name="username" id="username" pattern=".{4,10}" maxlength="10" disabled="disabled" value="<?php echo $memberData[0]['username'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
-	        Enter your username here.<br>
-	        Username must be between 6-10 characters only.<br>
-	        NO whitespace allowed.
+	        Username cannot be changed once created.
 	    </span>
 	</a>
 	<label for="password">Password</label>
-	<input type="password" name="password" id="password" maxlength="10"><br>
+	<input type="password" name="password" id="password" maxlength="10" value="<?php echo $memberData[0]['password'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
-	        Enter your password here.<br>
+	        Update password here.<br>
 	        Password must contain:<br>
 	        - one uppercase letter<br> 
 			- one lowercase letter<br>
@@ -115,7 +107,7 @@ echo '<p>MEMBER DATA: '.$memberData.'</p>';
 	    </span>
 	</a>
 	<label for="retype-password">Re-type Password</label>
-	<input type="password" name="retype-password" id="retype-password" maxlength="10"><br>
+	<input type="password" name="retype-password" id="retype-password" maxlength="10" value="<?php echo $memberData[0]['password'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
 	        Retype your password.<br>
@@ -127,21 +119,57 @@ echo '<p>MEMBER DATA: '.$memberData.'</p>';
     <label>Occupation</label>
 	<select name="occupation" id="occupation">
 		<option value=" " label=" "></option>
-		<option value="Student">Student</option>
-		<option value="I.T. Professional">I.T. Professional</option>
-		<option value="Bartender">Bartender</option>
-		<option value="Business Owner">Business Owner</option>
-		<option value="Programmer">Programmer</option>
-		<option value="Developer">Developer</option>
-		<option value="Salesman">Salesman</option>
-		<option value="Teacher">Teacher</option>
-		<option value="Unemployed">Unemployed</option>
-		<option value="Other">Other</option>
-	</select><br>
+		<option value="Student" 
+		<?php $checked = ($memberData[0]['occupation'] == "Student" ? "selected" : ""); 
+		echo $checked; ?>>Student</option>
+		<option value="I.T. Professional" 
+		<?php $checked = ($memberData[0]['occupation'] == "I.T. Professional" ? "selected" : ""); 
+		echo $checked; ?>>I.T. Professional</option>
+		<option value="Bartender" 
+		<?php $checked = ($memberData[0]['occupation'] == "Bartender" ? "selected" : ""); 
+		echo $checked; ?>>Bartender</option>
+		<option value="Business Owner" 
+		<?php $checked = ($memberData[0]['occupation'] == "Business Owner" ? "selected" : ""); 
+		echo $checked; ?>>Business Owner</option>
+		<option value="Programmer" 
+		<?php $checked = ($memberData[0]['occupation'] == "Programmer" ? "selected" : ""); 
+		echo $checked; ?>>Programmer</option>
+		<option value="Developer" 
+		<?php $checked = ($memberData[0]['occupation'] == "Developer" ? "selected" : ""); 
+		echo $checked; ?>>Developer</option>
+		<option value="Salesman" 
+		<?php $checked = ($memberData[0]['occupation'] == "Salesman" ? "selected" : ""); 
+		echo $checked; ?>>Salesman</option>
+		<option value="Education" 
+		<?php $checked = ($memberData[0]['occupation'] == "Education" ? "selected" : ""); 
+		echo $checked; ?>>Education</option>
+		<option value="Unemployed" 
+		<?php $checked = ($memberData[0]['occupation'] == "Unemployed" ? "selected" : ""); 
+		echo $checked; ?>>Unemployed</option>
+		<option value="Other" 
+		<?php $checked = ($memberData[0]['occupation'] == "Other" ? "selected" : ""); 
+		echo $checked; ?>>Other</option>
+	</select><br><br>
 
 	<!-- Join Date -->
 	<label for="join-date">Join Date</label>
-	<input type="text" name="join-date" id="join-date" maxlength="50" readonly><br>
+	<input type="text" name="join-date" id="join-date" maxlength="50" disabled="disabled" value="<?php echo $memberData[0]['join_date'] ?>"><br>
+	<a href="#" class="tip">Help?
+	    <span>
+	        The date this user signed up.<br>
+	        Cannot be changed.
+	    </span>
+	</a>
+
+	<!-- Member ID -->
+	<label for="member_id">Member ID</label>
+	<input type="text" name="member-id" id="member-id" disabled="disabled" value="<?php echo $memberData[0]['member_id'] ?>"><br>
+	<a href="#" class="tip">Help?
+	    <span>
+	        Member ID is created automatically.<br>
+	        Cannot be changed.
+	    </span>
+	</a>
 
     <!-- Form buttons -->
 	<div class="form-buttons">
@@ -156,24 +184,10 @@ function getMemberData($member) {
 	$db = getDBConnection();
 	$membData;
 	try {
-		// test 1
 		$sql = $db->prepare("SELECT * FROM member WHERE member_id = ".$member);
 		$sql->execute();
-		$membData = $sql->fetchAll();
-		print_r($membData);
-
-		// test2
-		// $sql = "SELECT * FROM member WHERE member_id IS ".$member;
-		// $membData = $db->query($sql);
-
-		// test 3
-		// $sth = $db->prepare("SELECT * FROM member WHERE member_id = 22");
-		// $sth->execute();
-
-		//  Fetch all of the remaining rows in the result set 
-		// print("RESULT:\n");
-		// $membData = $sth->fetchAll();
-		// print_r($membData);
+		$membData = $sql->fetchAll(PDO::FETCH_ASSOC);
+		// print_r($membData); // TESTING ONLY, REMOVE WHEN DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	} catch (PDOException $ex) {
     	echo "Error: " . $ex->getMessage() . "<br>";
 	}
