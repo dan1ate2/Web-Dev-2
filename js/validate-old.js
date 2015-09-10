@@ -1,26 +1,27 @@
 // validates the join form
 function validateJoinForm() {
-    // document.getElementById("").value;
-    var surname = document.getElementById("surname").value;
-    var otherNames = document.getElementById("other-names").value;
+    var surname = document.forms["join"]["surname"].value;
+    var otherNames = document.forms["join"]["other-names"].value;
     var chosenContact; // preferred contact option
-    var mobile = document.getElementById("mobile-info").value;
-    var dayTime = document.getElementById("daytime-info").value;
-    var email = document.getElementById("email").value;
-    var streetAddress = document.getElementById("street-address").value;
-    var suburbState = document.getElementById("suburb-state").value;
-    var postcode = document.getElementById("postcode").value;
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    var retypePassword = document.getElementById("retype-password").value;
-    var occupation = document.getElementById("occupation").value;
+    var mobile = document.forms["join"]["mobile-info"].value;
+    var dayTime = document.forms["join"]["daytime-info"].value;
+    var email = document.forms["join"]["email-info"].value;
+    var streetAddress = document.forms["join"]["street-address"].value;
+    var suburbState = document.forms["join"]["suburb-state"].value;
+    var postcode = document.forms["join"]["postcode"].value;
+    var username = document.forms["join"]["username"].value;
+    var password = document.forms["join"]["password"].value;
+    var retypePassword = document.forms["join"]["retype-password"].value;
+    var occupation = document.forms["join"]["occupation"].value;
+    var joinDate = new Date(); // date stamp object
+    var formattedDate; // the date stamp formatted
     var re; // regular expression
 
     // validate surname
     // can have single spaces, " ' " or " - "
     if (surname == "") {
         alert("The Surname field cannot be left blank.");
-        document.getElementById("surname").focus();
+        join.surname.focus();
         return false;
     }
     else {
@@ -29,7 +30,7 @@ function validateJoinForm() {
         if (!re.test(surname)) {
             alert("You have entered an invalid surname." + 
                 "\nOnly words, single spaces, \" ' \" and \" - \" are allowed.");
-            document.getElementById("surname").select();
+            document.forms["join"]["surname"].select();
             return false;
         }
     }
@@ -38,7 +39,7 @@ function validateJoinForm() {
     // can have single spaces, " ' " or " - "
     if (otherNames == "") {
         alert("The Other Names field cannot be left blank.");
-        document.getElementById("other-names").focus();
+        document.forms["join"]["other-names"].focus();
         return false;
     }
     else {
@@ -47,26 +48,26 @@ function validateJoinForm() {
         if (!re.test(otherNames)) {
             alert("You have an invalid entry in 'Other names' field." + 
                 "\nOnly words, single spaces, \" ' \" and \" - \" are allowed.");
-            document.getElementById("other-names").select();
+            document.forms["join"]["other-names"].select();
             return false;
         }
     }
     
     // set chosen contact method (initialize var)
-    if (document.getElementById("mobile").checked == true)
-        chosenContact = document.getElementById("mobile").value;
-    else if (document.getElementById("daytime").checked == true)
-        chosenContact = document.getElementById("daytime").value;
+    if (document.join.mobile.checked == true)
+        chosenContact = document.join.mobile.value;
+    else if (document.join.daytime.checked == true)
+        chosenContact = document.join.daytime.value;
     else
-        chosenContact = document.getElementById("email").value;
+        chosenContact = document.join.email.value;
 
     // validate mobile
     // format '0(4 or 5)xx xxx xxx' eg '0412 345 678'
-    if (mobile == "" && chosenContact == document.getElementById("mobile").value) {
+    if (mobile == "" && chosenContact == document.join.mobile.value) {
         alert("As your preferred contact method, a mobile number is required" + 
             "\nMust start with 04 or 05." +
             "\nFormat: '0xxx xxx xxx' (including spaces).");
-        document.getElementById("mobile-info").focus();
+        document.forms["join"]["mobile-info"].focus();
         return false;
     }
     else if (!mobile == "") {
@@ -76,18 +77,18 @@ function validateJoinForm() {
             alert("You have entered an invalid mobile number." +
                 "\nMust start with 04 or 05." +
                 "\nRequired format: '0xxx xxx xxx' (including spaces).");
-            document.getElementById("mobile-info").select();
+            document.forms["join"]["mobile-info"].select();
             return false;
         }
     }
 
     // validate daytime phone
     // format '(xx) xxxxxxxx' (includes brackets)
-    if (dayTime == "" && chosenContact == document.getElementById("daytime").value) {
+    if (dayTime == "" && chosenContact == document.join.daytime.value) {
         alert("As your preferred contact method, a daytime number is required." +
             "\nStart with 2 digit area code in brackets, a space, then 8 digits." +
             "\nRequired format: '(0x) xxxxxxxx' (including spaces/brackets).");
-        document.getElementById("daytime-info").focus();
+        document.forms["join"]["daytime-info"].focus();
         return false;
     }
     else if (!dayTime == "") {
@@ -97,7 +98,7 @@ function validateJoinForm() {
             alert("You have entered an invalid daytime number." +
                 "\nStart with 2 digit area code in brackets, a space, then 8 digits." +
                 "\nRequired format: '(0x) xxxxxxxx' (including spaces/brackets).");
-            document.getElementById("daytime-info").select();
+            document.forms["join"]["daytime-info"].select();
             return false;
         }
     }
@@ -105,9 +106,9 @@ function validateJoinForm() {
     // validate email
     // '@' and '.' required
     // can have longer domain prefixes e.g. '.scu.edu.au'
-    if (email == "" && chosenContact == document.getElementById("email").value) {
+    if (email == "" && chosenContact == document.join.email.value) {
         alert("As your preferred contact method, an email is required.");
-        document.getElementById("email-info").focus();
+        document.forms["join"]["email-info"].focus();
         return false;
     }
     else if (!email == "") {
@@ -115,28 +116,28 @@ function validateJoinForm() {
 
         if (!re.test(email)) {
             alert('You have entered an invalid email.');
-            document.getElementById("email-info").select();
+            document.forms["join"]["email-info"].select();
             return false;
         }
     }
 
     // check for postal address if magazine option selected
-    if (document.getElementById("magazine").checked) {
-        document.getElementById("magazine").value = "subscribed"; // flag as subscribed
+    if (document.forms["join"]["magazine"].checked) {
+        document.forms["join"]["magazine"].value = "subscribed"; // flag as subscribed
 
         if (!streetAddress) {
             alert("A street address is required to receive the monthly magazine.");
-            document.getElementById("street-address").focus();
+            document.forms["join"]["street-address"].focus();
             return false;
         }
         else if (!suburbState) {
             alert("A suburb and state are required to receive the monthly magazine.");
-            document.getElementById("suburb-state").focus();
+            document.forms["join"]["suburb-state"].focus();
             return false;
         }
         else if (!postcode) {
             alert("A postcode is required to receive the monthly magazine.");
-            document.getElementById("postcode").focus();
+            document.forms["join"]["postcode"].focus();
             return false;
         }
     }
@@ -155,7 +156,7 @@ function validateJoinForm() {
                 "\nP.O. Box 123 Street" +
                 "\nUnit 1-44 That Street" +
                 "\n1/44 That Street");
-            document.getElementById("street-address").select();
+            document.forms["join"]["street-address"].select();
             return false;
         }
     }
@@ -169,7 +170,7 @@ function validateJoinForm() {
         if (!re.test(suburbState)) {
             alert("You have entered an invalid suburb/state combination." + 
                 "\nExample suburb/street: 'Brisbane QLD'");
-            document.getElementById("suburb-state").select();
+            document.forms["join"]["suburb-state"].select();
             return false;
         }
     }
@@ -182,7 +183,7 @@ function validateJoinForm() {
         if (!re.test(postcode)) {
             alert("You have entered an invalid postcode." + 
                 "\nShould only contain 4 digits.");
-            document.getElementById("postcode").select();
+            document.forms["join"]["postcode"].select();
             return false;
         }
     }
@@ -196,13 +197,13 @@ function validateJoinForm() {
             alert("You have entered an invalid username." + 
                 "\nUsername must be between 6-10 characters only." + 
                 "\nNO whitespace allowed.");
-            document.getElementById("username").select();
+            document.forms["join"]["username"].select();
             return false;
         }
     }
     else {
         alert("The Username field cannot be left blank.");
-        document.getElementById("username").focus();
+        join.username.focus();
         return false;
     }
 
@@ -218,13 +219,13 @@ function validateJoinForm() {
                 "\none lowercase letter, one number, and one special character." + 
                 "\nSpecial characters accepted: ~!?@#$%^&*+=<br>" +
                 "\nPassword must be between 4-10 characters.<br><br>");
-            document.getElementById("password").select();
+            document.forms["join"]["password"].select();
             return false;
         }
     }
     else {
         alert("The Password field cannot be left blank.");
-        document.getElementById("password").focus();
+        join.password.focus();
         return false;
     }
     
@@ -233,38 +234,46 @@ function validateJoinForm() {
     if (!retypePassword == "") {
         if (retypePassword != password) {
             alert("Passwords don't match, please try again.")
-            document.getElementById("password").value = "";
-            document.getElementById("retype-password").value = "";
-            document.getElementById("password").focus();
+            document.forms["join"]["password"].value = "";
+            document.forms["join"]["retype-password"].value = "";
+            document.forms["join"]["password"].focus();
             return false;
         }
     }
     else {
         alert("Please confirm password, both password fields must match.")
-        document.getElementById("retype-password").focus();
+        document.forms["join"]["retype-password"].focus();
         return false;
     }
 
     // validate occupation
     if (occupation == " ") {
         alert("Please choose your occupation.")
-        document.getElementById("occupation").focus();
+        document.forms["join"]["occupation"].focus();
         return false;
     }
+
+    // CONSIDER REMOVING THIS CODE BLOCK AS IT'S NOW CREATED IN PHP (errorCheck.php) <------ !!!!!!#####
+    // get formatted join date
+    formattedDate = [joinDate.getFullYear(), 
+        ("0"+(joinDate.getMonth()+1)).slice(-2), // +1 because getMonth 0-11 indexing
+        ("0"+joinDate.getDate()).slice(-2)];
+    formattedDate = formattedDate.join("-"); // concatenates array, hyphen separated
+    document.forms["join"]["join-date"].value = formattedDate; // assign to hidden field
 } // end of validateJoinForm
 
 // Contact form validation
 function validateContactForm() {
-    var firstName = document.getElementById("first-name").value;
-    var email = document.getElementById("email").value;
-    var phone = document.getElementById("phone").value;
+    var firstName = document.forms["contact-form"]["first-name"].value;
+    var email = document.forms["contact-form"]["email"].value;
+    var phone = document.forms["contact-form"]["phone"].value;
     var re; // regular expression
 
     // validate first name
     // single word no spaces
     if (firstName == "") {
         alert("The First Name field cannot be left blank.");
-        document.getElementById("first-name").focus();
+        document.forms["contact-form"]["first-name"].focus();
         return false;
     }
     else {
@@ -273,7 +282,7 @@ function validateContactForm() {
         if (!re.test(firstName)) {
             alert("You have entered an invalid first name." + 
                 "\nOnly a single word is allowed, no spaces.");
-            document.getElementById("first-name").select();
+            document.forms["contact-form"]["first-name"].select();
             return false;
         }
     }
@@ -283,7 +292,7 @@ function validateContactForm() {
     // can have longer domain prefixes e.g. '.scu.edu.au'
     if (email == "") {
         alert("An email address is required.");
-        document.getElementById("email").focus();
+        document.forms["contact-form"]["email"].focus();
         return false;
     }
     else if (!email == "") {
@@ -291,7 +300,7 @@ function validateContactForm() {
 
         if (!re.test(email)) {
             alert('You have entered an invalid email.');
-            document.getElementById("email").select();
+            document.forms["contact-form"]["email"].select();
             return false;
         }
     }
@@ -302,7 +311,7 @@ function validateContactForm() {
         alert("A phone or mobile number is required" + 
                 "\nMust contain only digits and spaces." + 
                 "\nFormat: 'xxxx xxx xxx'.");
-        document.getElementById("phone").focus();
+        document.forms["contact-form"]["phone"].focus();
         return false;
     }
         else if (!phone == "") {
@@ -312,7 +321,7 @@ function validateContactForm() {
             alert("You have entered an invalid phone number." + 
                 "\nMust contain only digits and spaces." + 
                 "\nFormat: 'xxxx xxx xxx'.");
-            document.getElementById("phone").select();
+            document.forms["contact-form"]["phone"].select();
             return false;
         }
     }

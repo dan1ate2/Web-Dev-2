@@ -22,17 +22,17 @@
 					// if post method, process form
 					if(isset($_POST["new-member"])) { 
 						echo '<h2 class="orange">Join Form Status</h2>';
-						include_once 'includes/validateUser.php';
 						
 						// validate form
+						include_once 'includes/validateUser.php';
 						if (validateUserForm($_POST)) {
-							echo "<p>Successfully validated form<br></p>";
 				            include_once 'includes/createUser.php';
 	                    	$queryResult = createUser($_POST); // add time to this    
 	                    	//See if the creation worked.
 	                    	if($queryResult['succeeded']) {
 		                     	//Success message
-		                     	echo "<p>Congratulations " . $_POST['other-names'] .
+		                     	echo "<p>You're in! Welcome :)<br><br>
+									Congratulations " . $_POST['other-names'] .
 		                     		" you have successfully signed up at DVD'sy and can now 
 		                     		book movies!<br></p>";
                   			}

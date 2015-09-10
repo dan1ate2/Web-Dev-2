@@ -59,27 +59,43 @@
 		}
 		else if (isset($_POST["level-3-request"])) { // third level processing
 			switch ($_POST["level-3-request"]) {
-					case $_POST["level-3-request"] = "Delete Member":
+				case $_POST["level-3-request"] = "Delete Member":
 					include_once 'includes/admin/deletes-member.php';
 					echo '<h2 class="black-orange">Edit or delete member</h2>';
 
 					// process delete member request
 					$queryResult = deleteMember($_POST["member-id"]); // deletes member
 					if($queryResult['succeeded']) {
-                     	//Success message
-                     	echo "<p>The member " . $_POST['other-names'] .
-                     		" has been successfully removed from the system.</p>";
+                     	// success message
+                     	echo '<p>The member "' . $_POST['other-names'] . '" has been successfully deleted from the system.</p>';
                   	}
 			        else {
-	                    //Failure message
-	                    echo "<p>There was a database failure while deleting the member. 
+	                    // failed message
+	                    echo "<p>There was a database failure while deleting the member.<br> 
 	                    	Please contact the site administrator.<br>
-	                        Error message: " . $queryResult['error'] . "<br></p>";
+	                        Error message: " . $queryResult['error'] . "</p>";
                     } // end else
 					break;
 				case $_POST["level-3-request"] = "Update Member":
-					echo '<h2 class="black-orange">Edit or delete member</h2>
-					<p>Updates a member..</p>';
+					echo '<h2 class="black-orange">Edit or delete member</h2>';
+					
+					// validate data
+					include_once 'includes/validateUser.php';
+					if (validateUserForm($_POST)) {
+						// process update member
+						include_once 'includes/admin/updates-member.php';
+						$queryResult = updateMember($_POST); // updates member
+						if($queryResult['succeeded']) {
+	                     	// success message
+	                     	echo '<p>The member "' . $_POST['other-names'] . '" has been successfully updated in the system.</p>';
+	                  	}
+				        else {
+		                    // failed message
+		                    echo "<p>There was a database failure while updating the member.<br>
+		                    	Please contact the site administrator.<br>
+		                        Error message: " . $queryResult['error'] . "</p>";
+	                    } // end else
+                	}
 					break;
 				default:
 					echo 'Unknown error has occurred';
@@ -89,6 +105,7 @@
 		else { // default
 			echo '<h2 class="black-orange">Welcome</h2>
 				<p>Welcome to the admin area.<br>
+				We recommend you have JavaScript enabled.<br><br>
 				Please choose an option from the left menu.</p>';
 		}
 	}
