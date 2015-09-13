@@ -4,7 +4,7 @@
 		<?php populateMovieDropdown() ?>
 	</select><br><br>
 	<div class="form-buttons">
-		<input type="submit" name="level-2-request" value="Movie Details">
+		<input type="submit" name="level-2-request" value="Edit Movie">
 	</div>
 </form>
 

@@ -4,7 +4,7 @@
 <form name="edit-member" id="edit-member" action="admin.php" method="post" onsubmit="return validateJoinForm()">
 	<!-- Name details -->
     <label for="surname">Surname</label>
-	<input type="text" name="surname" id="surname" maxlength="50" title="Enter a surname here" value="<?php echo $memberData[0]['surname'] ?>"><br>
+	<input type="text" name="surname" id="surname" maxlength="50" title="Member surname" value="<?php echo $memberData[0]['surname'] ?>"><br>
     <label for="other-names">Other Names</label>
 	<input type="text" name="other-names" id="other-names" maxlength="60" value="<?php echo $memberData[0]['other_name'] ?>"><br><br>
 

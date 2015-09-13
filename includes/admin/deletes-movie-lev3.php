@@ -7,10 +7,11 @@ function deleteMovie($movieId) {
     $queryResult['error'] = '';
     
     $db = getDBConnection();
-    $sqlDeleteMovie = $db->prepare("DELETE FROM `movie` WHERE `movie_id` = :ID");
+    // $sqlDeleteMovie = $db->prepare("DELETE FROM `movie` WHERE `movie_id` = :ID");
+    $sqlDeleteMovie = $db->prepare("DELETE FROM movie WHERE movie_id = :ID");
 
     // sanitize/bind variable
-    $sqlDeleteMovie->bindParam(':ID', $movieId, PDO::PARAM_STR);
+    $sqlDeleteMovie->bindValue(':ID', intval($movieId), PDO::PARAM_INT);
 
     // try delete movie from database
     try {

@@ -33,7 +33,8 @@
 				// edit a movie
 				case $_POST["admin-menu"] = "Edit a movie":
 					echo '<h2 class="black-orange">Edit a movie</h2>
-					<p>Edit movie option chosen</p>';
+					<p>Please select a movie to edit from the dropdown.</p>';
+					include_once 'includes/admin/edit-movie-lev1.php';
 					break;
 				// edit or delete member
 				case $_POST["admin-menu"] = "Edit or delete member":
@@ -59,24 +60,18 @@
 					<p>Use this form to update user details</p><br>';
 					include_once 'includes/admin/edit-member-lev2.php';
 					break;
-				case $_POST["level-2-request"] = "Delete Movie":
-					include_once 'includes/admin/deletes-movie-lev2.php';
-					echo '<h2 class="black-orange">Delete a movie</h2>';
-					
-					// process delete movie request
-					$queryResult = deleteMovie($_POST["movie-list"]); // deletes movie
-					if($queryResult['succeeded']) {
-                     	// success message
-                     	echo '<p>The movie "' . $_POST['movie-list'] . '" has been successfully deleted from the system.</p>';
-                  	}
-			        else {
-	                    // failed message
-	                    echo "<p>There was a database failure while deleting the member.<br> 
-	                    	Please contact the site administrator.<br>
-	                        Error message: " . $queryResult['error'] . "</p>";
-                    } // end else
+				// delete a movie (shows details first)
+				case $_POST["level-2-request"] = "Movie Details":
+					echo '<h2 class="black-orange">Delete a movie</h2>
+					<p>Please confirm you have the correct movie, then choose "Delete Movie" to remove it permanently.</p>';
+					include_once 'includes/admin/delete-movie-lev2.php';
 					break;
-
+				// edit movie details
+				case $_POST["level-2-request"] = "Edit Movie":
+					echo '<h2 class="black-orange">Edit a movie</h2>
+					<p>Please confirm you have the correct movie, then choose "Edit Movie" to modify details.</p>';
+					include_once 'includes/admin/edit-movie-lev2.php';
+					break;
 				default:
 					echo "An unknown error has occured";
 					break;
@@ -89,10 +84,10 @@
 					include_once 'includes/admin/deletes-member-lev3.php';
 					echo '<h2 class="black-orange">Edit or delete member</h2>';
 					// process delete member request
-					$queryResult = deleteMember($_POST["movie-list"]); // deletes member
+					$queryResult = deleteMember($_POST["member-id"]); // deletes member
 					if($queryResult['succeeded']) {
                      	// success message
-                     	echo '<p>The member "' . $_POST['title'] . '" has been successfully deleted from the system.</p>';
+                     	echo '<p>The member "' . $_POST['other-names'] . '" has been successfully deleted from the system.</p>';
                   	}
 			        else {
 	                    // failed message
@@ -123,12 +118,35 @@
 	                    } // end else
                 	}
 					break;
+				// delete a movie
+				case $_POST["level-3-request"] = "Delete Movie":
+					include_once 'includes/admin/deletes-movie-lev3.php';
+					echo '<h2 class="black-orange">Delete a movie</h2>';
+					// process delete movie request
+					$queryResult = deleteMovie($_POST["movie-id"]); // deletes movie
+					if($queryResult['succeeded']) {
+                     	// success message
+                     	echo '<p>The movie "' . $_POST['movie-title'] . '" has been successfully deleted from the system.</p>';
+                  	}
+			        else {
+	                    // failed message
+	                    echo "<p>There was a database failure while deleting the movie.<br> 
+	                    	Please contact the site administrator.<br>
+	                        Error message: " . $queryResult['error'] . "</p>";
+                    } // end else
+					break;
+				// edit movie ...
+				case $_POST["level-3-request"] = "Edit Movie":
+				echo '<h2 class="black-orange">Edit a movie</h2>
+					<p>Do the edit movie processing...</p>';
+					break;
 				default:
 					echo 'Unknown error has occurred';
 					break;
 			}
 		}
-		else { // default
+		// welcome message (default/no post or form)
+		else { 
 			echo '<h2 class="black-orange">Welcome</h2>
 				<p>Welcome to the admin area.<br>
 				We recommend you have JavaScript enabled.<br><br>
