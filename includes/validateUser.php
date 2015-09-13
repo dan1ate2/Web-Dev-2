@@ -263,19 +263,20 @@ function validateUsername($uName) {
 // check if username exists in database
 function checkUsernameExists($uName) {
 	$uniqueUsername = true;
+	// check each username in database if new user joining
+	if (!$_POST["level-3-request"] = "Update Member") {
 	$db = getDBConnection();
 	$members = $db->query("SELECT username FROM member");
-
-	//Check each username in database
-    foreach ($members as $m){
-      // if username already in database, exit search
-      if($uName == $m['username']) {
-         $uniqueUsername = false;
-         echo "<p>The username '" . $uName . "' already exists.<br><br>" .
-         "Please choose a different username.<br></p>";
-         break; // exit
-        }
-    }
+	    foreach ($members as $m){
+	      // if username already in database, exit search
+	      if($uName == $m['username']) {
+	         $uniqueUsername = false;
+	         echo "<p>The username '" . $uName . "' already exists.<br><br>" .
+	         "Please choose a different username.<br></p>";
+	         break; // exit
+	        }
+	    }
+	}
     $db = null; // close db connection
     return $uniqueUsername;
 } // end checkUsernameExists()

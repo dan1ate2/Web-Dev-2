@@ -6,7 +6,7 @@ function validateJoinForm() {
     var chosenContact; // preferred contact option
     var mobile = document.getElementById("mobile-info").value;
     var dayTime = document.getElementById("daytime-info").value;
-    var email = document.getElementById("email").value;
+    var email = document.getElementById("email-info").value;
     var streetAddress = document.getElementById("street-address").value;
     var suburbState = document.getElementById("suburb-state").value;
     var postcode = document.getElementById("postcode").value;
