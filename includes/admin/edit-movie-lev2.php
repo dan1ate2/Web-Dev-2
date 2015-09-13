@@ -10,6 +10,12 @@
 	<textarea name="movie-tagline" class="textarea-margin" id="movie-tagline" title="Movie tagline" rows="6" cols="39" readonly><?php echo $movData[0]['tagline'] ?></textarea>
 	<label for="movie-plot" class="textarea-margin">Movie Plot</label>
 	<textarea name="movie-plot" class="textarea-margin" id="movie-plot" title="Movie plot" rows="6" cols="39" readonly><?php echo $movData[0]['plot'] ?></textarea>
+	<label for="movie-id">Director</label>
+	
+	<!-- testing creating dropdown for directors -->
+	<input type="text" name="director" id="director" title="Movie ID" value="<?php echo $movData[0]['director_name'] ?>" readonly><br>
+
+	<!-- end test -->
 	
 	<div class="form-buttons">
 		<input type="submit" name="level-3-request" value="Edit Movie">
@@ -36,9 +42,13 @@ function getMovieData($movie) {
 		$sql->bindValue(':movie', intval($movie), PDO::PARAM_INT); // sanitizes data
 		$sql->execute();
 		$movData = $sql->fetchAll(PDO::FETCH_ASSOC);
-		// print_r($membData); // TESTING ONLY, REMOVE WHEN DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		print_r($movData); // TESTING ONLY, REMOVE WHEN DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	} catch (PDOException $ex) {
     	echo "Error: " . $ex->getMessage() . "<br>";
 	}
 	return $movData;
+}
+
+function getDirectors() {
+
 }
