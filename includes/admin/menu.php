@@ -69,7 +69,7 @@
 				// edit movie details
 				case $_POST["level-2-request"] = "Edit Movie":
 					echo '<h2 class="black-orange">Edit a movie</h2>
-					<p>Please confirm you have the correct movie, then choose "Edit Movie" to modify details.</p>';
+					<p>Please confirm you have the correct movie, then choose "Edit Movie" to modify details.</p><br>';
 					include_once 'includes/admin/edit-movie-lev2.php';
 					break;
 				default:
@@ -99,7 +99,6 @@
 				// update a member
 				case $_POST["level-3-request"] = "Update Member":
 					echo '<h2 class="black-orange">Edit or delete member</h2>';
-					
 					// validate data
 					include_once 'includes/validateUser.php';
 					if (validateUserForm($_POST)) {
@@ -126,7 +125,7 @@
 					$queryResult = deleteMovie($_POST["movie-id"]); // deletes movie
 					if($queryResult['succeeded']) {
                      	// success message
-                     	echo '<p>The movie "' . $_POST['movie-title'] . '" has been successfully deleted from the system.</p>';
+                     	echo '<p>The movie "' . $_POST["movie-title"] . '" has been successfully deleted from the system.</p>';
                   	}
 			        else {
 	                    // failed message
@@ -137,8 +136,18 @@
 					break;
 				// edit movie ...
 				case $_POST["level-3-request"] = "Edit Movie":
-				echo '<h2 class="black-orange">Edit a movie</h2>
-					<p>Do the edit movie processing...</p>';
+					echo '<h2 class="black-orange">Edit a movie</h2>';
+					include_once 'includes/admin/validateMovieUpdate.php';
+					$validateResult = validateMovieUpdate($_POST);
+					if($validateResult['succeeded']) {
+                     	// success message
+                     	echo '<p>The movie "' . $_POST["movie-title"] . '" has been successfully edited.</p>';
+                  	}
+			        else {
+	                    // failed message
+	                    echo '<p>Movie not updated. There was an error updating the movie "'. $_POST["movie-title"] .'".<br><br>
+	                    Error: ' . $validateResult['error'] . '</p>';
+                    } // end else
 					break;
 				default:
 					echo 'Unknown error has occurred';

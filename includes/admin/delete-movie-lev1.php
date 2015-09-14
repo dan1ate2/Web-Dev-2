@@ -9,13 +9,15 @@
 </form>
 
 <?php
-	function populateMovieDropdown() {
-		include_once ("includes/connectDB.php");
-		$db = getDBConnection();
-		$sql = "SELECT movie_id, title, year FROM movie order by title";
-		
-		foreach ($db->query($sql) as $row) {
-			echo '<option value="'.$row["movie_id"].'">'.$row["title"].' - '.$row["year"].'</option>';
-		}
-		$db = null;
+
+// get movies from database and put in dropdown
+function populateMovieDropdown() {
+	include_once ("includes/connectDB.php");
+	$db = getDBConnection();
+	$sql = "SELECT movie_id, title, year FROM movie order by title";
+	
+	foreach ($db->query($sql) as $row) {
+		echo '<option value="'.$row["movie_id"].'">'.$row["title"].' - '.$row["year"].'</option>';
 	}
+	$db = null;
+}

@@ -87,7 +87,7 @@
 
     <!-- Login details -->
     <label for="username">Username</label>
-	<input type="text" name="username" id="username" pattern=".{4,10}" maxlength="10" style="color:grey;" readonly value="<?php echo $memberData[0]['username'] ?>"><br>
+	<input type="text" name="username" id="username" pattern=".{4,10}" maxlength="10" class="grey-text" readonly value="<?php echo $memberData[0]['username'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
 	        Username cannot be changed once created.
@@ -153,7 +153,7 @@
 
 	<!-- Join Date -->
 	<label for="join-date">Join Date</label>
-	<input type="text" name="join-date" id="join-date" maxlength="50" style="color:grey;" readonly value="<?php echo $memberData[0]['join_date'] ?>"><br>
+	<input type="text" name="join-date" id="join-date" maxlength="50" class="grey-text" readonly value="<?php echo $memberData[0]['join_date'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
 	        The date this user signed up.<br>
@@ -163,7 +163,7 @@
 
 	<!-- Member ID -->
 	<label for="member_id">Member ID</label>
-	<input type="text" name="member-id" id="member-id" style="color:grey;" readonly value="<?php echo $memberData[0]['member_id'] ?>"><br>
+	<input type="text" name="member-id" id="member-id" class="grey-text" readonly value="<?php echo $memberData[0]['member_id'] ?>"><br>
 	<a href="#" class="tip">Help?
 	    <span>
 	        Member ID is created automatically.<br>
