@@ -10,12 +10,10 @@
 	<textarea name="movie-tagline" class="textarea-margin" id="movie-tagline" title="Movie tagline" rows="6" cols="39" readonly><?php echo $movData[0]['tagline'] ?></textarea>
 	<label for="movie-plot" class="textarea-margin">Movie Plot</label>
 	<textarea name="movie-plot" class="textarea-margin" id="movie-plot" title="Movie plot" rows="6" cols="39" readonly><?php echo $movData[0]['plot'] ?></textarea>
-	<label for="movie-id">Director</label>
-	
-	<!-- testing creating dropdown for directors -->
-	<input type="text" name="director" id="director" title="Movie ID" value="<?php echo $movData[0]['director_name'] ?>" readonly><br>
-
-	<!-- end test -->
+	<label for="year">Year</label>
+	<input type="text" name="year" id="year" title="Year" value="<?php echo $movData[0]['year'] ?>" readonly><br>
+	<label for="genre">Genre</label>
+	<input type="text" name="genre" id="genre" title="Genre" value="<?php echo $movData[0]['genre'] ?>" readonly><br>
 	
 	<div class="form-buttons">
 		<input type="submit" name="level-3-request" value="Edit Movie">
@@ -28,27 +26,22 @@ function getMovieData($movie) {
 	$db = getDBConnection();
 	$movData;
 	try {
-		$sql = $db->prepare("SELECT m.*, 
-			d.*, 
-			s.*, 
-			g.*, 
-			ma.* 
-			FROM movie m 
-			INNER JOIN director d ON m.director_id = d.director_id 
-			INNER JOIN studio s ON m.studio_id = s.studio_id 
-			INNER JOIN genre g ON m.genre_id = g.genre_id 
-			INNER JOIN movie_actor ma ON m.movie_id = ma.movie_id 
-			WHERE m.movie_id = :movie");
+		// $sql = $db->prepare("SELECT m.movie_id, 
+		// 	m.title, 
+		// 	m.tagline, 
+		// 	m.plot, 
+		// 	m.year,
+		// 	g.genre_name 
+		// 	FROM movie m 
+		// 	INNER JOIN genre g ON m.genre_id = g.genre_id 
+		// 	WHERE m.movie_id = :movie");
+		$sql = $db->prepare("SELECT * FROM movie_detail_view");
 		$sql->bindValue(':movie', intval($movie), PDO::PARAM_INT); // sanitizes data
 		$sql->execute();
 		$movData = $sql->fetchAll(PDO::FETCH_ASSOC);
-		print_r($movData); // TESTING ONLY, REMOVE WHEN DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// print_r($movData); // TESTING ONLY, REMOVE WHEN DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	} catch (PDOException $ex) {
     	echo "Error: " . $ex->getMessage() . "<br>";
 	}
 	return $movData;
-}
-
-function getDirectors() {
-
 }

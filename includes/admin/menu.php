@@ -27,7 +27,7 @@
 				// delete a movie
 				case $_POST["admin-menu"] = "Delete a movie":
 					echo '<h2 class="black-orange">Delete a movie</h2>
-					<p>Please choose a movie below and choose "Delete Movie" to remove it from the system.</p><br>';
+					<p>Please choose a movie below and choose "Movie Details" to review the movie details before deletion.</p><br>';
 					include_once 'includes/admin/delete-movie-lev1.php';
 					break;
 				// edit a movie
@@ -63,7 +63,7 @@
 				// delete a movie (shows details first)
 				case $_POST["level-2-request"] = "Movie Details":
 					echo '<h2 class="black-orange">Delete a movie</h2>
-					<p>Please confirm you have the correct movie, then choose "Delete Movie" to remove it permanently.</p>';
+					<p>Please confirm you have the correct movie, then choose "Delete Movie" to remove it permanently.</p><br>';
 					include_once 'includes/admin/delete-movie-lev2.php';
 					break;
 				// edit movie details
