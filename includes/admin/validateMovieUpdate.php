@@ -1,5 +1,5 @@
 <?php
-// validates update movie form fields
+// validates update movie form
 function validateMovieUpdate($formData) {
 	// return values
 	$validateResult['succeeded'] = false;
@@ -71,12 +71,17 @@ function validateMoviePrice($rental, $purchase, $type) {
 		if (empty($rental) || $rental < 0) {
 			$error = $type.' rental price cannot be empty, 0, or less than 0.';
 		}
-		if (empty($purchase) || $purchase < 0) {
+		else if (empty($purchase) || $purchase < 0) {
 			$error = $type.' purchase price cannot be empty, 0, or less than 0.';
+		}
+		// if rental or purchase price doesn't match number format xx.xx
+		else if ((!preg_match("/^[0-9]{1,2}(\.{1}[0-9]{1,2})?$/", $rental)) || 
+			(!preg_match("/^[0-9]{1,2}(\.{1}[0-9]{1,2})?$/", $purchase))) {
+			$error = $type.' rental and purchase price must both be in 2 digit format or 4 digit format with decimal seperating. E.g. "24" or "20.95"';
 		}
 	}
 	else {
-		$error = $type.' rental price and purchase price must both be numeric.';
+		$error = $type.' rental price and purchase price are required and must both be numeric.';
 	}
 	return $error;
 } // end validateMoviePrice
@@ -89,7 +94,12 @@ function validateMovieStock($stock, $rented, $type) {
 			$error = $type.' rented quantity cannot be more than the stock quantity.';
 		}
 		else if ($stock < 0 || $rented < 0) {
-			$error = $type.' stock or rented quantity cannot be less than 0.';
+			$error = $type.' stock and rented quantity cannot be less than 0.';
+		}
+		// if stock or rented quantity doesn't match 3 digits or less
+		else if ((!preg_match("/^[0-9]{1,3}$/", $stock)) || 
+			(!preg_match("/^[0-9]{1,3}$/", $rented))) { 
+			$error = $type.' stock and rented quantity must be no more than 3 digits.';
 		}
 	}
 	else {

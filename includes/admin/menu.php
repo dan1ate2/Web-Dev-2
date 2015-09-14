@@ -138,10 +138,21 @@
 				case $_POST["level-3-request"] = "Edit Movie":
 					echo '<h2 class="black-orange">Edit a movie</h2>';
 					include_once 'includes/admin/validateMovieUpdate.php';
+					// validate movie data
 					$validateResult = validateMovieUpdate($_POST);
 					if($validateResult['succeeded']) {
-                     	// success message
-                     	echo '<p>The movie "' . $_POST["movie-title"] . '" has been successfully edited.</p>';
+                     	include_once 'includes/admin/edits-movie-lev3.php';
+                     	// edit movie in db
+                     	$queryResult = editMovie($_POST); 
+                     	if ($queryResult['succeeded']) {
+	                     	// success message
+	                     	echo '<p>The movie "' . $_POST["movie-title"] . '" has been successfully edited.</p>';
+                     	}
+                     	else {
+                     		echo '<p>There was an error updating the movie "'.$_POST["movie-title"]
+                     			.'" in the database.
+                     			<br>Please contact the system administrator.</p>';
+                     	}
                   	}
 			        else {
 	                    // failed message
@@ -150,7 +161,8 @@
                     } // end else
 					break;
 				default:
-					echo 'Unknown error has occurred';
+					echo '<p>An unknown error has occurred, please contact the 
+						system administrator.</p>';
 					break;
 			}
 		}
