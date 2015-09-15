@@ -22,7 +22,8 @@
 				// add a movie
 				case $_POST["admin-menu"] = "Add a movie":
 					echo '<h2 class="black-orange">Add a new movie</h2>
-					<p>Enter a new movie option chosen</p>';
+					<p>Enter a new movie to the system using the form below.</p>';
+					include_once 'includes/admin/add-movie-lev1.php';
 					break;
 				// delete a movie
 				case $_POST["admin-menu"] = "Delete a movie":
@@ -114,7 +115,7 @@
 		                    echo "<p>There was a database failure while updating the member.<br>
 		                    	Please contact the site administrator.<br>
 		                        Error message: " . $queryResult['error'] . "</p>";
-	                    } // end else
+	                    }
                 	}
 					break;
 				// delete a movie
@@ -134,7 +135,7 @@
 	                        Error message: " . $queryResult['error'] . "</p>";
                     } // end else
 					break;
-				// edit movie ...
+				// edit movie
 				case $_POST["level-3-request"] = "Edit Movie":
 					echo '<h2 class="black-orange">Edit a movie</h2>';
 					include_once 'includes/admin/validateMovieUpdate.php';
@@ -149,8 +150,7 @@
 	                     	echo '<p>The movie "' . $_POST["movie-title"] . '" has been successfully edited.</p>';
                      	}
                      	else {
-                     		echo '<p>There was an error updating the movie "'.$_POST["movie-title"]
-                     			.'" in the database.
+                     		echo '<p>There was an error updating the movie "'.$_POST["movie-title"].'" in the database.
                      			<br>Please contact the system administrator.</p>';
                      	}
                   	}

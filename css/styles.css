@@ -357,3 +357,13 @@ a.tip:hover span{
 #show-movie-details input[type="text"] {
 	width: 52%;
 }
+#add-movie label {
+	width: 34%;
+    padding: 0 15px 0 10px;
+}
+#add-movie input[type="text"] {
+	width: 52%;
+}
+#add-movie select {
+	width: 37%;
+}
