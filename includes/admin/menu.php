@@ -22,7 +22,8 @@
 				// add a movie
 				case $_POST["admin-menu"] = "Add a movie":
 					echo '<h2 class="black-orange">Add a new movie</h2>
-					<p>Enter a new movie to the system using the form below.</p>';
+					<p>Enter a new movie to the system using the form below.</p>
+					<p class="error-text">All fields are required !</p>';
 					include_once 'includes/admin/add-movie-lev1.php';
 					break;
 				// delete a movie
@@ -49,7 +50,8 @@
 					break;
 				default:
 					echo '<h2 class="black-orange">Error</h2>
-					<p>An unknown error has occured</p>';
+					<p class="error-text">An unknown error has occured. 
+					Please contact the site administrator.</p>';
 					break;
 			}
 		}
@@ -73,8 +75,35 @@
 					<p>Please confirm you have the correct movie, then choose "Edit Movie" to modify details.</p><br>';
 					include_once 'includes/admin/edit-movie-lev2.php';
 					break;
+				// add new movie
+				case $_POST["level-2-request"] = "Add Movie":
+					echo '<h2 class="black-orange">Add a new movie</h2>';
+					// validate data
+					include_once 'includes/admin/validateMovieAdd.php';
+					$validateResult = validateMovieAdd($_POST);
+					if ($validateResult['succeeded']) {
+						// process add movie
+						include_once 'includes/admin/adds-movie-lev2.php';
+						$queryResult = addMovie($_POST); // adds movie to database
+						if($queryResult['succeeded']) {
+	                     	// success message
+	                     	echo '<p>The movie "' . $_POST['movie-title'] . '" has been successfully added to the system.</p>';
+	                  	}
+				        else {
+		                    // failed message
+		                    echo "<p class='error-text'>There was a database failure while adding the movie.<br>
+		                    	Please contact the site administrator.<br>
+		                        Error message: " . $queryResult['error'] . "</p>";
+	                    }
+                	}
+                	else {
+                		echo '<p class="error-text">There was a validation error adding the new movie to the system.<br><br>
+                		Error: '.$validateResult['error'].'</p>';
+                	}
+					break;
 				default:
-					echo "An unknown error has occured";
+					echo "<p class='error-text'>An unknown error has occured.<br>
+						Please contact the site administrator.</p>";
 					break;
 			}
 		}
@@ -92,7 +121,7 @@
                   	}
 			        else {
 	                    // failed message
-	                    echo "<p>There was a database failure while deleting the member.<br> 
+	                    echo "<p class='error-text'>There was a database failure while deleting the member.<br> 
 	                    	Please contact the site administrator.<br>
 	                        Error message: " . $queryResult['error'] . "</p>";
                     } // end else
@@ -112,10 +141,14 @@
 	                  	}
 				        else {
 		                    // failed message
-		                    echo "<p>There was a database failure while updating the member.<br>
+		                    echo "<p class='error-text'>There was a database failure while updating the member.<br>
 		                    	Please contact the site administrator.<br>
 		                        Error message: " . $queryResult['error'] . "</p>";
 	                    }
+                	}
+                	else {
+                		echo '<p class="error-text">An unexpected validation error has occured. The member "' . $_POST['other-names'] . '" has not been updated in the system.<br>
+                			Please contact the system administrator.</p>';
                 	}
 					break;
 				// delete a movie
@@ -130,7 +163,7 @@
                   	}
 			        else {
 	                    // failed message
-	                    echo "<p>There was a database failure while deleting the movie.<br> 
+	                    echo "<p class='error-text'>There was a database failure while deleting the movie.<br> 
 	                    	Please contact the site administrator.<br>
 	                        Error message: " . $queryResult['error'] . "</p>";
                     } // end else
@@ -150,18 +183,18 @@
 	                     	echo '<p>The movie "' . $_POST["movie-title"] . '" has been successfully edited.</p>';
                      	}
                      	else {
-                     		echo '<p>There was an error updating the movie "'.$_POST["movie-title"].'" in the database.
+                     		echo '<p class="error-text">There was an error updating the movie "'.$_POST["movie-title"].'" in the database.
                      			<br>Please contact the system administrator.</p>';
                      	}
                   	}
 			        else {
 	                    // failed message
-	                    echo '<p>Movie not updated. There was an error updating the movie "'. $_POST["movie-title"] .'".<br><br>
+	                    echo '<p class="error-text">Movie not updated. There was an error updating the movie "'. $_POST["movie-title"] .'".<br><br>
 	                    Error: ' . $validateResult['error'] . '</p>';
                     } // end else
 					break;
 				default:
-					echo '<p>An unknown error has occurred, please contact the 
+					echo '<p class="error-text">An unknown error has occurred, please contact the 
 						system administrator.</p>';
 					break;
 			}

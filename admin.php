@@ -29,29 +29,29 @@ if (isset($_SESSION["StaffName"])) {
 
         	switch (authorisedAccess()) {
         		case "ok":
-        			echo '<p class="error-message">
+        			echo '<p class="system-message">
         			Logged into admin as "'.$_SESSION["StaffName"].'"</p>';
         			include 'includes/admin/menu.php';
         			break;
         		case "empty found":
-        			echo '<p class="error-message">
+        			echo '<p class="system-message error-text">
         			Error: Staff member and Password field cannot be blank<br>
         			Please go back and try again</p>';
         			break;
         		case "timed out":
-        			echo '<p class="error-message">
+        			echo '<p class="system-message error-text">
         			Your session has expired, please login again</p>';
         			include 'includes/admin/admin-login.inc';
         			break;
         		case "incorrect password":
-        			echo '<p class="error-message">
+        			echo '<p class="system-message error-text">
         			Incorrect password, please go back and try again</p>';
         			break;
         		case "new session":
         			include 'includes/admin/admin-login.inc';
         			break;
         		default:
-        			echo '<p class="error-message">
+        			echo '<p class="system-message error-text">
         			An unknown error has occurred</p>';
         			break;
         	}

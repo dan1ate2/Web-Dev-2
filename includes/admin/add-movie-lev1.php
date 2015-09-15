@@ -3,10 +3,10 @@
 		<legend>Movie Details</legend>
 		<label for="movie-title">Movie Title</label>
 		<input type="text" name="movie-title" id="movie-title" title="Movie Title" maxlength="45"><br>
-		<label for="movie-tagline" class="textarea-margin">Movie Tagline</label>
-		<textarea name="movie-tagline" class="textarea-margin" id="movie-tagline" title="Movie tagline" rows="6" cols="39" maxlength="128"></textarea>
-		<label for="movie-plot" class="textarea-margin">Movie Plot</label>
-		<textarea name="movie-plot" class="textarea-margin" id="movie-plot" title="Movie plot" rows="6" cols="39" maxlength="256"></textarea>
+		<label for="movie-tagline" class="textarea-margin-label">Movie Tagline</label>
+		<textarea name="movie-tagline" class="textarea-margin" id="movie-tagline" title="Movie tagline" rows="6" cols="32" maxlength="128"></textarea>
+		<label for="movie-plot" class="textarea-margin-label">Movie Plot</label>
+		<textarea name="movie-plot" class="textarea-margin" id="movie-plot" title="Movie plot" rows="6" cols="32" maxlength="256"></textarea>
 		<label for="year">Year</label>
 		<input type="text" name="year" id="year" title="Year" maxlength="4"><br><br>
 		<label for="director">Director</label>
@@ -87,8 +87,9 @@
 	<fieldset id="movie-stock">
 		<legend>Stock Info</legend>
 		<label for="rental-period">Rental Period</label>
-		<select name="rental period" id="rental-period">
-		<?php populateRentalDropdown($movData) ?>
+		<select name="rental-period" id="rental-period">
+			<option value=" " selected="selected"></option>
+			<?php populateRentalDropdown($movData) ?>
 		</select><br>
 		<fieldset id="DVD">
 			<legend>DVD</legend>
@@ -113,6 +114,10 @@
 			<input type="text" name="bluray-rented" id="bluray-rented" title="BluRay Currently Rented"><br>
 		</fieldset>
 	</fieldset>
+
+	<div class="form-buttons">
+		<input type="submit" name="level-2-request" value="Add Movie">
+	</div>
 </form>
 
 <?php
@@ -174,7 +179,6 @@ function populateStarCoStarDropdown() {
 
 // get rental options from queried data and populate dropdown
 function populateRentalDropdown($mData) {
-	echo '<option value="'.$mData[0]['rental_period'].'" selected="selected">'.$mData[0]['rental_period'].'</option>'; // currently selected option
 	if ($mData[0]['rental_period'] != "Weekly") {
 		echo '<option value="Weekly">Weekly</option>';
 	}

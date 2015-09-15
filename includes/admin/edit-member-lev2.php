@@ -188,9 +188,10 @@ function getMemberData($member) {
 		$sql->bindValue(':member', intval($member), PDO::PARAM_INT); // sanitizes data
 		$sql->execute();
 		$membData = $sql->fetchAll(PDO::FETCH_ASSOC);
-		// print_r($membData); // TESTING ONLY, REMOVE WHEN DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		// print_r($membData); // debug query
 	} catch (PDOException $ex) {
     	echo "Error: " . $ex->getMessage() . "<br>";
 	}
+	$db = null; // close db connection
 	return $membData;
 }

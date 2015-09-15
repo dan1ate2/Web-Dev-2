@@ -1,4 +1,5 @@
 <?php
+include_once ("includes/connectDB.php"); // database connection
 // validates add new movie form
 function validateMovieAdd($formData) {
 	// return values
@@ -43,30 +44,49 @@ function validateMovieAdd($formData) {
 	$error = false;
 	$nextValidation = 0;
 	// while no errors go through validation functions
-	while (!$error && $nextValidation < 9) {
+	while (!$error && $nextValidation < 10) {
 		$nextValidation++;
 		switch ($nextValidation) {
 			// check if movie exists
 			case 1:
-
+				$validateResult['error'] = checkMovieExists($movieTitle, 
+					$movieTagline, $moviePlot);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
 				break;
-			// validate director field
+			// validate year
 			case 2:
+				$validateResult['error'] = validateYear($year);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
+			// validate director field
+			case 3:
 				$id = "or new Director";
-				checkIfCharactersOnly($newDirector, $id);
+				$validateResult['error'] = checkIfCharactersOnly($newDirector, $id);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
 				break;
 			// validate studio field
-			case 3:
+			case 4:
 				$id = "or new Studio";
-				checkIfCharactersOnly($newStudio, $id);
+				$validateResult['error'] = checkIfCharactersOnly($newStudio, $id);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
 				break;
 			// validate genre field
-			case 4:
+			case 5:
 				$id = "or new Genre";
-				checkIfCharactersOnly($newGenre, $id);
+				$validateResult['error'] = checkIfCharactersOnly($newGenre, $id);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
 				break;
 			// validate dvd price fields
-			case 5:
+			case 6:
 				$movie = "DVD";
 				$validateResult['error'] = validateMoviePrice($dvdRental, $dvdPurchase, $movie);
 				if (!empty($validateResult['error'])) {
@@ -74,7 +94,7 @@ function validateMovieAdd($formData) {
 				}
 				break;
 			// validate bluray price fields
-			case 6:
+			case 7:
 				$movie = "BluRay";
 				$validateResult['error'] = validateMoviePrice($blurayRental, $blurayPurchase, $movie);
 				if (!empty($validateResult['error'])) {
@@ -82,7 +102,7 @@ function validateMovieAdd($formData) {
 				}
 				break;
 			// validate dvd stock fields
-			case 7:
+			case 8:
 				$movie = "DVD";
 				$validateResult['error'] = validateMovieStock($dvdStock, $dvdRented, $movie);
 				if (!empty($validateResult['error'])) {
@@ -90,7 +110,7 @@ function validateMovieAdd($formData) {
 				}
 				break;
 			// validate bluray stock fields
-			case 8:
+			case 9:
 				$movie = "BluRay";
 				$validateResult['error'] = validateMovieStock($blurayStock, $blurayRented, $movie);
 				if (!empty($validateResult['error'])) {
@@ -98,7 +118,7 @@ function validateMovieAdd($formData) {
 				}
 				break;
 			// all good, passed validation
-			case 9:
+			case 10:
 				$validateResult['succeeded'] = true;
 				break;
 			default:
@@ -107,6 +127,7 @@ function validateMovieAdd($formData) {
 				break;
 		} // end switch
 	} // end while
+	return $validateResult;
 } // end validateMovieAdd
 
 // validates movie prices
@@ -153,7 +174,7 @@ function validateMovieStock($stock, $rented, $type) {
 	return $error;
 } // end validateMovieStock
 
-// director validation (chars)
+// check field has only chars in it
 function checkIfCharactersOnly($fData, $fName) {
 	$error = '';
 	if (!ctype_alpha($fData)) {
@@ -161,3 +182,51 @@ function checkIfCharactersOnly($fData, $fName) {
 	}
 	return $error;
 } // end checkIfCharactersOnly
+
+// check if field is blank
+function checkBlankField($fData, fName) {
+	$error = '';
+	if (empty($field)) {
+		$error = $fName.' field cannot be left empty. All fields are required.';
+	}
+	return $error;
+}
+
+// validates year field
+function validateYear($y) {
+	$error = '';
+	if (!preg_match("/*[0-9]{4}$/", $y)) {
+		$error = 'Year must be numeric and 4 digits only. Cannot be blank.';	
+	}
+	return $error;
+}
+
+// check if movie exists
+function checkMovieExists($movieTitle, $movieTagline, $moviePlot) {
+	include_once ("includes/connectDB.php");
+	$db = getDBConnection();
+	$error = '';
+	try {
+		$checkExists = $db->prepare("SELECT 
+			(SELECT COUNT(*) FROM movie WHERE title = :title)
+			+
+			(SELECT COUNT(*) FROM movie WHERE tagline = :tagline)
+			+
+			(SELECT COUNT(*) FROM movie WHERE plot = :plot) AS matches");
+
+	    $checkExists->bindParam(':title', $movieTitle, PDO::PARAM_STR);
+	    $checkExists->bindParam(':tagline', $movieTagline, PDO::PARAM_STR);
+	    $checkExists->bindParam(':plot', $moviePlot, PDO::PARAM_STR);
+		$checkExists->execute();
+		$result = $checkExists->fetchAll(PDO::FETCH_ASSOC);
+		// print_r($result); // debug query
+	} catch (PDOException $ex) {
+    	echo "Error: " . $ex->getMessage() . "<br>";
+	}
+	// if matches are found then set error
+	if ($result[0]['matches'] > 0) {
+		$error = 'A match was found for the movie details you have entered. 
+		Cannot have the same movie or details (title, tagline or plot) as another movie already in the system.';
+	}
+	return $error;
+}

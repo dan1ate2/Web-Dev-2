@@ -2,7 +2,7 @@
 include_once ("includes/connectDB.php"); // database connection
 
 function updateMember($formData) {
-	    //Return value
+	//Return values
     $queryResult['succeeded'] = false;
     $queryResult['error'] = '';
     

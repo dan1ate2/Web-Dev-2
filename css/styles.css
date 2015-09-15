@@ -43,9 +43,12 @@ p {
 	font-size: 1em;
 	text-align:center;
 }
-p.error-message {
-	color: #ff0000;
+p.system-message {
+	color: #fff;
 	padding: 220px 20px 0px 20px;
+}
+p.error-text {
+	color: #ff0000;
 }
 a {
 	text-decoration: none;
@@ -212,6 +215,9 @@ footer a {
 }
 
 /* ##### FORMS #####*/
+legend {
+	color: #cecece;
+}
 label {
 	float:left;
 	width:25%;
@@ -234,6 +240,10 @@ input[type="submit"], input[type="reset"] {
     margin: 0 5px;
 }
 .textarea-margin {
+	margin-top: 5px;
+	color: #808080;
+}
+.textarea-margin-label {
 	margin-top: 5px;
 }
 input[type="submit"]:hover, input[type="reset"]:hover {
@@ -280,7 +290,7 @@ a.tip:hover span{
 	left:-12px;
 }
 .grey-text {
-	color: grey;
+	color: #808080;
 }
 /* Contact Form */
 #contact-form label {

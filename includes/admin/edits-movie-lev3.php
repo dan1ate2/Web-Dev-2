@@ -1,6 +1,7 @@
 <?php
 include_once ("includes/connectDB.php"); // database connection
 
+// updates movie stock/price details
 function editMovie($formData) {
     //Return value
     $queryResult['succeeded'] = false;
@@ -18,7 +19,7 @@ function editMovie($formData) {
 
     $db = getDBConnection(); // database connection
     // sql query
-    $sqlDeleteMovie = $db->prepare("UPDATE movie 
+    $sqlUpdateMovie = $db->prepare("UPDATE movie 
     	SET DVD_rental_price = :dvdRental, 
     	DVD_purchase_price = :dvdPurchase, 
     	numDVD = :dvdStock, 
@@ -30,19 +31,19 @@ function editMovie($formData) {
     	WHERE movie_id = :ID");
     
     // sanitize/bind variables
-    $sqlDeleteMovie->bindValue(':ID', intval($movieId), PDO::PARAM_INT);
-    $sqlDeleteMovie->bindValue(':dvdRental', $dvdRental, PDO::PARAM_STR);
-    $sqlDeleteMovie->bindValue(':dvdPurchase', $dvdPurchase, PDO::PARAM_STR);
-    $sqlDeleteMovie->bindValue(':dvdStock', intval($dvdStock), PDO::PARAM_INT);
-    $sqlDeleteMovie->bindValue(':dvdRented', intval($dvdRented), PDO::PARAM_INT);
-    $sqlDeleteMovie->bindValue(':blurayRental', $blurayRental, PDO::PARAM_STR);
-    $sqlDeleteMovie->bindValue(':blurayPurchase', $blurayPurchase, PDO::PARAM_STR);
-    $sqlDeleteMovie->bindValue(':blurayStock', intval($blurayStock), PDO::PARAM_INT);
-    $sqlDeleteMovie->bindValue(':blurayRented', intval($blurayRented), PDO::PARAM_INT);
+    $sqlUpdateMovie->bindValue(':ID', intval($movieId), PDO::PARAM_INT);
+    $sqlUpdateMovie->bindValue(':dvdRental', $dvdRental, PDO::PARAM_STR);
+    $sqlUpdateMovie->bindValue(':dvdPurchase', $dvdPurchase, PDO::PARAM_STR);
+    $sqlUpdateMovie->bindValue(':dvdStock', intval($dvdStock), PDO::PARAM_INT);
+    $sqlUpdateMovie->bindValue(':dvdRented', intval($dvdRented), PDO::PARAM_INT);
+    $sqlUpdateMovie->bindValue(':blurayRental', $blurayRental, PDO::PARAM_STR);
+    $sqlUpdateMovie->bindValue(':blurayPurchase', $blurayPurchase, PDO::PARAM_STR);
+    $sqlUpdateMovie->bindValue(':blurayStock', intval($blurayStock), PDO::PARAM_INT);
+    $sqlUpdateMovie->bindValue(':blurayRented', intval($blurayRented), PDO::PARAM_INT);
 
     // try update in database
     try {
-        $queryResult['succeeded'] = $sqlDeleteMovie->execute();
+        $queryResult['succeeded'] = $sqlUpdateMovie->execute();
     }catch (PDOException $e) {
         // error message if failed
         $queryResult['error'] = $e->getMessage();
