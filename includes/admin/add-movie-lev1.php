@@ -11,28 +11,28 @@
 		<input type="text" name="year" id="year" title="Year" maxlength="4"><br><br>
 		<label for="director">Director</label>
 		<select name="director" id="director">
-			<option value=" " selected="selected"></option>
+			<option value="" selected="selected"></option>
 			<?php populateDirectorsDropdown() ?>
 		</select><br>
 		<label for="new-director">or new Director</label>
 		<input type="text" name="new-director" id="new-director" title="New Director" maxlength="128"><br><br>
 		<label for="studio">Studio</label>
 		<select name="studio" id="studio">
-			<option value=" " selected="selected"></option>
+			<option value="" selected="selected"></option>
 			<?php populateStudioDropdown() ?>
 		</select><br>
 		<label for="new-studio">or new Studio</label>
 		<input type="text" name="new-studio" id="new-studio" title="New Studio" maxlength="128"><br><br>
 		<label for="genre">Genre</label>
 		<select name="genre" id="genre">
-			<option value=" " selected="selected"></option>
+			<option value="" selected="selected"></option>
 			<?php populateGenreDropdown() ?>
 		</select><br>
 		<label for="new-genre">or new Genre</label>
 		<input type="text" name="new-genre" id="new-genre" title="New Genre" maxlength="128"><br><br>
 		<label for="classification">Classification</label>
 		<select name="classification" id="classification">
-			<option value=" " selected="selected"></option>
+			<option value="" selected="selected"></option>
 			<?php populateClassificationDropdown() ?>
 		</select><br>
 		<label for="new-classification">or new Classification</label>
@@ -41,42 +41,42 @@
 			<legend>Movie Stars/Actors</legend>
 			<label for="star1">First Star</label>
 			<select name="star1" id="star1">
-				<option value=" " selected="selected"></option>
+				<option value="" selected="selected"></option>
 				<?php populateStarCoStarDropdown() ?>
 			</select><br>
 			<label for="n-star1">or new First Star</label>
 			<input type="text" name="n-star1" id="n-star1" title="New Star 1"><br><br>
 			<label for="star2">Second Star</label>
 			<select name="star2" id="star2">
-				<option value=" " selected="selected"></option>
+				<option value="" selected="selected"></option>
 				<?php populateStarCoStarDropdown() ?>
 			</select><br>
 			<label for="n-star2">or new Second Star</label>
 			<input type="text" name="n-star2" id="n-star2" title="New Star 2"><br><br>
 			<label for="star3">Third Star</label>
 			<select name="star3" id="star3">
-				<option value=" " selected="selected"></option>
+				<option value="" selected="selected"></option>
 				<?php populateStarCoStarDropdown() ?>
 			</select><br>
 			<label for="n-star3">or new Third Star</label>
 			<input type="text" name="n-star3" id="n-star3" title="New Star 3"><br><br>
 			<label for="co-star1">First Co Star</label>
 			<select name="co-star1" id="co-star1">
-				<option value=" " selected="selected"></option>
+				<option value="" selected="selected"></option>
 				<?php populateStarCoStarDropdown() ?>
 			</select><br>
 			<label for="n-co-star1">or new First Co Star</label>
 			<input type="text" name="n-co-star1" id="n-co-star1" title="New Co Star 1"><br><br>
 			<label for="co-star2">Second Co Star</label>
 			<select name="co-star2" id="co-star2">
-				<option value=" " selected="selected"></option>
+				<option value="" selected="selected"></option>
 				<?php populateStarCoStarDropdown() ?>
 			</select><br>
 			<label for="n-co-star2">or new Second Co Star</label>
 			<input type="text" name="n-co-star2" id="n-co-star2" title="New Co Star 2"><br><br>
 			<label for="co-star3">Third Co Star</label>
 			<select name="co-star3" id="co-star3">
-				<option value=" " selected="selected"></option>
+				<option value="" selected="selected"></option>
 				<?php populateStarCoStarDropdown() ?>
 			</select><br>
 			<label for="n-co-star3">or new Third Co Star</label>

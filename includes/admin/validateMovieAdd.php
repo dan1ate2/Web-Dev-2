@@ -264,17 +264,17 @@ function checkMovieExists($movieTitle, $movieTagline, $moviePlot) {
 // ie if no director chosen and no new director given, error
 function validateNewOrExistingOption($existingArray, $newArray) {
 	$error = '';
-	$existingArray = array_values($existingArray); // reset array indexes REMOVE IF NOT USING ASSOCIATIVE ARRAY!!!
-	$newArray = array_values($newArray); // reset array indexes REMOVE IF NOT USING ASSOCIATIVE ARRAY!!!
+	$tempExistingArray = array_values($existingArray); // reset array indexes REMOVE IF NOT USING ASSOCIATIVE ARRAY!!!
+	$tempNewArray = array_values($newArray); // reset array indexes REMOVE IF NOT USING ASSOCIATIVE ARRAY!!!
 	// if an option selected
-	if (!empty($existingArray[1]) || !empty($newArray[1])) {
+	if (!empty($tempExistingArray[1]) || !empty($tempNewArray[1])) {
 		// if both options, error
 		// else if exist chosen
 		// else new chosen	
 	}
 	// else no option, error
 	else {
-		$error = 'No option selected for "'.$existingArray[0].'" or "'.$newArray[0].'" fields.';
+		$error = 'No option selected for "'.$tempExistingArray[0].'" and "'.$tempNewArray[0].'" fields.';
 	}
 	return $error;
 }
