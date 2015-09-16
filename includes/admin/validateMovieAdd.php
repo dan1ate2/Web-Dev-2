@@ -184,7 +184,7 @@ function checkIfCharactersOnly($fData, $fName) {
 } // end checkIfCharactersOnly
 
 // check if field is blank
-function checkBlankField($fData, fName) {
+function checkBlankField($fData, $fName) {
 	$error = '';
 	if (empty($field)) {
 		$error = $fName.' field cannot be left empty. All fields are required.';
@@ -195,7 +195,7 @@ function checkBlankField($fData, fName) {
 // validates year field
 function validateYear($y) {
 	$error = '';
-	if (!preg_match("/*[0-9]{4}$/", $y)) {
+	if (!preg_match("/^(\d){4}$/", $y)) {
 		$error = 'Year must be numeric and 4 digits only. Cannot be blank.';	
 	}
 	return $error;
