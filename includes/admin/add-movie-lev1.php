@@ -4,9 +4,9 @@
 		<label for="movie-title">Movie Title</label>
 		<input type="text" name="movie-title" id="movie-title" title="Movie Title" maxlength="45"><br>
 		<label for="movie-tagline" class="textarea-margin-label">Movie Tagline</label>
-		<textarea name="movie-tagline" class="textarea-margin" id="movie-tagline" title="Movie tagline" rows="6" cols="32" maxlength="128"></textarea>
+		<textarea name="movie-tagline" class="textarea-margin black-text" id="movie-tagline" title="Movie tagline" rows="6" cols="32" maxlength="128"></textarea>
 		<label for="movie-plot" class="textarea-margin-label">Movie Plot</label>
-		<textarea name="movie-plot" class="textarea-margin" id="movie-plot" title="Movie plot" rows="6" cols="32" maxlength="256"></textarea>
+		<textarea name="movie-plot" class="textarea-margin black-text" id="movie-plot" title="Movie plot" rows="6" cols="32" maxlength="256"></textarea>
 		<label for="year">Year</label>
 		<input type="text" name="year" id="year" title="Year" maxlength="4"><br><br>
 		<label for="director">Director</label>

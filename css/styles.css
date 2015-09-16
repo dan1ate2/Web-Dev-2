@@ -241,7 +241,6 @@ input[type="submit"], input[type="reset"] {
 }
 .textarea-margin {
 	margin-top: 5px;
-	color: #808080;
 }
 .textarea-margin-label {
 	margin-top: 5px;
@@ -291,6 +290,9 @@ a.tip:hover span{
 }
 .grey-text {
 	color: #808080;
+}
+.black-text {
+	color: #000;
 }
 /* Contact Form */
 #contact-form label {
