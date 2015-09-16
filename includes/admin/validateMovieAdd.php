@@ -6,158 +6,141 @@ function validateMovieAdd($formData) {
 	$validateResult['succeeded'] = false;
     $validateResult['error'] = '';
 
-    // add movie form variables..variables..variables..
- //    $movieTitle = $formData["movie-title"];
- //    $movieTagline = $formData["movie-tagline"];
- //    $moviePlot = $formData["movie-plot"];
- //    $year = $formData["year"];
- //    $director = $formData["director"];
- //    $newDirector = $formData["new-director"];
- //    $studio = $formData["studio"];
- //    $newStudio = $formData["new-studio"];
- //    $genre = $formData["genre"];
- //    $newGenre = $formData["new-genre"];
- //    $classification = $formData["classification"];
- //    $newClassification = $formData["new-classification"];
- //    $star1 = $formData["star1"];
- //    $nStar1 = $formData["n-star1"];
- //    $star2 = $formData["star2"];
- //    $nStar2 = $formData["n-star2"];
- //    $star3 = $formData["star3"];
- //    $nStar3 = $formData["n-star3"];
- //    $coStar1 = $formData["co-star1"];
- //    $nCoStar1 = $formData["n-co-star1"];
- //    $coStar2 = $formData["co-star2"];
- //    $nCoStar2 = $formData["n-co-star2"];
- //    $coStar3 = $formData["co-star3"];
- //    $nCoStar3 = $formData["n-co-star3"];
- //    $rentalPeriod = $formData["rental-period"];
-	// $dvdRental = $formData["dvd-rental-price"];
-	// $dvdPurchase = $formData["dvd-purchase-price"];
-	// $dvdStock = $formData["dvd-stock"];
-	// $dvdRented = $formData["dvd-rented"];
-	// $blurayRental = $formData["bluray-rental"];
-	// $blurayPurchase = $formData["bluray-purchase"];
-	// $blurayStock = $formData["bluray-stock"];
-	// $blurayRented = $formData["bluray-rented"];
-
 	// put form data into 2 dimensional array
 	$m = array(
-		/*0*/array("Movie Title"=>"Movie Title",$formData["movie-title"]),
-		/*1*/array("Movie Tagline"=>"Movie Tagline",$formData["movie-tagline"]),
-		/*2*/array("Movie Plot"=>"Movie Plot",$formData["movie-plot"]),
-		/*3*/array("Year"=>"Year",$formData["year"]),
-		/*4*/array("Director"=>"Director",$formData["director"]),
-		/*5*/array("or new Director"=>"or new Director",$formData["new-director"]),
-		/*6*/array("Studio"=>"Studio",$formData["studio"]),
-		/*7*/array("or new Studio"=>"or new Studio",$formData["new-studio"]),
-		/*8*/array("Genre"=>"Genre",$formData["genre"]),
-		/*9*/array("or new Genre"=>"or new Genre",$formData["new-genre"]),
-		/*10*/array("Classification"=>"Classification",$formData["classification"]),
-		/*11*/array("or new Classification"=>"or new Classification",$formData["new-classification"]),
-		/*12*/array("First Star"=>"First Star",$formData["star1"]),
-		/*13*/array("or new First Star"=>"or new First Star",$formData["n-star1"]),
-		/*14*/array("Second Star"=>"Second Star",$formData["star2"]),
-		/*15*/array("or new Second Star"=>"or new Second Star",$formData["n-star2"]),
-		/*16*/array("Third Star"=>"Third Star",$formData["star3"]),
-		/*17*/array("or new Third Star"=>"or new Third Star",$formData["n-star3"]),
-		/*18*/array("First Co Star"=>"First Co Star",$formData["co-star1"]),
-		/*19*/array("or new First Co Star"=>"or new First Co Star",$formData["n-co-star1"]),
-		/*20*/array("Second Co Star"=>"Second Co Star",$formData["co-star2"]),
-		/*21*/array("or new Second Co Star"=>"or new Second Co Star",$formData["n-co-star2"]),
-		/*22*/array("Third Co Star"=>"Third Co Star",$formData["co-star3"]),
-		/*23*/array("or new Third Co Star"=>"or new Third Co Star",$formData["n-co-star3"]),
-		/*24*/array("Rental Period"=>"Rental Period",$formData["rental-period"]),
-		/*25*/array("Rental Price (DVD)"=>"Rental Price (DVD)",$formData["dvd-rental-price"]),
-		/*26*/array("Purchase Price (DVD)"=>"Purchase Price (DVD)",$formData["dvd-purchase-price"]),
-		/*27*/array("Stock (DVD)"=>"Stock (DVD)",$formData["dvd-stock"]),
-		/*28*/array("Currently Rented (DVD)"=>"Currently Rented (DVD)",$formData["dvd-rented"]),
-		/*29*/array("Rental Price (BluRay)"=>"Rental Price (BluRay)",$formData["bluray-rental"]),
-		/*30*/array("Purchase Price (BluRay)"=>"Purchase Price (BluRay)",$formData["bluray-purchase"]),
-		/*31*/array("Stock (BluRay)"=>"Stock (BluRay)",$formData["bluray-stock"]), //31
-		/*32*/array("Currently Rented (BluRay)"=>"Currently Rented (BluRay)",$formData["bluray-rented"])
+		/*0*/array("Movie Title",$formData["movie-title"]),
+		/*1*/array("Movie Tagline",$formData["movie-tagline"]),
+		/*2*/array("Movie Plot",$formData["movie-plot"]),
+		/*3*/array("Year",$formData["year"]),
+		/*4*/array("Director",$formData["director"]),
+		/*5*/array("or new Director",$formData["new-director"]),
+		/*6*/array("Studio",$formData["studio"]),
+		/*7*/array("or new Studio",$formData["new-studio"]),
+		/*8*/array("Genre",$formData["genre"]),
+		/*9*/array("or new Genre",$formData["new-genre"]),
+		/*10*/array("Classification",$formData["classification"]),
+		/*11*/array("or new Classification",$formData["new-classification"]),
+		/*12*/array("First Star",$formData["star1"]),
+		/*13*/array("or new First Star",$formData["n-star1"]),
+		/*14*/array("Second Star",$formData["star2"]),
+		/*15*/array("or new Second Star",$formData["n-star2"]),
+		/*16*/array("Third Star",$formData["star3"]),
+		/*17*/array("or new Third Star",$formData["n-star3"]),
+		/*18*/array("First Co Star",$formData["co-star1"]),
+		/*19*/array("or new First Co Star",$formData["n-co-star1"]),
+		/*20*/array("Second Co Star",$formData["co-star2"]),
+		/*21*/array("or new Second Co Star",$formData["n-co-star2"]),
+		/*22*/array("Third Co Star",$formData["co-star3"]),
+		/*23*/array("or new Third Co Star",$formData["n-co-star3"]),
+		/*24*/array("Rental Period",$formData["rental-period"]),
+		/*25*/array("Rental Price (DVD)",$formData["dvd-rental-price"]),
+		/*26*/array("Purchase Price (DVD)",$formData["dvd-purchase-price"]),
+		/*27*/array("Stock (DVD)",$formData["dvd-stock"]),
+		/*28*/array("Currently Rented (DVD)",$formData["dvd-rented"]),
+		/*29*/array("Rental Price (BluRay)",$formData["bluray-rental"]),
+		/*30*/array("Purchase Price (BluRay)",$formData["bluray-purchase"]),
+		/*31*/array("Stock (BluRay)",$formData["bluray-stock"]), //31
+		/*32*/array("Currently Rented (BluRay)",$formData["bluray-rented"])
 		);
 	print_r($m); // debug array
 
 	$error = false;
 	$nextValidation = 0;
 	// while no errors go through validation functions
-	while (!$error && $nextValidation < 3) {
+	while (!$error && $nextValidation < 12) {
 		$nextValidation++;
 		switch ($nextValidation) {
 			// check if movie exists (by title, tagline, plot)
 			case 1:
-				$validateResult['error'] = checkMovieExists($m[0][0], 
-					$m[1][0], $m[2][0]);
+				$validateResult['error'] = checkMovieExists($m[0][1], 
+					$m[1][1], $m[2][1]);
 				if (!empty($validateResult['error'])) {
 					$error = true;
+				}
+				break;
+			// check if movie, tagline and plot fields are blank
+			case 2:
+			$fieldArrayNum = 0
+				while (empty($validateResult['error']) && $fieldArrayNum < 3) {
+					checkBlankField($m[$fieldArrayNum]);
+					if (!empty($validateResult['error'])) {
+						$error = true;
+					}
+					$fieldArrayNum++;
 				}
 				break;
 			// validate year
-			case 2:
-				$validateResult['error'] = validateYear($m[3][0]);
+			case 3:
+				$validateResult['error'] = validateYear($m[3][1]);
 				if (!empty($validateResult['error'])) {
 					$error = true;
 				}
 				break;
-			// validate director fields
-			case 3:
-				$validateResult['error'] = validateNewOrExistingOption($m[4], $m[5]);
+			// validate dropdown/new field pairs
+			/* validates director, studio, genre, classification and
+				1st/2nd/3rd star and co-star fields */
+			case 4:
+				$validateResult['error'] = validateDropdownAndNew($m[4], $m[5]);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
+				break;
+			// validate studio fields
+			case 5:
+				$validateResult['error'] = validateDropdownAndNew($m[6], $m[7]);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
+				break;
+			// validate genre fields
+			case 6:
+				$validateResult['error'] = validateDropdownAndNew($m[8], $m[9]);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
+				break;
+			// validate classification fields
+			case 7:
+				$validateResult['error'] = validateDropdownAndNew($m[10], $m[11]);
 				if (!empty($validateResult['error'])) {
 					$error = true;
 				}
 				// check if one field is chosen or other has data
 				break;
-			// // validate studio fields
-			// case 4:
-			// 	$validateResult['error'] = checkIfCharactersOnly($m[7]);
-			// 	if (!empty($validateResult['error'])) {
-			// 		$error = true;
-			// 	}
-			// 	// check if one field is chosen or other has data
-			// 	break;
-			// // validate genre fields
-			// case 5:
-			// 	$validateResult['error'] = checkIfCharactersOnly($m[9]);
-			// 	if (!empty($validateResult['error'])) {
-			// 		$error = true;
-			// 	}
-			// 	// check if one field is chosen or other has data
-			// 	break;
-			// // validate dvd price fields
-			// case 6:
-			// 	$movie = "DVD";
-			// 	$validateResult['error'] = validateMoviePrice($m[25]['Rental Price (DVD)'][0], $m[0]['Purchase Price'][0], $movie);
-			// 	if (!empty($validateResult['error'])) {
-			// 		$error = true;
-			// 	}
-			// 	break;
-			// // validate bluray price fields
-			// case 7:
-			// 	$movie = "BluRay";
-			// 	$validateResult['error'] = validateMoviePrice($m[29]['Rental Price (BluRay)'][0], $m[30]['Purchase Price (BluRay)'][0], $movie);
-			// 	if (!empty($validateResult['error'])) {
-			// 		$error = true;
-			// 	}
-			// 	break;
+			// validate dvd price fields
+			case 8:
+				$movie = "DVD";
+				$validateResult['error'] = validateMoviePrice($m[25][1], $m[26][1], $movie);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
+				break;
 			// // validate dvd stock fields
-			// case 8:
-			// 	$movie = "DVD";
-			// 	$validateResult['error'] = validateMovieStock($m[27]['Stock (DVD)'][0], $m[28]['Currently Rented (DVD)'][0], $movie);
-			// 	if (!empty($validateResult['error'])) {
-			// 		$error = true;
-			// 	}
-			// 	break;
-			// // validate bluray stock fields
-			// case 9:
-			// 	$movie = "BluRay";
-			// 	$validateResult['error'] = validateMovieStock($m[31]['Stock (BluRay)'][0], $m[32]['Currently Rented (BluRay)'][0], $movie);
-			// 	if (!empty($validateResult['error'])) {
-			// 		$error = true;
-			// 	}
-			// 	break;
+			case 9:
+				$movie = "DVD";
+				$validateResult['error'] = validateMovieStock($m[27][1], $m[28][1], $movie);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
+				break;
+			// validate bluray price fields
+			case 10:
+				$movie = "BluRay";
+				$validateResult['error'] = validateMoviePrice($m[29][1], $m[30][1], $movie);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
+				break;
+			// validate bluray stock fields
+			case 11:
+				$movie = "BluRay";
+				$validateResult['error'] = validateMovieStock($m[31][1], $m[32][1], $movie);
+				if (!empty($validateResult['error'])) {
+					$error = true;
+				}
+				break;
 			// all good, passed validation
-			case 3:
+			case 12:
 					$validateResult['succeeded'] = true;
 				break;
 			default:
@@ -172,6 +155,7 @@ function validateMovieAdd($formData) {
 // validates movie prices
 function validateMoviePrice($rental, $purchase, $type) {
 	$error = '';
+	// if rental and purchase prices numeric
 	if (is_numeric($rental) && is_numeric($purchase)) {
 		if (empty($rental) || $rental < 0) {
 			$error = $type.' rental price cannot be empty, 0, or less than 0.';
@@ -194,6 +178,7 @@ function validateMoviePrice($rental, $purchase, $type) {
 // validates stock amount
 function validateMovieStock($stock, $rented, $type) {
 	$error = '';
+	// if stock and rented quantity is numeric
 	if (is_numeric($stock) && is_numeric($rented)) {
 		if ($rented > $stock) {
 			$error = $type.' rented quantity cannot be more than the stock quantity.';
@@ -252,46 +237,34 @@ function checkMovieExists($movieTitle, $movieTagline, $moviePlot) {
 	return $error;
 }
 
-
-
-
-
-
-
-
-
 // validate new or existing option field pair for a given option/input
 // ie if no director chosen and no new director given, error
-function validateNewOrExistingOption($existingArray, $newArray) {
+function validateDropdownAndNew($existingDropdown, $newData) {
 	$error = '';
-	$tempExistingArray = array_values($existingArray); // reset array indexes REMOVE IF NOT USING ASSOCIATIVE ARRAY!!!
-	$tempNewArray = array_values($newArray); // reset array indexes REMOVE IF NOT USING ASSOCIATIVE ARRAY!!!
 	// if an option selected
-	if (!empty($tempExistingArray[1]) || !empty($tempNewArray[1])) {
-		// if both options, error
-		// else if exist chosen
-		// else new chosen	
+	if (!empty($existingDropdown[1]) xor !empty($newData[1])) {
+		// if new field chosen
+		if (!empty($newData[1])) {
+			checkIfCharactersOnly($newData);
+		}
+	}
+	// if both options, error
+	else if (!empty($existingDropdown[1]) && !empty($newData[1])) {
+		$error = 'Cannot have "'.$existingDropdown[0].'" dropdown option selected while 
+			there is text added to the "'.$newData[0].'" field also.';
 	}
 	// else no option, error
 	else {
-		$error = 'No option selected for "'.$tempExistingArray[0].'" and "'.$tempNewArray[0].'" fields.';
+		$error = 'No option selected for "'.$existingDropdown[0].'" and "'.$newData[0].'" fields.';
 	}
 	return $error;
 }
 
-
-
-
-
-
-
-
-
 // check if field is blank
 function checkBlankField($fDataArray) {
 	$error = '';
-	if (empty($field)) {
-		$error = $fName.' field cannot be left empty. All fields are required.';
+	if (empty($fDataArray[1])) {
+		$error = $fDataArray[0].' field cannot be left empty. All fields are required.';
 	}
 	return $error;
 }
@@ -299,11 +272,8 @@ function checkBlankField($fDataArray) {
 // check field has only chars in it
 function checkIfCharactersOnly($fDataArray) {
 	$error = '';
-	$fData = array_values($fData); // reset array indexes REMOVE IF NOT USING ASSOCIATIVE ARRAY!!!
-	print_r($fData);
-
-	if (!ctype_alpha($fData[1])) {
-		$error = '"'.$fData[0].'" field must have alphabetic characters only.';
+	if (!ctype_alpha($fDataArray[1])) {
+		$error = '"'.$fDataArray[0].'" field must have alphabetic characters only.';
 	}
 	return $error;
 } // end checkIfCharactersOnly
