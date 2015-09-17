@@ -30,7 +30,7 @@ if (isset($_SESSION["StaffName"])) {
         	switch (authorisedAccess()) {
         		case "ok":
         			echo '<p class="system-message">
-        			Logged into admin as "'.$_SESSION["StaffName"].'"</p>';
+        			Logged into <span style="color:#f1592a"><b>admin</b></span> as "<span style="color:#f1592a"><b>'.$_SESSION["StaffName"].'</b></span>"</p>';
         			include 'includes/admin/menu.php';
         			break;
         		case "empty found":

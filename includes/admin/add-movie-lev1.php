@@ -88,7 +88,7 @@
 		<legend>Stock Info</legend>
 		<label for="rental-period">Rental Period</label>
 		<select name="rental-period" id="rental-period">
-			<option value=" " selected="selected"></option>
+			<option value="" selected="selected"></option>
 			<?php populateRentalDropdown($movData) ?>
 		</select><br>
 		<fieldset id="DVD">

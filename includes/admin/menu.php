@@ -23,7 +23,7 @@
 				case $_POST["admin-menu"] = "Add a movie":
 					echo '<h2 class="black-orange">Add a new movie</h2>
 					<p>Enter a new movie to the system using the form below.</p>
-					<p class="error-text">All fields are required !</p>';
+					<p class="error-text">All fields (except stars and co-stars) are required !</p>';
 					include_once 'includes/admin/add-movie-lev1.php';
 					break;
 				// delete a movie

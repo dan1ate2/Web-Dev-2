@@ -7,20 +7,21 @@ function validateMovieAdd($formData) {
     $validateResult['error'] = '';
 
 	// put form data into 2 dimensional array
+	// legend: form field name, form data, database field, database table??
 	$m = array(
-		/*0*/array("Movie Title",$formData["movie-title"]),
-		/*1*/array("Movie Tagline",$formData["movie-tagline"]),
-		/*2*/array("Movie Plot",$formData["movie-plot"]),
-		/*3*/array("Year",$formData["year"]),
-		/*4*/array("Director",$formData["director"]),
-		/*5*/array("or new Director",$formData["new-director"]),
-		/*6*/array("Studio",$formData["studio"]),
-		/*7*/array("or new Studio",$formData["new-studio"]),
-		/*8*/array("Genre",$formData["genre"]),
-		/*9*/array("or new Genre",$formData["new-genre"]),
-		/*10*/array("Classification",$formData["classification"]),
-		/*11*/array("or new Classification",$formData["new-classification"]),
-		/*12*/array("First Star",$formData["star1"]),
+		/*0*/array("Movie Title",$formData["movie-title"],"title",),
+		/*1*/array("Movie Tagline",$formData["movie-tagline"],"tagline"),
+		/*2*/array("Movie Plot",$formData["movie-plot"],"plot"),
+		/*3*/array("Year",$formData["year"],"year"),
+		/*4*/array("Director",$formData["director"],"director_name"),
+		/*5*/array("or new Director",$formData["new-director"],"director_name"),
+		/*6*/array("Studio",$formData["studio"],"studio_name"),
+		/*7*/array("or new Studio",$formData["new-studio"],"studio_name"),
+		/*8*/array("Genre",$formData["genre"],"genre_name"),
+		/*9*/array("or new Genre",$formData["new-genre"],"genre_name"),
+		/*10*/array("Classification",$formData["classification"],"classification"),
+		/*11*/array("or new Classification",$formData["new-classification"],"classification"),
+		/*12*/array("First Star",$formData["star1"],""),
 		/*13*/array("or new First Star",$formData["n-star1"]),
 		/*14*/array("Second Star",$formData["star2"]),
 		/*15*/array("or new Second Star",$formData["n-star2"]),
@@ -39,15 +40,15 @@ function validateMovieAdd($formData) {
 		/*28*/array("Currently Rented (DVD)",$formData["dvd-rented"]),
 		/*29*/array("Rental Price (BluRay)",$formData["bluray-rental"]),
 		/*30*/array("Purchase Price (BluRay)",$formData["bluray-purchase"]),
-		/*31*/array("Stock (BluRay)",$formData["bluray-stock"]), //31
+		/*31*/array("Stock (BluRay)",$formData["bluray-stock"]),
 		/*32*/array("Currently Rented (BluRay)",$formData["bluray-rented"])
 		);
-	print_r($m); // debug array
+	// print_r($m); // debug array
 
 	$error = false;
 	$nextValidation = 0;
 	// while no errors go through validation functions
-	while (!$error && $nextValidation < 12) {
+	while (!$error && $nextValidation < 8) {
 		$nextValidation++;
 		switch ($nextValidation) {
 			// check if movie exists (by title, tagline, plot)
@@ -60,9 +61,9 @@ function validateMovieAdd($formData) {
 				break;
 			// check if movie, tagline and plot fields are blank
 			case 2:
-			$fieldArrayNum = 0
+			$fieldArrayNum = 0;
 				while (empty($validateResult['error']) && $fieldArrayNum < 3) {
-					checkBlankField($m[$fieldArrayNum]);
+					$validateResult['error'] = checkBlankField($m[$fieldArrayNum]);
 					if (!empty($validateResult['error'])) {
 						$error = true;
 					}
@@ -76,72 +77,74 @@ function validateMovieAdd($formData) {
 					$error = true;
 				}
 				break;
-			// validate dropdown/new field pairs
+			// validate dropdown/new field pairs ie ('director' & 'or new Director')
 			/* validates director, studio, genre, classification and
-				1st/2nd/3rd star and co-star fields */
+				1st/2nd/3rd star and co-star field pairs */
 			case 4:
-				$validateResult['error'] = validateDropdownAndNew($m[4], $m[5]);
-				if (!empty($validateResult['error'])) {
-					$error = true;
+				$fieldPairs = array(
+					array(4, 5), // director
+					array(6, 7), // studio
+					array(8, 9), // genre
+					array(10, 11), // classification
+					array(12, 13), // first star
+					array(14, 15), // second star
+					array(16, 17), // third star
+					array(18, 19), // first co star
+					array(20, 21), // second co star
+					array(22, 23) // third co star
+					);
+				foreach($fieldPairs as $pair) {
+					if (empty($validateResult['error'])) {
+						$validateResult['error'] = validateDropdownAndNew($m[$pair[0]], $m[$pair[1]]);
+					}
+					else {
+						$error = true;
+						break;
+					}
 				}
 				break;
-			// validate studio fields
+			// validate rental period
 			case 5:
-				$validateResult['error'] = validateDropdownAndNew($m[6], $m[7]);
+				$validateResult['error'] = validateRentalPeriod($m[24][1]);
 				if (!empty($validateResult['error'])) {
 					$error = true;
 				}
 				break;
-			// validate genre fields
+			// validate dvd price and stock fields
 			case 6:
-				$validateResult['error'] = validateDropdownAndNew($m[8], $m[9]);
-				if (!empty($validateResult['error'])) {
-					$error = true;
-				}
-				break;
-			// validate classification fields
-			case 7:
-				$validateResult['error'] = validateDropdownAndNew($m[10], $m[11]);
-				if (!empty($validateResult['error'])) {
-					$error = true;
-				}
-				// check if one field is chosen or other has data
-				break;
-			// validate dvd price fields
-			case 8:
 				$movie = "DVD";
+				// validate prices
 				$validateResult['error'] = validateMoviePrice($m[25][1], $m[26][1], $movie);
 				if (!empty($validateResult['error'])) {
 					$error = true;
 				}
-				break;
-			// // validate dvd stock fields
-			case 9:
-				$movie = "DVD";
-				$validateResult['error'] = validateMovieStock($m[27][1], $m[28][1], $movie);
-				if (!empty($validateResult['error'])) {
-					$error = true;
+				// validate stock/rented
+				if (!$error) {
+					$validateResult['error'] = validateMovieStock($m[27][1], $m[28][1], $movie);
+					if (!empty($validateResult['error'])) {
+						$error = true;
+					}
 				}
 				break;
-			// validate bluray price fields
-			case 10:
+			// validate bluray price and stock fields
+			case 7:
 				$movie = "BluRay";
+				// validate prices
 				$validateResult['error'] = validateMoviePrice($m[29][1], $m[30][1], $movie);
 				if (!empty($validateResult['error'])) {
 					$error = true;
 				}
-				break;
-			// validate bluray stock fields
-			case 11:
-				$movie = "BluRay";
-				$validateResult['error'] = validateMovieStock($m[31][1], $m[32][1], $movie);
-				if (!empty($validateResult['error'])) {
-					$error = true;
+				// validate stock/rented
+				if (!$error) {
+					$validateResult['error'] = validateMovieStock($m[31][1], $m[32][1], $movie);
+					if (!empty($validateResult['error'])) {
+						$error = true;
+					}
 				}
 				break;
 			// all good, passed validation
-			case 12:
-					$validateResult['succeeded'] = true;
+			case 8:
+				$validateResult['succeeded'] = true;
 				break;
 			default:
 				$validateResult['error'] = 'An unexpected validation error has occured. 
@@ -202,14 +205,13 @@ function validateMovieStock($stock, $rented, $type) {
 function validateYear($y) {
 	$error = '';
 	if (!preg_match("/^(\d){4}$/", $y)) {
-		$error = 'Year must be numeric and 4 digits only. Cannot be blank.';	
+		$error = 'Year field must be numeric and 4 digits only. Cannot be blank.';	
 	}
 	return $error;
-}
+} // end validateYear
 
 // check if movie exists
 function checkMovieExists($movieTitle, $movieTagline, $moviePlot) {
-	include_once ("includes/connectDB.php");
 	$db = getDBConnection();
 	$error = '';
 	try {
@@ -219,7 +221,7 @@ function checkMovieExists($movieTitle, $movieTagline, $moviePlot) {
 			(SELECT COUNT(*) FROM movie WHERE tagline = :tagline)
 			+
 			(SELECT COUNT(*) FROM movie WHERE plot = :plot) AS matches");
-
+		// sanitize data
 	    $checkExists->bindParam(':title', $movieTitle, PDO::PARAM_STR);
 	    $checkExists->bindParam(':tagline', $movieTagline, PDO::PARAM_STR);
 	    $checkExists->bindParam(':plot', $moviePlot, PDO::PARAM_STR);
@@ -232,48 +234,80 @@ function checkMovieExists($movieTitle, $movieTagline, $moviePlot) {
 	// if matches are found then set error
 	if ($result[0]['matches'] > 0) {
 		$error = 'A match was found for the movie details you have entered. 
-		Cannot have the same movie or details (title, tagline or plot) as another movie already in the system.';
+			Cannot have the same movie or details (title, tagline or plot) as another movie
+			already in the system.';
 	}
 	return $error;
-}
+} // end checkMovieExists
 
 // validate new or existing option field pair for a given option/input
 // ie if no director chosen and no new director given, error
-function validateDropdownAndNew($existingDropdown, $newData) {
+function validateDropdownAndNew($existingDropdownArr, $newDataArr) {
 	$error = '';
 	// if an option selected
-	if (!empty($existingDropdown[1]) xor !empty($newData[1])) {
+	if (!empty($existingDropdownArr[1]) xor !empty($newDataArr[1])) {
 		// if new field chosen
-		if (!empty($newData[1])) {
-			checkIfCharactersOnly($newData);
+		if (!empty($newDataArr[1])) {
+			if (checkIfDataExists($newDataArr)) {
+				$error = '"'.$newDataArr[0].'" field must be unique, but matches another in the
+					 system. Please use the dropdown and select the entry from there.';
+			}
 		}
 	}
 	// if both options, error
-	else if (!empty($existingDropdown[1]) && !empty($newData[1])) {
-		$error = 'Cannot have "'.$existingDropdown[0].'" dropdown option selected while 
-			there is text added to the "'.$newData[0].'" field also.';
+	else if (!empty($existingDropdownArr[1]) && !empty($newDataArr[1])) {
+		$error = 'Cannot have "'.$existingDropdownArr[0].'" dropdown option selected while 
+			there is text added to the "'.$newDataArr[0].'" field also.';
 	}
-	// else no option, error
-	else {
-		$error = 'No option selected for "'.$existingDropdown[0].'" and "'.$newData[0].'" fields.';
+	return $error;
+} // end validateDropdownAndNew
+
+// checks database for a match of the field data to prevent duplicates
+function checkIfDataExists($fieldArr) {
+	$db = getDBConnection();
+	$error = false;
+	// work out which field and table to query
+
+	// database query
+	try {
+		// prepare query
+		$checkExists = $db->prepare("SELECT COUNT(*) 
+			FROM :databaseTable 
+			WHERE :databaseField = :userInput 
+			AS matches");
+		// sanitize/bind data
+	    $checkExists->bindParam(':userInput', $fieldArr[1], PDO::PARAM_STR);
+	    $checkExists->bindParam(':', $, PDO::PARAM_STR);
+	    $checkExists->bindParam(':', $, PDO::PARAM_STR);
+		// execute query
+		$checkExists->execute();
+		// get results
+		$result = $checkExists->fetchAll(PDO::FETCH_ASSOC);
+		// print_r($result); // debug query
+	} catch (PDOException $ex) {
+    	echo "Error: " . $ex->getMessage() . "<br>";
+	}
+	// if match found then flag error
+	if ($result[0]['matches'] > 0) {
+		$error = true;
 	}
 	return $error;
 }
 
 // check if field is blank
-function checkBlankField($fDataArray) {
+function checkBlankField($fDataArr) {
 	$error = '';
-	if (empty($fDataArray[1])) {
-		$error = $fDataArray[0].' field cannot be left empty. All fields are required.';
+	if (empty($fDataArr[1])) {
+		$error = $fDataArr[0].' field cannot be left empty.';
 	}
 	return $error;
-}
+} // end checkBlankField
 
-// check field has only chars in it
-function checkIfCharactersOnly($fDataArray) {
+// validate rental period dropdown
+function validateRentalPeriod($period) {
 	$error = '';
-	if (!ctype_alpha($fDataArray[1])) {
-		$error = '"'.$fDataArray[0].'" field must have alphabetic characters only.';
+	if (empty($period)) {
+		$error = 'You must select a rental period for the movie.';
 	}
 	return $error;
-} // end checkIfCharactersOnly
+} // end validateRentalPeriod

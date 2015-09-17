@@ -3,12 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4213de26-f85a-4a64-9127-88ea93ebf9b7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/admin/add-movie-lev1.php" afterPath="$PROJECT_DIR$/includes/admin/add-movie-lev1.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/admin/adds-movie-lev2.php" afterPath="$PROJECT_DIR$/includes/admin/adds-movie-lev2.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.php" afterPath="$PROJECT_DIR$/admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/admin/menu.php" afterPath="$PROJECT_DIR$/includes/admin/menu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/styles.css" afterPath="$PROJECT_DIR$/css/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/admin/updates-member-lev3.php" afterPath="$PROJECT_DIR$/includes/admin/updates-member-lev3.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/admin/validateMovieAdd.php" afterPath="$PROJECT_DIR$/includes/admin/validateMovieAdd.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="web-dev-2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +39,15 @@
                 <state vertical-scroll-proportion="-4.576923" vertical-offset="255" max-vertical-offset="1190">
                   <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
                   <folding>
-                    <marker date="1442299515447" expanded="true" signature="1712:1757" placeholder="..." />
+                    <marker date="1442411347218" expanded="true" signature="103:130" placeholder="..." />
+                    <marker date="1442411347218" expanded="true" signature="731:1872" placeholder="..." />
+                    <marker date="1442411347218" expanded="true" signature="752:1011" placeholder="..." />
+                    <marker date="1442411347218" expanded="true" signature="1041:1230" placeholder="..." />
+                    <marker date="1442411347218" expanded="true" signature="1258:1446" placeholder="..." />
+                    <marker date="1442411347218" expanded="true" signature="1483:1622" placeholder="..." />
+                    <marker date="1442411347218" expanded="true" signature="1652:1723" placeholder="..." />
+                    <marker date="1442411347218" expanded="true" signature="1742:1862" placeholder="..." />
+                    <marker date="1442411347218" expanded="true" signature="1796:1841" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -50,20 +56,22 @@
           <file leaf-file-name="menu.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/includes/admin/menu.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.18863636" vertical-offset="1653" max-vertical-offset="3944">
-                  <caret line="100" column="24" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
+                <state vertical-scroll-proportion="0.18863636" vertical-offset="1670" max-vertical-offset="3944">
+                  <caret line="101" column="21" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
                   <folding>
-                    <marker date="1442334334662" expanded="true" signature="2190:2268" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="4541:4544" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="4624:4706" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="5488:5687" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="6474:6674" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="6789:6979" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="7643:7841" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="8679:8834" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="8988:9148" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="9243:9325" placeholder="..." />
-                    <marker date="1442334334662" expanded="true" signature="9460:9596" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="2218:2296" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="4130:4327" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="4442:4572" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="4569:4572" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="4652:4734" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="5516:5715" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="6502:6702" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="6817:7007" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="7671:7869" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="8707:8862" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="9016:9176" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="9271:9353" placeholder="..." />
+                    <marker date="1442410737616" expanded="true" signature="9488:9624" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -84,11 +92,12 @@
           <file leaf-file-name="edit-movie-lev2.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/includes/admin/edit-movie-lev2.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1768">
+                <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1802">
                   <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding>
-                    <marker date="1442218426789" expanded="true" signature="147:4006" placeholder="..." />
-                    <marker date="1442218426789" expanded="true" signature="4188:4243" placeholder="SELECT * FRO..movie_detail_view..." />
+                    <marker date="1442334748276" expanded="true" signature="147:394" placeholder="..." />
+                    <marker date="1442334748276" expanded="true" signature="4548:4550" placeholder="..." />
+                    <marker date="1442334748276" expanded="true" signature="4262:4317" placeholder="SELECT * FRO..movie_detail_view..." />
                   </folding>
                 </state>
               </provider>
@@ -97,11 +106,9 @@
           <file leaf-file-name="edits-movie-lev3.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/includes/admin/edits-movie-lev3.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-30.423077" vertical-offset="93" max-vertical-offset="986">
-                  <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-                  <folding>
-                    <marker date="1442240889412" expanded="true" signature="690:1024" placeholder="UPDATE movie..." />
-                  </folding>
+                <state vertical-scroll-proportion="-30.423077" vertical-offset="110" max-vertical-offset="1003">
+                  <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -113,15 +120,15 @@
           <file leaf-file-name="add-movie-lev1.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/includes/admin/add-movie-lev1.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-18.307692" vertical-offset="34" max-vertical-offset="3468">
-                  <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+                <state vertical-scroll-proportion="-18.961538" vertical-offset="0" max-vertical-offset="3332">
+                  <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
                   <folding>
-                    <marker date="1442300943130" expanded="true" signature="6149:6219" placeholder="SELECT direc..director..." />
-                    <marker date="1442300943130" expanded="true" signature="6512:6574" placeholder="SELECT studi..studio..." />
-                    <marker date="1442300943130" expanded="true" signature="6512:6576" placeholder="SELECT studi..director..." />
-                    <marker date="1442300943130" expanded="true" signature="6857:6915" placeholder="SELECT genre..genre..." />
-                    <marker date="1442300943130" expanded="true" signature="6857:6918" placeholder="SELECT genre..director..." />
-                    <marker date="1442300943130" expanded="true" signature="7427:7485" placeholder="SELECT actor..actor..." />
+                    <marker date="1442407832393" expanded="true" signature="6172:6242" placeholder="SELECT direc..director..." />
+                    <marker date="1442407832393" expanded="true" signature="6535:6597" placeholder="SELECT studi..studio..." />
+                    <marker date="1442407832393" expanded="true" signature="6535:6599" placeholder="SELECT studi..director..." />
+                    <marker date="1442407832393" expanded="true" signature="6880:6938" placeholder="SELECT genre..genre..." />
+                    <marker date="1442407832393" expanded="true" signature="6880:6941" placeholder="SELECT genre..director..." />
+                    <marker date="1442407832393" expanded="true" signature="7450:7508" placeholder="SELECT actor..actor..." />
                   </folding>
                 </state>
               </provider>
@@ -130,9 +137,14 @@
           <file leaf-file-name="validateMovieAdd.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/includes/admin/validateMovieAdd.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-1.675252" vertical-offset="1802" max-vertical-offset="4063">
-                  <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-                  <folding />
+                <state vertical-scroll-proportion="0.77155656" vertical-offset="2592" max-vertical-offset="5015">
+                  <caret line="192" column="53" selection-start-line="192" selection-start-column="53" selection-end-line="192" selection-end-column="53" />
+                  <folding>
+                    <marker date="1442411852081" expanded="true" signature="7561:7750" placeholder="SELECT (SELE..." />
+                    <marker date="1442411852081" expanded="true" signature="7573:7620" placeholder="SELECT COUNT..movie..." />
+                    <marker date="1442411852081" expanded="true" signature="7626:7677" placeholder="SELECT COUNT..movie..." />
+                    <marker date="1442411852081" expanded="true" signature="7688:7733" placeholder="SELECT COUNT..movie..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -140,8 +152,8 @@
           <file leaf-file-name="adds-movie-lev2.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/includes/admin/adds-movie-lev2.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="255">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state vertical-scroll-proportion="-0.0" vertical-offset="17" max-vertical-offset="255">
+                  <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -358,7 +370,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -408,7 +420,15 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="850" max-vertical-offset="1173">
           <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
           <folding>
-            <marker date="1442299515447" expanded="true" signature="1712:1757" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="103:130" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="731:1872" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="752:1011" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1041:1230" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1258:1446" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1483:1622" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1652:1723" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1742:1862" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1796:1841" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -518,7 +538,7 @@
         <state vertical-scroll-proportion="0.77155656" vertical-offset="2711" max-vertical-offset="3723">
           <caret line="182" column="44" selection-start-line="182" selection-start-column="44" selection-end-line="182" selection-end-column="44" />
           <folding>
-            <marker date="1442207645323" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..member..." />
+            <marker date="1442334710172" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..member..." />
           </folding>
         </state>
       </provider>
@@ -538,19 +558,18 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1734">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1442218426789" expanded="true" signature="147:4006" placeholder="..." />
-            <marker date="1442218426789" expanded="true" signature="4188:4243" placeholder="SELECT * FRO..movie_detail_view..." />
+            <marker date="1442334748276" expanded="true" signature="147:394" placeholder="..." />
+            <marker date="1442334748276" expanded="true" signature="4548:4550" placeholder="..." />
+            <marker date="1442334748276" expanded="true" signature="4262:4317" placeholder="SELECT * FRO..movie_detail_view..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/admin/edits-movie-lev3.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.423077" vertical-offset="93" max-vertical-offset="986">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <marker date="1442240889412" expanded="true" signature="690:1024" placeholder="UPDATE movie..." />
-          </folding>
+        <state vertical-scroll-proportion="-30.423077" vertical-offset="110" max-vertical-offset="1003">
+          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -559,27 +578,37 @@
         <state vertical-scroll-proportion="-4.576923" vertical-offset="255" max-vertical-offset="1190">
           <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
           <folding>
-            <marker date="1442299515447" expanded="true" signature="1712:1757" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="103:130" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="731:1872" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="752:1011" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1041:1230" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1258:1446" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1483:1622" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1652:1723" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1742:1862" placeholder="..." />
+            <marker date="1442411347218" expanded="true" signature="1796:1841" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/admin/menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18863636" vertical-offset="1653" max-vertical-offset="3944">
-          <caret line="100" column="24" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.18863636" vertical-offset="1670" max-vertical-offset="3944">
+          <caret line="101" column="21" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
           <folding>
-            <marker date="1442334334662" expanded="true" signature="2190:2268" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="4541:4544" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="4624:4706" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="5488:5687" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="6474:6674" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="6789:6979" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="7643:7841" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="8679:8834" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="8988:9148" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="9243:9325" placeholder="..." />
-            <marker date="1442334334662" expanded="true" signature="9460:9596" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="2218:2296" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="4130:4327" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="4442:4572" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="4569:4572" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="4652:4734" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="5516:5715" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="6502:6702" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="6817:7007" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="7671:7869" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="8707:8862" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="9016:9176" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="9271:9353" placeholder="..." />
+            <marker date="1442410737616" expanded="true" signature="9488:9624" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -594,32 +623,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/admin/adds-movie-lev2.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="919">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.0" vertical-offset="17" max-vertical-offset="255">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/admin/add-movie-lev1.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.307692" vertical-offset="34" max-vertical-offset="3468">
-          <caret line="30" column="21" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        <state vertical-scroll-proportion="-18.961538" vertical-offset="0" max-vertical-offset="3332">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
           <folding>
-            <marker date="1442300943130" expanded="true" signature="6149:6219" placeholder="SELECT direc..director..." />
-            <marker date="1442300943130" expanded="true" signature="6512:6574" placeholder="SELECT studi..studio..." />
-            <marker date="1442300943130" expanded="true" signature="6512:6576" placeholder="SELECT studi..director..." />
-            <marker date="1442300943130" expanded="true" signature="6857:6915" placeholder="SELECT genre..genre..." />
-            <marker date="1442300943130" expanded="true" signature="6857:6918" placeholder="SELECT genre..director..." />
-            <marker date="1442300943130" expanded="true" signature="7427:7485" placeholder="SELECT actor..actor..." />
+            <marker date="1442407832393" expanded="true" signature="6172:6242" placeholder="SELECT direc..director..." />
+            <marker date="1442407832393" expanded="true" signature="6535:6597" placeholder="SELECT studi..studio..." />
+            <marker date="1442407832393" expanded="true" signature="6535:6599" placeholder="SELECT studi..director..." />
+            <marker date="1442407832393" expanded="true" signature="6880:6938" placeholder="SELECT genre..genre..." />
+            <marker date="1442407832393" expanded="true" signature="6880:6941" placeholder="SELECT genre..director..." />
+            <marker date="1442407832393" expanded="true" signature="7450:7508" placeholder="SELECT actor..actor..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/admin/validateMovieAdd.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.675252" vertical-offset="1802" max-vertical-offset="4063">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-          <folding />
+        <state vertical-scroll-proportion="0.77155656" vertical-offset="2592" max-vertical-offset="5015">
+          <caret line="192" column="53" selection-start-line="192" selection-start-column="53" selection-end-line="192" selection-end-column="53" />
+          <folding>
+            <marker date="1442411852081" expanded="true" signature="7561:7750" placeholder="SELECT (SELE..." />
+            <marker date="1442411852081" expanded="true" signature="7573:7620" placeholder="SELECT COUNT..movie..." />
+            <marker date="1442411852081" expanded="true" signature="7626:7677" placeholder="SELECT COUNT..movie..." />
+            <marker date="1442411852081" expanded="true" signature="7688:7733" placeholder="SELECT COUNT..movie..." />
+          </folding>
         </state>
       </provider>
     </entry>
