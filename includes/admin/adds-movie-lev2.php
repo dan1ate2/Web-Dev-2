@@ -3,31 +3,53 @@ include_once ("connectDB.php"); // database connection
 
 // adds new movie to database
 function addMovie($formData, $directorStudioGenre) {
-	//Return values
+	// return values
     $queryResult['succeeded'] = false;
     $queryResult['error'] = '';
-    // $member_id = null; // auto increments in database
-
-    // // database connection
-    // $db = getDBConnection();
+    // member_id for query
     
     // -- QUERY/UPDATE FOR DIRECTOR, STUDIO, GENRE TABLES --
-    	// fieldInput = '';
-    	// foreach ($directorStudioGenre as $field) {
-    		// if doesn't exist/false (!$directorStudioGenre[$field][0])
-    			// create new entry
-    	// get id (for new movie table entry)
-    		// query database: 
-    		// if ($directorStudioGenre[$field][0] = 'Director') {
-    			// $fieldInput = $formData['new-director']
-			// }
-    		// else if ($directorStudioGenre[$field][0] = 'Studio') {
-    			// $fieldInput = $formData['new-studio']
-			// }
-        	// else if ($directorStudioGenre[$field][0] = 'Genre') {
-    			// $fieldInput = $formData['new-genre']
-			// }
-    	// }
+	// figure out field type and if database entry exists already
+	foreach ($directorStudioGenre as $fields) {
+        $director_id = null; // auto increments in database
+        $nameToInput = '';
+        // identify table to update
+        if ($fields[2] = 'director') {
+            $nameToInput = $formData['new-director'];
+        } 
+        else if ($fields[2] = 'studio') {
+            $nameToInput = $formData['new-studio'];
+        } 
+        else if ($fields[2] = 'genre') {
+            $nameToInput = $formData['new-genre'];
+        }
+        // new entry (if no existing field found in database in earlier validation)
+        if (!$fields[0]) {
+            // create new entry
+            $id = null; // auto increment in database
+            $db = getDBConnection(); // database connection
+            // set up query
+            $insertNew = $db->prepare('INSERT into :table
+		    	VALUES (:id, :name)');
+            // sanitize data in PDO object
+            $insertNew->bindParam(':id', intval($id), PDO::PARAM_INT);
+            $insertNew->bindParam(':name', $nameToInput, PDO::PARAM_STR);
+            $insertNew->bindParam(':table', $fields[2], PDO::PARAM_STR);
+            // try insert director into database
+            try {
+                // insert movie using prepared query
+                $queryResult['succeeded'] = $insertNew->execute();
+            } catch (PDOException $e) {
+                // error message if failed to add to database (print message)
+                $queryResult['error'] = $e->getMessage();
+
+            }
+            $db = null; // close db connection
+        
+        // query database (get ID)
+
+        } // end if
+    } // end foreach
 
     // -- QUERY/UPDATE FOR MOVIE TABLE --
     // // set up query for movie table
@@ -70,6 +92,6 @@ function addMovie($formData, $directorStudioGenre) {
     // -- QUERY/UPDATE FOR MOVIE_ACTOR TABLE --
 
     // $db = null; // close database connection
-    $queryResult['succeeded'] = false; // TESTING ONLY!!!!!!!!!!!!!!!!!!!
+    $queryResult['succeeded'] = true; // TESTING ONLY!!!!!!!!!!!!!!!!!!!
     return $queryResult;
 }

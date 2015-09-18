@@ -7,9 +7,9 @@ function validateMovieAdd($formData) {
     $validateResult['error'] = '';
     $validateResult['director studio genre'] = array(
     	// legend: if value exists, database column, database table
-    	array("Director"=>false,"director_name","director"),
-    	array("Studio"=>false,"studio_name","studio"),
-    	array("Genre"=>false,"genre_name","genre")
+    	array(false,"director_name","director"),
+    	array(false,"studio_name","studio"),
+    	array(false,"genre_name","genre")
     	);
 
 	// put form data into 2 dimensional array
@@ -266,14 +266,14 @@ function validateDropdownAndNew($existingDropdownArr, $newDataArr) {
 		}
 		// set matching result array to true (existing option/dropdown selected)
 		else {
-			if ($existingDropdownArr[0] = "Director") {
-                $validateResult['director studio genre'][0]["Director"] = true;
+			if ($existingDropdownArr[3] = "director") {
+                $validateResult['director studio genre'][0][0] = true;
             }
-            else if ($existingDropdownArr[0] = "Studio") {
-            	$validateResult['director studio genre'][0]["Studio"] = true;
+            else if ($existingDropdownArr[3] = "studio") {
+            	$validateResult['director studio genre'][1][0] = true;
             }
-            else if ($existingDropdownArr[0] = "Genre") {
-            	$validateResult['director studio genre'][0]["Genre"] = true;
+            else if ($existingDropdownArr[3] = "genre") {
+            	$validateResult['director studio genre'][2][0] = true;
             }
 		}
 	}
