@@ -2,7 +2,7 @@
 include_once ("connectDB.php"); // database connection
 
 // adds new movie to database
-function addMovie($formData) {
+function addMovie($formData, $directorStudioGenre) {
 	//Return values
     $queryResult['succeeded'] = false;
     $queryResult['error'] = '';
@@ -11,19 +11,37 @@ function addMovie($formData) {
     // // database connection
     // $db = getDBConnection();
     
-    // // set up query
+    // -- QUERY/UPDATE FOR DIRECTOR, STUDIO, GENRE TABLES --
+    	// fieldInput = '';
+    	// foreach ($directorStudioGenre as $field) {
+    		// if doesn't exist/false (!$directorStudioGenre[$field][0])
+    			// create new entry
+    	// get id (for new movie table entry)
+    		// query database: 
+    		// if ($directorStudioGenre[$field][0] = 'Director') {
+    			// $fieldInput = $formData['new-director']
+			// }
+    		// else if ($directorStudioGenre[$field][0] = 'Studio') {
+    			// $fieldInput = $formData['new-studio']
+			// }
+        	// else if ($directorStudioGenre[$field][0] = 'Genre') {
+    			// $fieldInput = $formData['new-genre']
+			// }
+    	// }
+
+    // -- QUERY/UPDATE FOR MOVIE TABLE --
+    // // set up query for movie table
     // $insertMovie = $db->prepare('INSERT into movie VALUES
     //                           (:member_id, :title, :tagline, :plot, :director_id, :studio_id, 
     //                           	:genre_id, :classification, :rental_period, :year, 
     //                           	:DVD_rental_price, :DVD_purchase_price, :numDVD, :numDVDout, 
     //                           	:BluRay_rental_price, :BluRay_purchase_price, :numBluRay, 
     //                           	:numBluRayOut)');
-    
     // // sanitize data in PDO object
     // $insertMovie->bindParam(':member_id', $member_id, PDO::PARAM_STR);
-    // $insertMovie->bindParam(':title', $title, PDO::PARAM_STR);
-    // $insertMovie->bindParam(':tagline', $tagline, PDO::PARAM_STR);
-    // $insertMovie->bindParam(':plot', $plot, PDO::PARAM_STR);
+    // $insertMovie->bindParam(':title', $formData[movie-title], PDO::PARAM_STR);
+    // $insertMovie->bindParam(':tagline', $, PDO::PARAM_STR);
+    // $insertMovie->bindParam(':plot', $, PDO::PARAM_STR);
     // $insertMovie->bindParam(':director_id', intval($), PDO::PARAM_INT);
     // $insertMovie->bindParam(':studio_id', intval($), PDO::PARAM_INT);
     // $insertMovie->bindParam(':genre_id', intval($), PDO::PARAM_INT);
@@ -40,7 +58,6 @@ function addMovie($formData) {
     // $insertMovie->bindParam(':numBluRayOut', intval($), PDO::PARAM_INT);
     // // add thumbpath !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // // $insertMovie->bindParam(':', $, PDO::PARAM_STR);
-
     // // try insert user into database
     // try {
     //     // insert movie using prepared query
@@ -49,6 +66,8 @@ function addMovie($formData) {
     //     // error message if failed to add to database (print message)
     //     $queryResult['error'] = $e->getMessage();
     // }
+
+    // -- QUERY/UPDATE FOR MOVIE_ACTOR TABLE --
 
     // $db = null; // close database connection
     $queryResult['succeeded'] = false; // TESTING ONLY!!!!!!!!!!!!!!!!!!!

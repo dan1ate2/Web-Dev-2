@@ -5,43 +5,56 @@ function validateMovieAdd($formData) {
 	// return values
 	$validateResult['succeeded'] = false;
     $validateResult['error'] = '';
+    $validateResult['director studio genre'] = array(
+    	// legend: if value exists, database column, database table
+    	array("Director"=>false,"director_name","director"),
+    	array("Studio"=>false,"studio_name","studio"),
+    	array("Genre"=>false,"genre_name","genre")
+    	);
 
 	// put form data into 2 dimensional array
-	// legend: form field name, form data, database field, database table??
+	// legend: (0)form field name, (1)form data, (2)database column, 
+	//	(3)database table, (4)required
 	$m = array(
-		/*0*/array("Movie Title",$formData["movie-title"],"title",),
-		/*1*/array("Movie Tagline",$formData["movie-tagline"],"tagline"),
-		/*2*/array("Movie Plot",$formData["movie-plot"],"plot"),
-		/*3*/array("Year",$formData["year"],"year"),
-		/*4*/array("Director",$formData["director"],"director_name"),
-		/*5*/array("or new Director",$formData["new-director"],"director_name"),
-		/*6*/array("Studio",$formData["studio"],"studio_name"),
-		/*7*/array("or new Studio",$formData["new-studio"],"studio_name"),
-		/*8*/array("Genre",$formData["genre"],"genre_name"),
-		/*9*/array("or new Genre",$formData["new-genre"],"genre_name"),
-		/*10*/array("Classification",$formData["classification"],"classification"),
-		/*11*/array("or new Classification",$formData["new-classification"],"classification"),
-		/*12*/array("First Star",$formData["star1"],""),
-		/*13*/array("or new First Star",$formData["n-star1"]),
-		/*14*/array("Second Star",$formData["star2"]),
-		/*15*/array("or new Second Star",$formData["n-star2"]),
-		/*16*/array("Third Star",$formData["star3"]),
-		/*17*/array("or new Third Star",$formData["n-star3"]),
-		/*18*/array("First Co Star",$formData["co-star1"]),
-		/*19*/array("or new First Co Star",$formData["n-co-star1"]),
-		/*20*/array("Second Co Star",$formData["co-star2"]),
-		/*21*/array("or new Second Co Star",$formData["n-co-star2"]),
-		/*22*/array("Third Co Star",$formData["co-star3"]),
-		/*23*/array("or new Third Co Star",$formData["n-co-star3"]),
-		/*24*/array("Rental Period",$formData["rental-period"]),
-		/*25*/array("Rental Price (DVD)",$formData["dvd-rental-price"]),
-		/*26*/array("Purchase Price (DVD)",$formData["dvd-purchase-price"]),
-		/*27*/array("Stock (DVD)",$formData["dvd-stock"]),
-		/*28*/array("Currently Rented (DVD)",$formData["dvd-rented"]),
-		/*29*/array("Rental Price (BluRay)",$formData["bluray-rental"]),
-		/*30*/array("Purchase Price (BluRay)",$formData["bluray-purchase"]),
-		/*31*/array("Stock (BluRay)",$formData["bluray-stock"]),
-		/*32*/array("Currently Rented (BluRay)",$formData["bluray-rented"])
+		/*0*/array("Movie Title",$formData["movie-title"],"title","movie"),
+		/*1*/array("Movie Tagline",$formData["movie-tagline"],"tagline","movie"),
+		/*2*/array("Movie Plot",$formData["movie-plot"],"plot","movie"),
+		/*3*/array("Year",$formData["year"],"year","movie"),
+		/*4*/array("Director",$formData["director"],"director_name","director"),
+		/*5*/array("or new Director",$formData["new-director"],"director_name","director"),
+		/*6*/array("Studio",$formData["studio"],"studio_name","studio"),
+		/*7*/array("or new Studio",$formData["new-studio"],"studio_name","studio"),
+		/*8*/array("Genre",$formData["genre"],"genre_name","genre"),
+		/*9*/array("or new Genre",$formData["new-genre"],"genre_name","genre"),
+		/*10*/array("Classification",$formData["classification"],"classification","movie"),
+		/*11*/array("or new Classification",$formData["new-classification"],"classification",
+			"movie"),
+		/*12*/array("First Star",$formData["star1"],"actor_name","actor",false),
+		/*13*/array("or new First Star",$formData["n-star1"],"actor_name","actor",false),
+		/*14*/array("Second Star",$formData["star2"],"actor_name","actor",false),
+		/*15*/array("or new Second Star",$formData["n-star2"],"actor_name","actor",false),
+		/*16*/array("Third Star",$formData["star3"],"actor_name","actor",false),
+		/*17*/array("or new Third Star",$formData["n-star3"],"actor_name","actor",false),
+		/*18*/array("First Co Star",$formData["co-star1"],"actor_name","actor",false),
+		/*19*/array("or new First Co Star",$formData["n-co-star1"],"actor_name","actor",false),
+		/*20*/array("Second Co Star",$formData["co-star2"],"actor_name","actor",false),
+		/*21*/array("or new Second Co Star",$formData["n-co-star2"],"actor_name","actor",false),
+		/*22*/array("Third Co Star",$formData["co-star3"],"actor_name","actor",false),
+		/*23*/array("or new Third Co Star",$formData["n-co-star3"],"actor_name","actor",false),
+		/*24*/array("Rental Period",$formData["rental-period"],"rental_period","movie"),
+		/*25*/array("Rental Price (DVD)",$formData["dvd-rental-price"],
+			"DVD_rental_price","movie"),
+		/*26*/array("Purchase Price (DVD)",$formData["dvd-purchase-price"],
+			"DVD_purchase_price","movie"),
+		/*27*/array("Stock (DVD)",$formData["dvd-stock"],"numDVD","movie"),
+		/*28*/array("Currently Rented (DVD)",$formData["dvd-rented"],"numDVDout","movie"),
+		/*29*/array("Rental Price (BluRay)",$formData["bluray-rental"],
+			"BluRay_rental_price","movie"),
+		/*30*/array("Purchase Price (BluRay)",$formData["bluray-purchase"],
+			"BluRay_purchase_price","movie"),
+		/*31*/array("Stock (BluRay)",$formData["bluray-stock"],"numBluRay","movie"),
+		/*32*/array("Currently Rented (BluRay)",$formData["bluray-rented"],
+			"numBluRayOut","movie")
 		);
 	// print_r($m); // debug array
 
@@ -51,10 +64,9 @@ function validateMovieAdd($formData) {
 	while (!$error && $nextValidation < 8) {
 		$nextValidation++;
 		switch ($nextValidation) {
-			// check if movie exists (by title, tagline, plot)
+			// check if movie exists (by tagline and plot)
 			case 1:
-				$validateResult['error'] = checkMovieExists($m[0][1], 
-					$m[1][1], $m[2][1]);
+				$validateResult['error'] = checkMovieExists($m[1][1], $m[2][1]);
 				if (!empty($validateResult['error'])) {
 					$error = true;
 				}
@@ -81,6 +93,7 @@ function validateMovieAdd($formData) {
 			/* validates director, studio, genre, classification and
 				1st/2nd/3rd star and co-star field pairs */
 			case 4:
+                // legend: dropdown, 'or new' field
 				$fieldPairs = array(
 					array(4, 5), // director
 					array(6, 7), // studio
@@ -210,19 +223,16 @@ function validateYear($y) {
 	return $error;
 } // end validateYear
 
-// check if movie exists
-function checkMovieExists($movieTitle, $movieTagline, $moviePlot) {
+// check if movie exists by tagline or plot
+function checkMovieExists($movieTagline, $moviePlot) {
 	$db = getDBConnection();
 	$error = '';
 	try {
 		$checkExists = $db->prepare("SELECT 
-			(SELECT COUNT(*) FROM movie WHERE title = :title)
-			+
 			(SELECT COUNT(*) FROM movie WHERE tagline = :tagline)
 			+
 			(SELECT COUNT(*) FROM movie WHERE plot = :plot) AS matches");
 		// sanitize data
-	    $checkExists->bindParam(':title', $movieTitle, PDO::PARAM_STR);
 	    $checkExists->bindParam(':tagline', $movieTagline, PDO::PARAM_STR);
 	    $checkExists->bindParam(':plot', $moviePlot, PDO::PARAM_STR);
 		$checkExists->execute();
@@ -234,7 +244,7 @@ function checkMovieExists($movieTitle, $movieTagline, $moviePlot) {
 	// if matches are found then set error
 	if ($result[0]['matches'] > 0) {
 		$error = 'A match was found for the movie details you have entered. 
-			Cannot have the same movie or details (title, tagline or plot) as another movie
+			Cannot have the same movie tagline or plot details as another movie
 			already in the system.';
 	}
 	return $error;
@@ -244,14 +254,27 @@ function checkMovieExists($movieTitle, $movieTagline, $moviePlot) {
 // ie if no director chosen and no new director given, error
 function validateDropdownAndNew($existingDropdownArr, $newDataArr) {
 	$error = '';
-	// if an option selected
+	// if an option selected, but not both
 	if (!empty($existingDropdownArr[1]) xor !empty($newDataArr[1])) {
-		// if new field chosen
+		// if 'or new' field chosen
 		if (!empty($newDataArr[1])) {
+			// check if it does already exist
 			if (checkIfDataExists($newDataArr)) {
 				$error = '"'.$newDataArr[0].'" field must be unique, but matches another in the
 					 system. Please use the dropdown and select the entry from there.';
 			}
+		}
+		// set matching result array to true (existing option/dropdown selected)
+		else {
+			if ($existingDropdownArr[0] = "Director") {
+                $validateResult['director studio genre'][0]["Director"] = true;
+            }
+            else if ($existingDropdownArr[0] = "Studio") {
+            	$validateResult['director studio genre'][0]["Studio"] = true;
+            }
+            else if ($existingDropdownArr[0] = "Genre") {
+            	$validateResult['director studio genre'][0]["Genre"] = true;
+            }
 		}
 	}
 	// if both options, error
@@ -259,26 +282,29 @@ function validateDropdownAndNew($existingDropdownArr, $newDataArr) {
 		$error = 'Cannot have "'.$existingDropdownArr[0].'" dropdown option selected while 
 			there is text added to the "'.$newDataArr[0].'" field also.';
 	}
+	// nothing has been selected
+	else if (!isset($existingDropdownArr[4])) { // if required option
+		$error = 'Either a "'.$existingDropdownArr[0].'" dropdown option must be selected, 
+		otherwise "'.$newDataArr[0].'" field must be filled out.';
+	}
 	return $error;
 } // end validateDropdownAndNew
 
-// checks database for a match of the field data to prevent duplicates
-function checkIfDataExists($fieldArr) {
+// checks database for a match of a 'or new' field input
+function checkIfDataExists($newfieldArr) {
 	$db = getDBConnection();
 	$error = false;
-	// work out which field and table to query
-
 	// database query
 	try {
 		// prepare query
 		$checkExists = $db->prepare("SELECT COUNT(*) 
 			FROM :databaseTable 
-			WHERE :databaseField = :userInput 
+			WHERE :databaseColumn = :userInput 
 			AS matches");
 		// sanitize/bind data
-	    $checkExists->bindParam(':userInput', $fieldArr[1], PDO::PARAM_STR);
-	    $checkExists->bindParam(':', $, PDO::PARAM_STR);
-	    $checkExists->bindParam(':', $, PDO::PARAM_STR);
+	    $checkExists->bindParam(':userInput', $newfieldArr[1], PDO::PARAM_STR);
+	    $checkExists->bindParam(':databaseColumn', $newfieldArr[2], PDO::PARAM_STR);
+	    $checkExists->bindParam(':databaseTable', $newfieldArr[3], PDO::PARAM_STR);
 		// execute query
 		$checkExists->execute();
 		// get results

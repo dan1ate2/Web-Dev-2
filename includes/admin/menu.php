@@ -84,7 +84,8 @@
 					if ($validateResult['succeeded']) {
 						// process add movie
 						include_once 'includes/admin/adds-movie-lev2.php';
-						$queryResult = addMovie($_POST); // adds movie to database
+						$queryResult = addMovie($_POST, 
+							$validateResult['director studio genre']); // adds movie to database
 						if($queryResult['succeeded']) {
 	                     	// success message
 	                     	echo '<p>The movie "' . $_POST['movie-title'] . '" has been successfully added to the system.</p>';
