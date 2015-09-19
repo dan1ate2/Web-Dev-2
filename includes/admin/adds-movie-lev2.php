@@ -1,54 +1,73 @@
 <?php
-include_once ("connectDB.php"); // database connection
+include_once ("includes/connectDB.php"); // database connection
 
 // adds new movie to database
 function addMovie($formData, $directorStudioGenre) {
 	// return values
     $queryResult['succeeded'] = false;
     $queryResult['error'] = '';
-    // member_id for query
+    $directorID;
+    $studioID;
+    $genreID;
+    $queryID;
     
     // -- QUERY/UPDATE FOR DIRECTOR, STUDIO, GENRE TABLES --
 	// figure out field type and if database entry exists already
 	foreach ($directorStudioGenre as $fields) {
-        $director_id = null; // auto increments in database
-        $nameToInput = '';
+        $newID = null; // auto increment in database
+        $newNameInput = '';
+        $db = getDBConnection(); // database connection
+        $table = $fields[2];
+        $column = $fields[1];
+        $id = $fields[3];
         // identify table to update
         if ($fields[2] = 'director') {
-            $nameToInput = $formData['new-director'];
+            $newNameInput = $formData['new-director'];
         } 
         else if ($fields[2] = 'studio') {
-            $nameToInput = $formData['new-studio'];
+            $newNameInput = $formData['new-studio'];
         } 
         else if ($fields[2] = 'genre') {
-            $nameToInput = $formData['new-genre'];
+            $newNameInput = $formData['new-genre'];
         }
-        // new entry (if no existing field found in database in earlier validation)
+        // new entry (false if existing field found in database in earlier validation)
         if (!$fields[0]) {
-            // create new entry
-            $id = null; // auto increment in database
-            $db = getDBConnection(); // database connection
-            // set up query
-            $insertNew = $db->prepare('INSERT into :table
-		    	VALUES (:id, :name)');
-            // sanitize data in PDO object
-            $insertNew->bindParam(':id', intval($id), PDO::PARAM_INT);
-            $insertNew->bindParam(':name', $nameToInput, PDO::PARAM_STR);
-            $insertNew->bindParam(':table', $fields[2], PDO::PARAM_STR);
-            // try insert director into database
+            // try insert into database
             try {
+                // set up query
+                $insertNew = $db->prepare('INSERT into $table
+                    VALUES (:id, $column)');
+                // sanitize data in PDO object
+                $insertNew->bindParam(':id', intval($newID), PDO::PARAM_INT);
                 // insert movie using prepared query
                 $queryResult['succeeded'] = $insertNew->execute();
-            } catch (PDOException $e) {
+            } 
+            catch (PDOException $e) {
                 // error message if failed to add to database (print message)
                 $queryResult['error'] = $e->getMessage();
-
             }
-            $db = null; // close db connection
-        
-        // query database (get ID)
-
         } // end if
+        // query database (get ID) if no previous error
+        if ($queryResult['error'] = '') {
+            // try query database
+            try {
+                // set up query
+                $queryNew = $db->prepare('SELECT FROM $table 
+                    $id 
+                    WHERE $column = :name');
+                // sanitize data in PDO object
+                $queryNew->bindParam(':name', $newNameInput, PDO::PARAM_STR);
+                $queryResult['succeeded'] = $queryNew->execute();
+                // get results
+                $queryID = $queryNew->fetchColumn();
+                print_r($queryID); // debug query
+            } 
+            catch (PDOException $e) {
+                // error message if failed query (print message)
+                $queryResult['error'] = $e->getMessage();
+            }
+        } // end if
+        $db = null; // close db connection
     } // end foreach
 
     // -- QUERY/UPDATE FOR MOVIE TABLE --
@@ -92,6 +111,5 @@ function addMovie($formData, $directorStudioGenre) {
     // -- QUERY/UPDATE FOR MOVIE_ACTOR TABLE --
 
     // $db = null; // close database connection
-    $queryResult['succeeded'] = true; // TESTING ONLY!!!!!!!!!!!!!!!!!!!
     return $queryResult;
 }

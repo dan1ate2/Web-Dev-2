@@ -6,15 +6,15 @@ function validateMovieAdd($formData) {
 	$validateResult['succeeded'] = false;
     $validateResult['error'] = '';
     $validateResult['director studio genre'] = array(
-    	// legend: if value exists, database column, database table
-    	array(false,"director_name","director"),
-    	array(false,"studio_name","studio"),
-    	array(false,"genre_name","genre")
+    	// legend: if value exists, db column name, db table, db id
+    	array(false,"director_name","director","director_id"),
+    	array(false,"studio_name","studio","studio_id"),
+    	array(false,"genre_name","genre","genre_id")
     	);
 
 	// put form data into 2 dimensional array
-	// legend: (0)form field name, (1)form data, (2)database column, 
-	//	(3)database table, (4)required
+	// legend: [0]form field name, [1]form data, [2]database column, 
+	//	[3]database table, [4]required field
 	$m = array(
 		/*0*/array("Movie Title",$formData["movie-title"],"title","movie"),
 		/*1*/array("Movie Tagline",$formData["movie-tagline"],"tagline","movie"),
@@ -93,7 +93,7 @@ function validateMovieAdd($formData) {
 			/* validates director, studio, genre, classification and
 				1st/2nd/3rd star and co-star field pairs */
 			case 4:
-                // legend: dropdown, 'or new' field
+                // legend: [0]dropdown, [1]'or new' field
 				$fieldPairs = array(
 					array(4, 5), // director
 					array(6, 7), // studio
@@ -264,7 +264,7 @@ function validateDropdownAndNew($existingDropdownArr, $newDataArr) {
 					 system. Please use the dropdown and select the entry from there.';
 			}
 		}
-		// set matching result array to true (existing option/dropdown selected)
+		// existing option/dropdown selected (set matching result array to true)
 		else {
 			if ($existingDropdownArr[3] = "director") {
                 $validateResult['director studio genre'][0][0] = true;
@@ -282,8 +282,9 @@ function validateDropdownAndNew($existingDropdownArr, $newDataArr) {
 		$error = 'Cannot have "'.$existingDropdownArr[0].'" dropdown option selected while 
 			there is text added to the "'.$newDataArr[0].'" field also.';
 	}
-	// nothing has been selected
-	else if (!isset($existingDropdownArr[4])) { // if required option
+	// else nothing has been selected
+		// if array bool set and true ([4]:required option)
+	else if (!isset($existingDropdownArr[4])) {
 		$error = 'Either a "'.$existingDropdownArr[0].'" dropdown option must be selected, 
 		otherwise "'.$newDataArr[0].'" field must be filled out.';
 	}
@@ -294,17 +295,19 @@ function validateDropdownAndNew($existingDropdownArr, $newDataArr) {
 function checkIfDataExists($newfieldArr) {
 	$db = getDBConnection();
 	$error = false;
+	// const TABLE = $newfieldArr[3];
+	// const COLUMN = $newfieldArr[2];
+	define('TABLE', $newfieldArr[3]);
+    define('COLUMN', $newfieldArr[2]);
 	// database query
 	try {
 		// prepare query
 		$checkExists = $db->prepare("SELECT COUNT(*) 
-			FROM :databaseTable 
-			WHERE :databaseColumn = :userInput 
-			AS matches");
+			AS matches 
+			FROM `TABLE` 
+			WHERE `COLUMN` = :userInput");
 		// sanitize/bind data
 	    $checkExists->bindParam(':userInput', $newfieldArr[1], PDO::PARAM_STR);
-	    $checkExists->bindParam(':databaseColumn', $newfieldArr[2], PDO::PARAM_STR);
-	    $checkExists->bindParam(':databaseTable', $newfieldArr[3], PDO::PARAM_STR);
 		// execute query
 		$checkExists->execute();
 		// get results
