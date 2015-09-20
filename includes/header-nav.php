@@ -19,7 +19,7 @@
 							stripos($_SERVER['REQUEST_URI'], 'logout.php') ||
 							stripos($_SERVER['REQUEST_URI'], 'admin.php')) {
 							    echo '<div class="user-nav">
-									<li><a href="#">login</a></li>
+									<li><a href="login.php">login</a></li>
 								    <li><a href="includes/logout.php">logout</a></li>
 								    <li><a href="admin.php">admin</a></li>
 								    </div>';

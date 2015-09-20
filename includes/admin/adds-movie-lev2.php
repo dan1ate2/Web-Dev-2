@@ -6,61 +6,61 @@ function addMovie($formData, $directorStudioGenre) {
 	// return values
     $queryResult['succeeded'] = false;
     $queryResult['error'] = '';
-    $directorID;
-    $studioID;
-    $genreID;
-    $queryID;
     
     // -- QUERY/UPDATE FOR DIRECTOR, STUDIO, GENRE TABLES --
 	// figure out field type and if database entry exists already
 	foreach ($directorStudioGenre as $fields) {
-        $newID = null; // auto increment in database
-        $newNameInput = '';
-        $db = getDBConnection(); // database connection
-        $table = $fields[2];
-        $column = $fields[1];
-        $id = $fields[3];
-        // identify table to update
-        if ($fields[2] = 'director') {
+        // try insert into database if new field
+        try {
+            $db = getDBConnection(); // database connection
+            $newID = null; // auto increment in database
+            $newNameInput = '';
             $newNameInput = $formData['new-director'];
-        } 
-        else if ($fields[2] = 'studio') {
-            $newNameInput = $formData['new-studio'];
-        } 
-        else if ($fields[2] = 'genre') {
-            $newNameInput = $formData['new-genre'];
-        }
-        // new entry (false if existing field found in database in earlier validation)
-        if (!$fields[0]) {
-            // try insert into database
-            try {
+            $column = $fields[1];
+            $idColumn = $fields[3];
+            // identify table to update
+            if ($fields[2] = 'director') {
+                $newNameInput = $formData['new-director'];
+            } 
+            else if ($fields[2] = 'studio') {
+                $newNameInput = $formData['new-studio'];
+            } 
+            else if ($fields[2] = 'genre') {
+                $newNameInput = $formData['new-genre'];
+            }
+            // new entry (false if existing field found in database in earlier validation)
+            if (!$fields[0]) {
                 // set up query
-                $insertNew = $db->prepare('INSERT into $table
-                    VALUES (:id, $column)');
+                $table = $fields[2];
+                $insertNew = $db->prepare('INSERT into $table 
+                    VALUES (:id, :newNameInput)');
                 // sanitize data in PDO object
-                $insertNew->bindParam(':id', intval($newID), PDO::PARAM_INT);
+                $insertNew->bindParam(':id', $newID, PDO::PARAM_STR);
+                $insertNew->bindParam(':newNameInput', $newNameInput, PDO::PARAM_STR);
                 // insert movie using prepared query
                 $queryResult['succeeded'] = $insertNew->execute();
-            } 
+                echo var_dump($queryResult);
+                } // end if
+            } // end try
             catch (PDOException $e) {
                 // error message if failed to add to database (print message)
                 $queryResult['error'] = $e->getMessage();
             }
-        } // end if
+        
         // query database (get ID) if no previous error
         if ($queryResult['error'] = '') {
             // try query database
             try {
                 // set up query
-                $queryNew = $db->prepare('SELECT FROM $table 
-                    $id 
+                $queryNew = $db->prepare('SELECT $idColumn 
+                    FROM $table 
                     WHERE $column = :name');
                 // sanitize data in PDO object
                 $queryNew->bindParam(':name', $newNameInput, PDO::PARAM_STR);
                 $queryResult['succeeded'] = $queryNew->execute();
                 // get results
-                $queryID = $queryNew->fetchColumn();
-                print_r($queryID); // debug query
+                $queryID = $queryNew->fetchAll(PDO::FETCH_ASSOC);
+                echo var_dump($queryID);
             } 
             catch (PDOException $e) {
                 // error message if failed query (print message)

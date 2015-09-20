@@ -6,7 +6,7 @@ function validateMovieAdd($formData) {
 	$validateResult['succeeded'] = false;
     $validateResult['error'] = '';
     $validateResult['director studio genre'] = array(
-    	// legend: if value exists, db column name, db table, db id
+    	// legend: if value exists, db column name, db table, db column id
     	array(false,"director_name","director","director_id"),
     	array(false,"studio_name","studio","studio_id"),
     	array(false,"genre_name","genre","genre_id")
@@ -295,17 +295,15 @@ function validateDropdownAndNew($existingDropdownArr, $newDataArr) {
 function checkIfDataExists($newfieldArr) {
 	$db = getDBConnection();
 	$error = false;
-	// const TABLE = $newfieldArr[3];
-	// const COLUMN = $newfieldArr[2];
-	define('TABLE', $newfieldArr[3]);
-    define('COLUMN', $newfieldArr[2]);
+	$table = $newfieldArr[3];
+	$column = $newfieldArr[2];
 	// database query
 	try {
 		// prepare query
 		$checkExists = $db->prepare("SELECT COUNT(*) 
 			AS matches 
-			FROM `TABLE` 
-			WHERE `COLUMN` = :userInput");
+			FROM $table 
+			WHERE $column = :userInput");
 		// sanitize/bind data
 	    $checkExists->bindParam(':userInput', $newfieldArr[1], PDO::PARAM_STR);
 		// execute query

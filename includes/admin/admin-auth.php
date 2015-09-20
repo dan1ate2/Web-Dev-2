@@ -4,7 +4,7 @@ function authorisedAccess() {
 	$loginStatus;
 	$timeoutMinutes = 20;
 
-	if (isset($_POST["admin-login"])) { // CHANGE THE PASSWORD METHOD TO DATABASE READ, MORE SECURE!!!!!!!!!!!!!!!!!!
+	if (isset($_POST["admin-login"])) {
 		if (!empty($_POST["staff-name"]) && !empty($_POST["password"])) {
 			if (validAdminPass($_POST["password"])) {
 				session_regenerate_id();
