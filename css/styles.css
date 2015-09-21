@@ -110,9 +110,14 @@ a:active, footer a:active, header a:active {
 	margin-right: 25%;
 }
 .one-third-box {
-	float: left;
+/*	float: left;
 	width: 33.33%;
 	margin: 15px 0;
+*/
+	float: left;
+    width: 30.4%;
+    margin: 15px 0px;
+    padding: 0 14px;
 }
 .bg-opacity {
 	background-image: url("../images/bg-opacity.png");
@@ -357,19 +362,6 @@ a.tip:hover span{
     margin-top: 20px;
     margin-left: -138px;
 }
-/*#edit-member a.tip:hover span{
-    display:inline;
-    position:absolute;
-    color:#111;
-    border:1px solid #f1592a; 
-    background:#fff;}
-#edit-member.callout {
-	z-index:10;
-	position:absolute;
-	top:30px;
-	border:0;
-	left:-12px;
-}*/
 #show-movie-details label {
     width: 30%;
     padding: 0 15px 0 10px;
