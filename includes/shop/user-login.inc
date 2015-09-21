@@ -3,9 +3,9 @@
 	<h2 class="orange">Login to your DVD'sy account</h2>
 	<p>This is strictly for DVD'sy members only!</p>
     <div id ="login-form">
-        <form name="admin-login" id="admin-login" action="admin.php" method="post" onsubmit="">
-            <label for="staff-name">Username</label>
-            <input type="text" name="staff-name" id="staff-name" maxlength="10" pattern=".{4,10}" title="Enter your name here"><br>
+        <form name="user-login" id="user-login" action="login.php" method="post" onsubmit="">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" maxlength="10" pattern=".{4,10}" title="Enter your name here"><br>
             <label for="password">Password</label>
             <input type="password" name="password" id="password" maxlength="10" title="Enter your admin password here"><br>
             <div class="form-buttons">

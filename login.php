@@ -1,9 +1,6 @@
 <?php
 session_start();
 session_cache_limiter('private_no_expire');
-// if (isset($_SESSION["Username"])) {
-// 	session_regenerate_id();
-// }
 ?>
 
 <!DOCTYPE html>
@@ -26,12 +23,38 @@ session_cache_limiter('private_no_expire');
 	<div class="container">
 	<?php
 		include 'includes/shop/login-auth.php'; // auth function
+		
 		switch (memberAccess()) {
 			case "ok":
-				include 'includes/shop/user-login.inc'; // for testing!!!!!!!!!
+				echo '<p class="system-message">
+				You are logged in as <span style="color:#f1592a">'
+				.$_SESSION["Username"].'</span></p>';
+				header('Location: moviezone.php'); // for testing!!!!!!!!!
 				break;
-			default:
+			case "timed out":
+				echo '<p class="system-message error-text">
+				Session timed out, please log in again.</p>';
 				include 'includes/shop/user-login.inc';
+				break;
+			case "incorrect login":
+				echo '<p class="system-message error-text">
+				Username and/or Password is incorrect, please try again.</p>';
+				break;
+			case "new session":
+				include 'includes/shop/user-login.inc';
+				break;
+			case "empty found":
+				echo '<p class="system-message error-text">
+				Username and/or Password fields cannot be empty, try again.</p>';
+				break;
+			case "admin logged in":
+                    echo '<p class="system-message error-text">Already logged in as 
+                    <span style="color:#f1592a"><b>'.$_SESSION["StaffName"].'</b></span>.<br>
+                    Please logout first to access the user/member login.</p>';
+                    break;
+			default:
+				echo '<p class="system-message error-text">
+				An unknown error has occured</p>';
 				break;
 		}
 	?>

@@ -3,7 +3,7 @@
 function authorisedAccess() {
 	$loginStatus;
 	$timeoutMinutes = 20;
-
+	// if valid login create new session
 	if (isset($_POST["admin-login"])) {
 		if (!empty($_POST["staff-name"]) && !empty($_POST["password"])) {
 			if (validAdminPass($_POST["password"])) {
@@ -21,7 +21,7 @@ function authorisedAccess() {
 			$loginStatus = "empty found";
 		}
 	}
-	// else if a valid session exists
+	// else if a valid admin session exists
     else if (isset($_SESSION["StaffName"]) && isset($_SESSION["Password"])) {
     	if (validAdminPass($_SESSION["Password"])) {
 			$inactivityMinutes = time() - $_SESSION["LastActive"];
@@ -37,6 +37,10 @@ function authorisedAccess() {
 				$loginStatus = "ok";
 			}
     	}
+    }
+    // else if user/member already logged in
+    else if (isset($_SESSION["Username"])) {
+    	$loginStatus = "user logged in";
     }
 	// else not a valid session
 	else {

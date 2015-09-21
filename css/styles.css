@@ -50,6 +50,9 @@ p.system-message {
 p.error-text {
 	color: #ff0000;
 }
+p.l-align-txt {
+	text-align: left;
+}
 a {
 	text-decoration: none;
 }
@@ -106,6 +109,11 @@ a:active, footer a:active, header a:active {
 	margin-left: 25%;
 	margin-right: 25%;
 }
+.one-third-box {
+	float: left;
+	width: 33.33%;
+	margin: 15px 0;
+}
 .bg-opacity {
 	background-image: url("../images/bg-opacity.png");
 	background-repeat: repeat;
@@ -116,8 +124,8 @@ a:active, footer a:active, header a:active {
 .box-orange-border {
 	border:solid 4px #f1592a;
 }
-img.feature-images {
-	margin-top: 30px;
+/*img.feature-images {
+	margin-top: 30px;*/
 }
 .clear {
 	clear: both;

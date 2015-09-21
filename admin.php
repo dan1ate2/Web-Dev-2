@@ -30,7 +30,7 @@ if (isset($_SESSION["StaffName"])) {
         	switch (authorisedAccess()) {
         		case "ok":
         			echo '<p class="system-message">
-        			Logged into <span style="color:#f1592a"><b>admin</b></span> as "<span style="color:#f1592a"><b>'.$_SESSION["StaffName"].'</b></span>"</p>';
+        			Logged into <span style="color:#f1592a"><b>admin</b></span> as <span style="color:#f1592a"><b>'.$_SESSION["StaffName"].'</b></span></p>';
         			include 'includes/admin/menu.php';
         			break;
         		case "empty found":
@@ -47,6 +47,11 @@ if (isset($_SESSION["StaffName"])) {
         			echo '<p class="system-message error-text">
         			Incorrect password, please go back and try again</p>';
         			break;
+                case "user logged in":
+                    echo '<p class="system-message error-text">Already logged in as 
+                    <span style="color:#f1592a"><b>'.$_SESSION["Username"].'</b></span>.<br>
+                    You do not have permission to access this area.</p>';
+                    break;
         		case "new session":
         			include 'includes/admin/admin-login.inc';
         			break;
