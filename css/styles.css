@@ -31,6 +31,9 @@ h1.black-orange, h2.black-orange, h3.black-orange, h4.black-orange {
 .orange-text {
 	color:#f1592a;
 }
+.white-text {
+	color: white;
+}
 .page-title {
 width: 100%;
 color: #F1592A;
@@ -53,14 +56,18 @@ p.error-text {
 p.l-align-txt {
 	text-align: left;
 }
+.left-align-text p {
+	text-align: left;
+	padding: 0 20px;
+}
 a {
 	text-decoration: none;
 }
 a:link {
-	color: #cecece;
+	color: #3399FF;
 }
 a:visited {
-	color: #a7a7a7;
+	color: #3399FF;
 }
 footer a:visited, header a:visited {
     color: #cecece;
@@ -128,6 +135,7 @@ a:active, footer a:active, header a:active {
 }
 .box-orange-border {
 	border:solid 4px #f1592a;
+	padding: 5px;
 }
 /*img.feature-images {
 	margin-top: 30px;*/

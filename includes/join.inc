@@ -1,5 +1,8 @@
 <h2 class="orange">Join DVD'sy And Rent DVD's!</h2>
-<p>Join our club today and receive the monthly newsletter and the ability to rent out our movies online!</p><br>
+<p>Join our club today and receive the monthly newsletter and the ability to rent out our movies online!</p>
+<p class="error-text">We take your privacy seriously, and will not disclose your information to third parties.<br>
+The information you provide us is soley for us to contact you or to mail the monthly newsletter out to you (if chosen).<br>
+<i>Note: Booking capabilities still under construction.</i></p><br>
 
 <!-- onsubmit="return validateJoinForm()" -->
 <!-- action="http://infotech.scu.edu.au/cgi-bin/echo_form" -->

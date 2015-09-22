@@ -20,33 +20,33 @@
 		<div class="container">
 			<div class="left-box bg-opacity box-orange-border">
 				<h2 class="orange">New Release</h2>
-				<div class="container"><img src="images/glass-chin.jpg" 
-					alt="Glass Chin new release movie" class="new-release-image"></div>			
-				<h4 class="orange-text">Glass Chin</h4>
-				<p>A down-on-his-luck former boxing champ is forced to make a choice 
-					between friendship and ambition when he is framed for murder.</p>
-				<p class="orange-text">Rent it now on DVD or BluRay!</p>
+				<?php 
+					include_once 'includes/randomNewRelease.php';
+					randomNewRelease();
+				?>
+				<p class="orange-text"><b>Rent it now on DVD or BluRay!</b></p>
 			</div>
 			<div class="right-box bg-opacity">
-				<h2 class="black-orange">News</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-					Sed semper, nisi et rhoncus convallis, turpis nibh porta ipsum, 
-					ut finibus leo magna sit amet tellus. Nam nec velit est.</p>
-				<p>Vivamus ante purus, dapibus in commodo a, sagittis eu turpis.</p>
-				<p>Sed a sollicitudin odio, a ultrices tortor. Vestibulum et auctor 
-					mauris, ac pellentesque ante. Nullam iaculis dolor molestie dictum 
-					consectetur. Maecenas sit amet pulvinar lectus, eu tincidunt eros.</p>
-				<h3 class="orange-text">New movie release dates</h3>
-				<p>Pellentesque nunc nisi, pulvinar ut tellus eget, efficitur iaculis nisl. 
-					Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-					Suspendisse eget tellus vitae nunc dictum pharetra quis et nibh.</p>
-				<p>In rutrum nisl lobortis, tincidunt lorem ut, eleifend lacus. 
-					Nullam interdum maximus risus, vel viverra nisl mattis eu. 
-					Etiam aliquam efficitur lacus.</p>
+				<h2 class="black-orange">Welcome</h2>
+				<div class="left-align-text">
+					<p>Hi, and welcome to DVD'sy!</p>
+					<p>We are a dedicated team who have a passion for movies, and we're here to 
+					provide you with the latest and greatest from Hollywood, Bollywood, 
+					and beyond!</p>
+					<p>Please feel free to browse our collection at the <a href="moviezone.php" target="_self">Moviezone page</a> where you can rent or purchase movies.</p>
+				</div>
+				<h3 class="orange-text">Booking engine almost ready!</h3>
+				<div class="left-align-text">
+					<p>Our developer is working around the clock to finish the booking engine/cart, 
+						where you will be able to rent and purchase your movies from.</p>
+					<p>Please be patient as we are still developing this system, in the meantime you can browse our movies and see what we have available in store, and call us when your ready to pick them up and we'll have them ready for you!</p>
+					<p>If you'd like to join up and receive our newsletter, please navigate to the <a href="join.php" target="_self">join page</a>, otherwise if you'd like to contact us please head to the <a href="contact.php" target="_self">contact page</a>.</p>
+					<p>Lastly, we also offer advice from our tech expert, check out his articles at the <a href="techzone.php" target="_self">techzone page</a>.</p>
+				</div>
 			</div>
 			<div class="clear"></div>
 			<div class="fw-box bg-opacity">
-				<h2 class="black-orange">Our Favourite Picks</h2>
+				<h2 class="black-orange">Movies coming to our collection</h2>
 				<div class="fav-picks">
 					<img src="images/dead-poets-society.jpg" width="214" height="317" alt="Dead Poets Society">
 					<img src="images/a-beautiful-mind.jpg" width="214" height="317" alt="A Beautiful Mind">

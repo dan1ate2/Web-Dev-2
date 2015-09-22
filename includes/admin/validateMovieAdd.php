@@ -6,10 +6,10 @@ function validateMovieAdd($formData) {
 	$validateResult['succeeded'] = false;
     $validateResult['error'] = '';
     $validateResult['director studio genre'] = array(
-    	// legend: if value exists, db column name, db table, db column id
-    	array(false,"director_name","director","director_id"),
-    	array(false,"studio_name","studio","studio_id"),
-    	array(false,"genre_name","genre","genre_id")
+    	// legend: if value exists, db table
+    	array(false,"director"),
+    	array(false,"studio"),
+    	array(false,"genre")
     	);
 
 	// put form data into 2 dimensional array
@@ -54,14 +54,15 @@ function validateMovieAdd($formData) {
 			"BluRay_purchase_price","movie"),
 		/*31*/array("Stock (BluRay)",$formData["bluray-stock"],"numBluRay","movie"),
 		/*32*/array("Currently Rented (BluRay)",$formData["bluray-rented"],
-			"numBluRayOut","movie")
+			"numBluRayOut","movie"),
+		/*33*/array("Image Name",$formData["thumbpath"],"thumbpath","movie")
 		);
 	// print_r($m); // debug array
 
 	$error = false;
 	$nextValidation = 0;
 	// while no errors go through validation functions
-	while (!$error && $nextValidation < 8) {
+	while (!$error && $nextValidation < 9) {
 		$nextValidation++;
 		switch ($nextValidation) {
 			// check if movie exists (by tagline and plot)
@@ -155,8 +156,15 @@ function validateMovieAdd($formData) {
 					}
 				}
 				break;
-			// all good, passed validation
+			// validate Image Name (thumbpath)
 			case 8:
+				$validateResult['error'] = checkBlankField($m[33][1]);
+					if (!empty($validateResult['error'])) {
+						$error = true;
+					}
+				break;
+			// all good, passed validation
+			case 9:
 				$validateResult['succeeded'] = true;
 				break;
 			default:

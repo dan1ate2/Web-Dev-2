@@ -9,58 +9,91 @@ function addMovie($formData, $directorStudioGenre) {
     
     // -- QUERY/UPDATE FOR DIRECTOR, STUDIO, GENRE TABLES --
 	// figure out field type and if database entry exists already
+    $loopCount = 0;
 	foreach ($directorStudioGenre as $fields) {
         // try insert into database if new field
         try {
+            $loopCount++;
+            $_SESSION['loopCount'][] = $loopCount;
+            $_SESSION['loops'][] = $fields;
             $db = getDBConnection(); // database connection
             $newID = null; // auto increment in database
-            $newNameInput = '';
-            $newNameInput = $formData['new-director'];
-            $column = $fields[1];
-            $idColumn = $fields[3];
-            // identify table to update
-            if ($fields[2] = 'director') {
+            $newNameInput = ''; // field input
+            $table = $fields[1]; // table to query/update
+            // identify table to update and find data to update with
+            if ($table == 'director') {
                 $newNameInput = $formData['new-director'];
             } 
-            else if ($fields[2] = 'studio') {
+            else if ($table == 'studio') {
                 $newNameInput = $formData['new-studio'];
             } 
-            else if ($fields[2] = 'genre') {
+            else if ($table == 'genre') {
                 $newNameInput = $formData['new-genre'];
             }
-            // new entry (false if existing field found in database in earlier validation)
-            if (!$fields[0]) {
+            $_SESSION['beforeFirstSwitch'][] = $table;
+            $_SESSION['beforeFirstSwitch'][] = $newNameInput;
+            // new entry (false if existing field already exists in db)
+            if ($fields[0] && !empty($newNameInput)) {
                 // set up query
-                $table = $fields[2];
-                $insertNew = $db->prepare('INSERT into $table 
-                    VALUES (:id, :newNameInput)');
+                switch ($table) {
+                    case 'director':
+                        $insertNew = $db->prepare('INSERT into director 
+                            VALUES (:id, :newNameInput)');
+                        break;
+                    case 'studio':
+                        $insertNew = $db->prepare('INSERT into studio 
+                            VALUES (:id, :newNameInput)');
+                        break;
+                    case 'genre':
+                        $insertNew = $db->prepare('INSERT into genre 
+                            VALUES (:id, :newNameInput)');
+                        break;
+                    default:
+                        break;
+                }
                 // sanitize data in PDO object
                 $insertNew->bindParam(':id', $newID, PDO::PARAM_STR);
                 $insertNew->bindParam(':newNameInput', $newNameInput, PDO::PARAM_STR);
-                // insert movie using prepared query
+                // insert using prepared query
                 $queryResult['succeeded'] = $insertNew->execute();
-                echo var_dump($queryResult);
-                } // end if
-            } // end try
-            catch (PDOException $e) {
-                // error message if failed to add to database (print message)
-                $queryResult['error'] = $e->getMessage();
-            }
-        
+                $_SESSION['firstQuery'][] = $insertNew;
+            } // end if
+        } // end try
+        catch (PDOException $e) {
+            // error message if failed to add to database (print message)
+            $queryResult['error'] = $e->getMessage();
+        }
         // query database (get ID) if no previous error
-        if ($queryResult['error'] = '') {
+        if ($queryResult['error'] == '') {
             // try query database
             try {
                 // set up query
-                $queryNew = $db->prepare('SELECT $idColumn 
-                    FROM $table 
-                    WHERE $column = :name');
+                switch ($table) {
+                    case 'director':
+                        $queryId = $db->prepare('SELECT director_id 
+                            FROM director 
+                            WHERE director_name = :name');
+                        break;
+                    case 'studio':
+                        $queryId = $db->prepare('SELECT studio_id 
+                            FROM studio 
+                            WHERE studio_name = :name');
+                        break;
+                    case 'genre':
+                        $queryId = $db->prepare('SELECT genre_id 
+                            FROM genre 
+                            WHERE genre_name = :name');
+                        break;
+                    default:
+                        break;
+                }
                 // sanitize data in PDO object
-                $queryNew->bindParam(':name', $newNameInput, PDO::PARAM_STR);
-                $queryResult['succeeded'] = $queryNew->execute();
+                $queryId->bindParam(':name', $newNameInput, PDO::PARAM_STR);
+                $queryResult['succeeded'] = $queryId->execute();
                 // get results
-                $queryID = $queryNew->fetchAll(PDO::FETCH_ASSOC);
-                echo var_dump($queryID);
+                $tableID = $queryId->fetchAll(PDO::FETCH_ASSOC);
+                $_SESSION['table'][] = $tableID; // testing !!!!!!
+                $_SESSION['secondQuery'][] = $queryId;
             } 
             catch (PDOException $e) {
                 // error message if failed query (print message)

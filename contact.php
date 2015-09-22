@@ -19,6 +19,7 @@
 			<h1 class="page-title">Contact</h1>
 			<div class="left-box bg-opacity">
 				<h2 class="orange">Our Location</h2>
+				<img src="images/dvdsy_store.jpg" alt="dvd'sy store" width="320" height="228" class="center-align">
 				<iframe width="336" height="250" style="border:0;margin:18px;" 
 				src="https://www.google.com/maps/embed/v1/place?q=55%20Elizabeth%20St%2C%20Brisbane%2C%20QLD%2C%204000%2C%20Australia&amp;key=AIzaSyAkzwuWvKQbV6Kil9-Qz_dUxCm438sL6O0" allowfullscreen></iframe>
 				<p>55 Elizabeth Street<br>Brisbane, QLD, 4000</p>
@@ -28,7 +29,7 @@
 			<div class="right-box bg-opacity">
 				<h2 class="black-orange">Contact Us</h2>
 				<form name="contact-form" id="contact-form" action="http://infotech.scu.edu.au/cgi-bin/echo_form" method="post" onsubmit="return validateContactForm()">
-					<p>Please fill out this form if you would like to get in touch with us.</p>
+					<h4 class="orange-text">Please fill out the form below if you would like to get in touch with us.</h4><br>
 					<!-- Contact details -->
 		            <label for="first-name">First Name</label>
 					<input type="text" name="first-name" id="first-name" maxlength="50" title="Enter your name here"><br>

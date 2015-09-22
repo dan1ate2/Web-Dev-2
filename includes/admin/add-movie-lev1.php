@@ -114,6 +114,12 @@
 			<input type="text" name="bluray-rented" id="bluray-rented" title="BluRay Currently Rented"><br>
 		</fieldset>
 	</fieldset>
+	<fieldset id="image">
+		<legend>Movie image thumbnail</legend>
+		<label for="thumbpath">Image Name</label>
+		<input type="text" name="thumbpath" id="thumbpath" title="Thumbpath" maxlength="40">
+		<p class="error-text"><i>Temporary fix until upload feature added</i></p>
+	</fieldset>
 
 	<div class="form-buttons">
 		<input type="submit" name="level-2-request" value="Add Movie">
