@@ -49,7 +49,7 @@ if (isset($_SESSION["StaffName"])) {
         			break;
                 case "user logged in":
                     echo '<p class="system-message error-text">Already logged in as 
-                    <span style="color:#f1592a"><b>'.$_SESSION["Username"].'</b></span>.<br>
+                    <span style="color:#f1592a"><b>'.$_SESSION["Username"].'</b></span><br>
                     You do not have permission to access this area.</p>';
                     break;
         		case "new session":

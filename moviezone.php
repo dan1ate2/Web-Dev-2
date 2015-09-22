@@ -28,16 +28,22 @@ session_cache_limiter('private_no_expire');
 				switch ($sessionStatus) {
 					case "member":
 						echo '<p class="system-message">Logged in as <span style="color:#f1592a"><b>'.$_SESSION["Username"].'</b></span></p>';
-						include_once 'includes/shop/moviezoneLoggedIn.php';
+						// print session variables if exist
+						include_once 'includes/shop/printCurrentCartSummary.php';
+        				printCurrentCartSummary();
+						include_once 'includes/shop/shop.php';
 						break;
 					case "admin":
 						echo '<p class="system-message">
         				Logged into <span style="color:#f1592a"><b>admin</b></span> as 
         				<span style="color:#f1592a"><b>'.$_SESSION["StaffName"].'</b></span></p>';
-        				include_once 'includes/shop/moviezoneLoggedIn.php';
+        				// print session variables if exist
+        				include_once 'includes/shop/printCurrentCartSummary.php';
+        				printCurrentCartSummary();
+        				include_once 'includes/shop/shop.php';
         					break;
     				case "none":
-    					include_once 'includes/shop/moviezoneDefault.php';
+    					include_once 'includes/shop/shop.php';
     					break;
         			case "timed out":
         				echo '<p class="system-message error-text">

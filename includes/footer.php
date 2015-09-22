@@ -14,6 +14,7 @@
 		<div class="container">
 			<div class="clear"></div>
 			<div class="infotech"><a href="http://infotech.scu.edu.au/~dhogan15/" target="_blank"><p>Infotech</p></a></div>
+			<p>Big thanks to <b><a href="http://www.imdb.com" class="inline-link" target="_blank">IMB (Internet Movie Database)</a></b> for the 'borrowing' of pictures!</p><br>
 		</div>
 	</div>
 </footer>

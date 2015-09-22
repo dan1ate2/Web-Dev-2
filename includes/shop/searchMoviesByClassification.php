@@ -1,71 +1,37 @@
-<?php 
-// populate movies from database
-function populateMovies($movieCriteria) {
-	switch ($movieCriteria) {
-		case "New Releases":
-			// gets new release movies and prints them
-			printNewRelease();
-			break;
-		case "Show All Movies":
-			// gets all movies and prints them
-			printAllMovies();
-			break;
-		default:
-			break;
-	}
-} // end populateMovies()
-
-// prints new release movies from db
-function printNewRelease() {
-	include_once ("includes/connectDB.php"); // database connection
-	$db = getDBConnection(); // connect to db
-	// query
-	$sql= "SELECT movie.*, director.director_name, studio.studio_name, genre.genre_name  
+<?php
+// search for movies by chosen classification
+function searchMoviesByClassification($classification) {
+	include_once ("includes/connectDB.php");
+	$db = getDBConnection(); // db connection
+	// get movies from db
+	$sql = "SELECT movie.*, genre.genre_name, 
+	studio.studio_name, director.director_name
 	FROM movie 
 	INNER JOIN director ON movie.director_id = director.director_id 
-	INNER JOIN studio ON movie.studio_id = studio.studio_id  
 	INNER JOIN genre ON movie.genre_id = genre.genre_id 
-	WHERE rental_period='Overnight'";
-	// query db for user/pass match
-	$stmt = $db->prepare($sql);
-	$stmt->execute();
-	// result
-	$result = $stmt->fetchAll();
-	// var_dump($result); // debug query
-	// print results
-	printMovieResults($result);
-	$db = null; // close db connection
-} // end printNewRelease()
-
-// prints all movies from db
-function printAllMovies() {
-	include_once ("includes/connectDB.php"); // database connection
-	$db = getDBConnection(); // connect to db
-	// query
-	$sql= "SELECT movie.*, director.director_name, studio.studio_name, genre.genre_name  
-	FROM movie 
-	INNER JOIN director ON movie.director_id = director.director_id 
-	INNER JOIN studio ON movie.studio_id = studio.studio_id  
-	INNER JOIN genre ON movie.genre_id = genre.genre_id
+	INNER JOIN studio ON movie.studio_id = studio.studio_id 
+	WHERE movie.classification = '$classification' 
 	ORDER BY movie.title";
-	// query db for user/pass match
+	// query db for classification match
 	$stmt = $db->prepare($sql);
 	$stmt->execute();
 	// result
 	$result = $stmt->fetchAll();
 	// var_dump($result); // debug query
-	// print results
-	printMovieResults($result);
+	// count matches, don't trigger print function if none found
+	$matches = count($result);
+	if (empty($matches)) {
+		echo '<br><p class="error-text">No results for '.$genreName.' were found.</p><br>';
+	}
+	else {
+		// print results
+		printClassificationMovieResults($result);
+	}
 	$db = null; // close db connection
-}
-
-// prints actors from search query
-function printActors() {
-
 }
 
 // print html blocks for each movie
-function printMovieResults($queryArray) {
+function printClassificationMovieResults($queryArray) {
 	$moviesToPrint = true;
 	// check if a member or admin (for rent button)
 	$loggedIn = false;
@@ -131,13 +97,13 @@ function printHtml($m, $rentButton) {
 			<input type="submit" name="movie-request" value="Rent Me">
 			</div>
 			</form>';
-	}	
+	}
 	echo '<p class="l-align-txt"><span class="orange-text">Tagline: </span>'.$m[2].'</p>
 		<p class="l-align-txt"><span class="orange-text">Plot: </span>'.$m[3].'</p>
 		<p class="l-align-txt"><span class="orange-text">Year: </span>'.$m[10].'</p>
-		<p class="l-align-txt"><span class="orange-text">Director: </span>'.$m[19].'</p>
+		<p class="l-align-txt"><span class="orange-text">Director: </span>'.$m[21].'</p>
 		<p class="l-align-txt"><span class="orange-text">Studio: </span>'.$m[20].'</p>
-		<p class="l-align-txt"><span class="orange-text">Genre: </span>'.$m[21].'</p>
+		<p class="l-align-txt"><span class="orange-text">Genre: </span>'.$m[19].'</p>
 		<p class="l-align-txt"><span class="orange-text">Classification: </span>'.$m[8].'</p>
 		<p class="l-align-txt"><span class="orange-text">Rental Period: </span>'.$m[9].'</p>
 		<p class="l-align-txt"><span class="orange-text">DVD Rental Price: </span>$'.$m[11].'</p>

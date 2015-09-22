@@ -17,10 +17,12 @@
 						if (stripos($_SERVER['REQUEST_URI'], 'moviezone.php') || 
 							stripos($_SERVER['REQUEST_URI'], 'login.php') ||
 							stripos($_SERVER['REQUEST_URI'], 'logout.php') ||
-							stripos($_SERVER['REQUEST_URI'], 'admin.php')) {
+							stripos($_SERVER['REQUEST_URI'], 'admin.php') ||
+							stripos($_SERVER['REQUEST_URI'], 'booking.php')) {
 							    echo '<div class="user-nav">
 									<li><a href="login.php">login</a></li>
 								    <li><a href="includes/logout.php">logout</a></li>
+								    <li><a href="booking.php">booking</a></li>
 								    <li><a href="admin.php">admin</a></li>
 								    </div>';
 						}

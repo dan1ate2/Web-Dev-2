@@ -14,7 +14,7 @@
 function populateGenreDropdown() {
 	include_once ("includes/connectDB.php");
 	$db = getDBConnection(); // db connection
-	// get actors from db
+	// get genres from db
 	$sql = "SELECT * FROM genre	ORDER BY genre_name";
 	// populate dropdown
 	foreach ($db->query($sql) as $row) {

@@ -48,8 +48,9 @@ session_cache_limiter('private_no_expire');
 				Username and/or Password fields cannot be empty, try again.</p>';
 				break;
 			case "admin logged in":
-                    echo '<p class="system-message error-text">Already logged in as 
-                    <span style="color:#f1592a"><b>'.$_SESSION["StaffName"].'</b></span>.<br>
+                    echo '<p class="system-message error-text">Already logged into 
+                    <span style="color:#f1592a"><b>admin</b></span> as 
+                    <span style="color:#f1592a"><b>'.$_SESSION["StaffName"].'</b></span><br>
                     Please logout first to access the user/member login.</p>';
                     break;
 			default:

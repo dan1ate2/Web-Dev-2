@@ -1,77 +1,50 @@
-<?php 
-// populate movies from database
-function populateMovies($movieCriteria) {
-	switch ($movieCriteria) {
-		case "New Releases":
-			// gets new release movies and prints them
-			printNewRelease();
-			break;
-		case "Show All Movies":
-			// gets all movies and prints them
-			printAllMovies();
-			break;
-		default:
-			break;
+<?php
+// print current cart details as HTML
+function printCurrentCart() {
+	// check if movies exist in cart
+	if (isset($_SESSION["MovieRenting"])) {
+		$arrayToString = implode("','", $_SESSION["MovieRenting"]);
+		searchMoviesByMovieId($arrayToString);
 	}
-} // end populateMovies()
-
-// prints new release movies from db
-function printNewRelease() {
-	include_once ("includes/connectDB.php"); // database connection
-	$db = getDBConnection(); // connect to db
-	// query
-	$sql= "SELECT movie.*, director.director_name, studio.studio_name, genre.genre_name  
-	FROM movie 
-	INNER JOIN director ON movie.director_id = director.director_id 
-	INNER JOIN studio ON movie.studio_id = studio.studio_id  
-	INNER JOIN genre ON movie.genre_id = genre.genre_id 
-	WHERE rental_period='Overnight'";
-	// query db for user/pass match
-	$stmt = $db->prepare($sql);
-	$stmt->execute();
-	// result
-	$result = $stmt->fetchAll();
-	// var_dump($result); // debug query
-	// print results
-	printMovieResults($result);
-	$db = null; // close db connection
-} // end printNewRelease()
-
-// prints all movies from db
-function printAllMovies() {
-	include_once ("includes/connectDB.php"); // database connection
-	$db = getDBConnection(); // connect to db
-	// query
-	$sql= "SELECT movie.*, director.director_name, studio.studio_name, genre.genre_name  
-	FROM movie 
-	INNER JOIN director ON movie.director_id = director.director_id 
-	INNER JOIN studio ON movie.studio_id = studio.studio_id  
-	INNER JOIN genre ON movie.genre_id = genre.genre_id
-	ORDER BY movie.title";
-	// query db for user/pass match
-	$stmt = $db->prepare($sql);
-	$stmt->execute();
-	// result
-	$result = $stmt->fetchAll();
-	// var_dump($result); // debug query
-	// print results
-	printMovieResults($result);
-	$db = null; // close db connection
+	else {
+		echo '<p class="system-message error-text">There are no movies in the current cart.</p>
+		<p>Go to the <b><a href="moviezone.php" target="_self">MovieZone</a></b> page to add movies!</p>';
+	}
 }
 
-// prints actors from search query
-function printActors() {
-
+// search for movies by chosen actor
+function searchMoviesByMovieId($movies) {
+	include_once ("includes/connectDB.php");
+	$db = getDBConnection(); // db connection
+	// get movies from db
+	$sql = "SELECT movie.*, director.director_name, studio.studio_name, genre.genre_name
+	FROM movie 
+	INNER JOIN director ON movie.director_id = director.director_id 
+	INNER JOIN genre ON movie.genre_id = genre.genre_id 
+	INNER JOIN studio ON movie.studio_id = studio.studio_id 
+	WHERE movie_id IN ('$movies') 
+	ORDER BY movie.title";
+	// query db for actors that match
+	$stmt = $db->prepare($sql);
+	$stmt->execute();
+	// result
+	$result = $stmt->fetchAll();
+	// var_dump($result); // debug query
+	// count matches, don't trigger print function if none found
+	$matches = count($result);
+	if (!empty($matches)) {
+		// print results
+		printActorMovieResults($result);
+	}
+	$db = null; // close db connection
 }
 
 // print html blocks for each movie
-function printMovieResults($queryArray) {
+function printActorMovieResults($queryArray) {
 	$moviesToPrint = true;
-	// check if a member or admin (for rent button)
-	$loggedIn = false;
-	if (isset($_SESSION["Username"]) || isset($_SESSION["StaffName"])) {
-		$loggedIn = true;
-	}
+	// print opening fw-box div container and heading
+	echo '<div class="fw-box bg-opacity">
+		<h2 class="orange">Cart Details</h2>';
 	$divColumn = 1;
 	while ($moviesToPrint) {
 		foreach ($queryArray as $movie) {
@@ -79,17 +52,17 @@ function printMovieResults($queryArray) {
 				case 1:
 					echo '<div class="fw-box">
 						<div class="one-third-box">';
-						printHtml($movie, $loggedIn);
+						printHtml($movie);
 					echo '</div>';
 					break;
 				case 2:
 					echo '<div class="one-third-box">';
-					printHtml($movie, $loggedIn);
+					printHtml($movie);
 					echo '</div>';
 					break;
 				case 3:
 					echo '<div class="one-third-box">';
-					printHtml($movie, $loggedIn);
+					printHtml($movie);
 					echo '</div>
 						</div>
 						<div class="clear"></div>';
@@ -111,27 +84,17 @@ function printMovieResults($queryArray) {
 		echo '</div>
 			<div class="clear"></div>';
 	}
+	echo '</div>'; // closing div for 'fw-box'
 } // end printMovieResultHTML()
 
 // prints movie details in HTML
-function printHtml($m, $rentButton) {
+function printHtml($m) {
 	$dvdAvail = intval($m[13]) - intval($m[14]); // dvd stock level - rented
 	$blurayAvail = intval($m[17]) - intval($m[18]); // bluray stock level - rented
-	
 	// print details
 	echo '<h3 class="orange-text">'.$m[1].'</h3>
 		<img src="images/movies/'.$m[4].'" alt="'.$m[1].'" width="102" height="150" 
 		class="center-align">';
-	// add rent button if logged in user. attach movie id for queries
-	if ($rentButton) {
-		echo '<form name="movie-request" id ="shop-search" action="moviezone.php" 
-			method="get">
-			<div class="form-buttons">
-			<input type="hidden" name="movie-id" value="'.$m[0].'">
-			<input type="submit" name="movie-request" value="Rent Me">
-			</div>
-			</form>';
-	}	
 	echo '<p class="l-align-txt"><span class="orange-text">Tagline: </span>'.$m[2].'</p>
 		<p class="l-align-txt"><span class="orange-text">Plot: </span>'.$m[3].'</p>
 		<p class="l-align-txt"><span class="orange-text">Year: </span>'.$m[10].'</p>
